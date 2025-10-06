@@ -28,11 +28,11 @@ wp_head();
 <div class="domain_swapper_example">
     <span>You are on domain:</span> <span style="color:red"><?php echo get_site_url(); ?></span><br>    
      <span>Test Domains:</span>
-    <button><a title="test domain www.app.local" class="button" href="https://">www.app.local</a></button>
-    <button><a title="test domain ww1.app.local" class="button" href="https://ww1.app.local">ww1.app.local</a></button>
-    <button><a title="test domain ww2.app.local" class="button" href="https://ww2.app.local">ww2.app.local</a></button>
-    <button><a title="test domain ww3.app.local" class="button" href="https://ww3.app.local">ww3.app.local</a></button>
-    <button><a title="test domain foo.app.local" class="button" href="https://foo.app.local">foo.app.local</a></button>
+    <button><a title="test domain en.app.local" class="button" href="https://">en.app.local</a></button>
+    <button><a title="test domain dk.app.local" class="button" href="https://dk.app.local">dk.app.local</a></button>
+    <button><a title="test domain de.app.local" class="button" href="https://de.app.local">de.app.local</a></button>
+    <button><a title="test domain es.app.local" class="button" href="https://es.app.local">es.app.local</a></button>
+    <button><a title="test domain th.app.local" class="button" href="https://th.app.local">th.app.local</a></button>
 
     </div>
 
