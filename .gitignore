@@ -1,11 +1,9 @@
 svn/domain-swapper
-test/appdata/firefox/log
-test/appdata/firefox/xdg
-test/appdata/firefox/profile/startupCache
-test/appdata/firefox/profile/storage
-test/appdata/firefox/profile/security_state
-test/appdata/firefox/profile/favicons.sqlite
-test/appdata/firefox/profile/cache2
+test/appdata/*
+!test/appdata/.hidden
+
+
+
 
 pages/db/*.json
 pages/env
