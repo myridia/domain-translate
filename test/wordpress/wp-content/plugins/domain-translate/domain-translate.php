@@ -1,24 +1,24 @@
 <?php
 
 /**
- * @see              https://domain-swapper.myridia.com
+ * @see              https://domain-translate.myridia.com
  * @since             1.0.0
  *
  * @wordpress-plugin
- * Plugin Name: Domain-swapper
- * Plugin URI: https://wordpress.org/plugins/domain-swapper
- * Description: Swap or change your Domains for one WordPress Site. So you can access one single WordPress site with different domains.
- * Version: 1.0.9
+ * Plugin Name: Domain-translate
+ * Plugin URI: https://wordpress.org/plugins/domain-translate
+ * Description: Automatically translate your Site based on your language code subdomain like de., es. dk. etc.
+ * Version: 1.0.0
  * Author: veto, Myridia Company
- * Author URI: http://domain-swapper.myridia.com
+ * Author URI: http://domain-translate.myridia.com
  * License: GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain: domain-swapper
+ * Text Domain: domain-translate
  * Domain Path: /languages
- * Update URL: https://github.com/myridia/domain-swapper
- * Constant Prefix: WPDS_
- * Prefix: wpds_
- * Option_key: plugin_domain_swapper
+ * Update URL: https://github.com/myridia/domain-translate
+ * Constant Prefix: WPDT_
+ * Prefix: wpdt_
+ * Option_key: plugin_domain_translate
  **/
 
 /*
@@ -33,34 +33,34 @@ defined('ABSPATH') or exit('Something went wrong');
  *
  * @since 1.0.0 (if available)
  */
-use WPDS\Ds\Main\ClassAdmin;
-use WPDS\Ds\Main\ClassAjax;
-use WPDS\Ds\Main\ClassFrontend;
+use WPDT\Ds\Main\ClassAdmin;
+use WPDT\Ds\Main\ClassAjax;
+use WPDT\Ds\Main\ClassFrontend;
 
 /*
  * Constants Calls
  * @since 1.0.0 (if available)
  */
-define('WPDS_OPTION', 'plugin_domain_swapper');
+define('WPDT_OPTION', 'plugin_domain_translate');
 
 /*
  * Default Plugin activate hooks. Started as a static class functions
  *
  * @since 1.0.0 (if available)
  */
-register_activation_hook(__FILE__, ['WPDS\Ds\Main\ClassAdmin', 'activate']);
+register_activation_hook(__FILE__, ['WPDT\Ds\Main\ClassAdmin', 'activate']);
 
 /*
  * Default Plugin deactivate hooks. Started as a static class functions
  *
  * @since 1.0.0 (if available)
  */
-register_deactivation_hook(__FILE__, ['WPDS\Ds\Main\ClassAdmin', 'deactivate']);
+register_deactivation_hook(__FILE__, ['WPDT\Ds\Main\ClassAdmin', 'deactivate']);
 
 // Register to start the Plugin
 
-add_action('init', 'myridia_wpds_plugin_init', 80);
-add_action('admin_init', 'myridia_wpds_plugin_admin_init', 99);
+add_action('init', 'myridia_wpdt_plugin_init', 80);
+add_action('admin_init', 'myridia_wpdt_plugin_admin_init', 99);
 
 /**
  * Init the Admin Plugin .
@@ -69,7 +69,7 @@ add_action('admin_init', 'myridia_wpds_plugin_admin_init', 99);
  *
  * @since 1.0.0
  */
-function myridia_wpds_plugin_admin_init()
+function myridia_wpdt_plugin_admin_init()
 {
     $plugin = new ClassAdmin();
     $plugin->register_settings();
@@ -83,7 +83,7 @@ function myridia_wpds_plugin_admin_init()
  *
  * @since 1.0.0
  */
-function myridia_wpds_plugin_init()
+function myridia_wpdt_plugin_init()
 {
     if (defined('DOING_AJAX') && DOING_AJAX) {
         // error_log('.....ajax');
@@ -106,10 +106,10 @@ function myridia_wpds_plugin_init()
  * @param String $className
  */
 spl_autoload_register(function (string $className) {
-    if (false === strpos($className, 'WPDS\\Ds')) {
+    if (false === strpos($className, 'WPDT\\Ds')) {
         return;
     }
-    $className = str_replace('WPDS\\Ds\\', __DIR__.'/src/', $className);
+    $className = str_replace('WPDT\\Ds\\', __DIR__.'/src/', $className);
     $classFile = str_replace('\\', '/', $className).'.php';
     require_once $classFile;
 });
