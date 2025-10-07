@@ -16,7 +16,7 @@ class ClassAdmin
     public function __construct()
     {
         $this->options = [
-            'include' => ['ww1.app.local', 'ww2.app.local', 'ww3.app.local', 'foo.bar.local'],
+            'include' => ['fi.app.local', 'dk.app.local', 'de.app.local', 'es.app.local','th.app.local'],
         ];
     }
 
@@ -28,7 +28,7 @@ class ClassAdmin
     public static function activate()
     {
         $options = [
-            'include' => ['ww1.app.local', 'ww2.app.local', 'ww3.app.local', 'foo.bar.local'],
+            'include' => ['fi.app.local', 'dk.app.local', 'de.app.local', 'es.app.local','th.app.local'],
         ];
         if (false == get_option(WPDS_OPTION)) {
             update_option(WPDS_OPTION, $options);
@@ -56,10 +56,10 @@ class ClassAdmin
     {
         add_submenu_page(
             'options-general.php',
-            esc_html__('Domain Swapper', 'domain-swapper'),
-            esc_html__('Domain Swapper', 'domain-swapper'),
+            esc_html__('Domain Translate', 'domain-translate'),
+            esc_html__('Domain Translate', 'domain-translate'),
             'manage_options',
-            'domain-swapper',
+            'domain-translate',
             [$this, 'wporg_options_page_html'],
             99
         );
@@ -78,7 +78,7 @@ class ClassAdmin
         // https://developer.wordpress.org/reference/functions/add_settings_section/
         add_settings_section(
             'section1',
-            __('Settings', 'domain-swapper'),
+            __('Settings', 'domain-translate'),
             [$this, 'callback'],
             WPDS_OPTION
         );
@@ -86,23 +86,23 @@ class ClassAdmin
 
         add_settings_field(
             'active',
-            __('Active:', 'domain-swapper'),
+            __('Active:', 'domain-translate'),
             [$this, 'field_active'],
             WPDS_OPTION,
             'section1',
             [
-                'label_for' => 'plugin_domain_swapper[active]',
+                'label_for' => 'plugin_domain_translate[active]',
             ]
         );
 
         add_settings_field(
             'include',
-            __('Included Domains: ', 'domain-swapper'),
+            __('Included Domains: ', 'domain-translate'),
             [$this, 'field_include'],
             WPDS_OPTION,
             'section1',
             [
-                'label_for' => 'plugin_domain_swapper[include][]',
+                'label_for' => 'plugin_domain_translate[include][]',
             ]
         );
     }
@@ -154,7 +154,7 @@ class ClassAdmin
                 }
             }
         }
-        add_settings_error('wporg_messages', 'wporg_message', __('Settings saved successfully to the database option settings:  plugin_domain_swapper', 'domain-swapper'), 'updated');
+        add_settings_error('wporg_messages', 'wporg_message', __('Settings saved successfully to the database option settings:  plugin_domain_translate', 'domain-translate'), 'updated');
 
         return $newinput;
     }
@@ -166,7 +166,7 @@ class ClassAdmin
      */
     public function callback()
     {
-        esc_html_e('Settings Saved to ', 'domain-swapper');
+        esc_html_e('Settings Saved to ', 'domain-translate');
     }
 
     /**
