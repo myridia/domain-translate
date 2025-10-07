@@ -1,6 +1,6 @@
 <?php
 
-namespace WPDS\DS\Main;
+namespace WPDT\DS\Main;
 
 /**
  * Class Ajax.
