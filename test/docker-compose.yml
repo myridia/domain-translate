@@ -25,7 +25,7 @@ services:
     links:
       - php
     environment:
-      - VIRTUAL_HOST=en.app.local,dk.app.local,de.app.local,es.app.local,th.app.local
+      - VIRTUAL_HOST=app.local,fi.app.local,dk.app.local,de.app.local,es.app.local,th.app.local
       - VIRTUAL_PROTO=https
       - VIRTUAL_PORT=443
     networks:
@@ -111,7 +111,8 @@ services:
       - "5800:5800"
     #  - "5900:5900"
     extra_hosts:
-      - "en.app.local:10.5.0.2"
+      - "app.local:10.5.0.2"      
+      - "fi.app.local:10.5.0.2"
       - "dk.app.local:10.5.0.2"
       - "de.app.local:10.5.0.2"
       - "es.app.local:10.5.0.2"

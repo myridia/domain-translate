@@ -16,6 +16,7 @@ class ClassAjax
     private $new_siteurl;
     private $new_domain;
     private $old_domain;
+    private $active;
 
     /**
      * Init the Ajax Filter Hooks.
@@ -50,7 +51,7 @@ class ClassAjax
     public function set_domain_data()
     {
         $o = get_option(WPDS_OPTION);
-        if ($o['active']) {
+        if (isset($o['active'])) {
             $this->active = 1;
         } else {
             $this->active = 0;
