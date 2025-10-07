@@ -30,8 +30,8 @@ class ClassAdmin
         $options = [
             'include' => ['fi.app.local', 'dk.app.local', 'de.app.local', 'es.app.local','th.app.local'],
         ];
-        if (false == get_option(WPDS_OPTION)) {
-            update_option(WPDS_OPTION, $options);
+        if (false == get_option(WPDT_OPTION)) {
+            update_option(WPDT_OPTION, $options);
         }
     }
 
@@ -42,7 +42,7 @@ class ClassAdmin
      */
     public static function deactivate()
     {
-        delete_option(WPDS_OPTION);
+        delete_option(WPDT_OPTION);
     }
 
     /**
@@ -73,14 +73,14 @@ class ClassAdmin
      */
     public function register_settings()
     {
-        register_setting(WPDS_OPTION, WPDS_OPTION, [$this, 'validate']);
+        register_setting(WPDT_OPTION, WPDT_OPTION, [$this, 'validate']);
 
         // https://developer.wordpress.org/reference/functions/add_settings_section/
         add_settings_section(
             'section1',
             __('Settings', 'domain-translate'),
             [$this, 'callback'],
-            WPDS_OPTION
+            WPDT_OPTION
         );
         // https://developer.wordpress.org/reference/functions/add_settings_field/
 
@@ -88,7 +88,7 @@ class ClassAdmin
             'active',
             __('Active:', 'domain-translate'),
             [$this, 'field_active'],
-            WPDS_OPTION,
+            WPDT_OPTION,
             'section1',
             [
                 'label_for' => 'plugin_domain_translate[active]',
@@ -99,7 +99,7 @@ class ClassAdmin
             'include',
             __('Included Domains: ', 'domain-translate'),
             [$this, 'field_include'],
-            WPDS_OPTION,
+            WPDT_OPTION,
             'section1',
             [
                 'label_for' => 'plugin_domain_translate[include][]',
@@ -186,7 +186,7 @@ class ClassAdmin
      */
     public function field_active($args)
     {
-        $o = get_option(WPDS_OPTION);
+        $o = get_option(WPDT_OPTION);
         $checked = '';
         if (isset($o['active'])) {
             if ('on' == $o['active']) {
@@ -222,7 +222,7 @@ class ClassAdmin
      */
     public function field_include($args)
     {
-        $o = get_option(WPDS_OPTION);
+        $o = get_option(WPDT_OPTION);
         if (isset($o['include'])) {
             foreach ($o['include'] as $i) {
                 $html_content = "<input id='key' name='{$args['label_for']}' type='text' value='{$i}'  /><br>";
@@ -236,8 +236,8 @@ class ClassAdmin
                 ]);
             }
         } else {
-            /* example 1 */
-            for ($i = 1; $i <= 5; ++$i) {
+
+            for ($i = 1; $i <= 10; ++$i) {
                 $html_content = "<input id='key' name='{$args['label_for']}' type='text'  /><br>";
                 echo wp_kses($html_content, ['br' => [],
                     'input' => [
@@ -272,8 +272,8 @@ class ClassAdmin
 
 	    <?php
         wp_nonce_field('wpds_save', 'wpds_nonce');
-        settings_fields(WPDS_OPTION);
-        do_settings_sections(WPDS_OPTION);
+        settings_fields(WPDT_OPTION);
+        do_settings_sections(WPDT_OPTION);
         submit_button('Save Settings');
         ?>
 		</form>

@@ -43,7 +43,7 @@ class ClassAjax
      */
     public function set_domain_data()
     {
-        $o = get_option(WPDS_OPTION);
+        $o = get_option(WPDT_OPTION);
         if ($o['active']) {
             $this->active = 1;
         } else {

@@ -12,7 +12,7 @@ namespace WPDT\DS\Main;
 class ClassFrontend
 {
     private $domains;
-    private $activate;
+    private $active;
 
     /**
      * Init the Frontend Filter Hooks.
@@ -25,7 +25,10 @@ class ClassFrontend
     {
         // error_log('...swap browser frontent calls');
         $this->set_domain_data();
+
         if ($this->active) {
+            add_action('wp_enqueue_scripts', [$this, 'add_scripts']);
+            add_action('wp_enqueue_scripts', [$this, 'add_styles']);
         }
     }
 
@@ -40,7 +43,7 @@ class ClassFrontend
      */
     public function set_domain_data()
     {
-        $o = get_option(WPDS_OPTION);
+        $o = get_option(WPDT_OPTION);
         if (isset($o['active'])) {
             $this->active = 1;
         } else {
@@ -49,8 +52,26 @@ class ClassFrontend
             return;
         }
         $this->domains = $o['include'];
-
     }
 
+    public function add_scripts()
+    {
+        wp_register_script(
+            'domain-translate',
+            plugins_url('domain-translate/js/domain-translate.js'),
+            [],
+            '1.0.0',
+            [
+                'strategy' => 'defer',
+            ]
+        );
+        wp_enqueue_script('domain-translate');
+    }
 
+    public function add_styles()
+    {
+        wp_register_style('domain-translate',
+            plugins_url('domain-translate/css/domain-translate.css'));
+        wp_enqueue_style('domain-translate');
+    }
 }
