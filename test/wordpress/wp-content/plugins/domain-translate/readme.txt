@@ -7,7 +7,7 @@ Tested up to: 6.8
 Stable Tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Plugin URI: **https://domain-swapper.myridia.com/**
+Plugin URI: **https://domain-translate.myridia.com/**
 
 Domain Swapper is a plugin which lets to access one  WordPress site with different domains.
 
@@ -25,7 +25,7 @@ https://domain-translate.myridia.com
 == Installation ==
 
 1. Upload the plugin and activate it (alternatively, install through the WP admin console)
-2. Go into Tools, Select sub-menu "Domain Swapper"
+2. Go into Tools, Select sub-menu "Domain Translate"
 3. Add Allow Host and save setting.
 4. Now you are good to go.
 
@@ -42,7 +42,7 @@ https://domain-translate.myridia.com
 
 = Can I suggest/request a feature to be added? =
 
-Yes, we really need any feedback and requests <a href="mailto:domain-swapper@myridia.com">email</a>.
+Yes, we really need any feedback and requests <a href="mailto:domain-translate@myridia.com">email</a>.
 
 == Changelog ==
 
