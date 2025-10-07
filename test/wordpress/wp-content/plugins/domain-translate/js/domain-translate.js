@@ -1,4 +1,5 @@
 window.onload = async function () {
+  /*
   const host = get_host();
   const lang = host.split(".")[0];
   if (lang === "en" || lang === "dk" || lang === "de") {
@@ -19,6 +20,7 @@ window.onload = async function () {
       await set_page_currency(lang);
     }
   }
+    */
 };
 
 /*
@@ -26,6 +28,10 @@ window.onload = async function () {
   It will initiate the Google Language via the 'google.translate.TranslateElement' class
 */
 function gtranslate_init() {
+  console.log("xxxxxxxxxxxxxX");
+  console.log(domain_translate_data.lang);
+  console.log("zzzzzzzzzzzzzzzzzzzzzz");
+
   let translate = new google.translate.TranslateElement(
     {
       pageLanguage: "sv",

@@ -65,7 +65,26 @@ class ClassFrontend
                 'strategy' => 'defer',
             ]
         );
+
+        wp_localize_script('domain-translate', 'domain_translate_data', [
+            'lang' => 'dk',
+            'nonce' => wp_create_nonce('mg_ajax_nonce'),
+        ]);
+
         wp_enqueue_script('domain-translate');
+
+        wp_register_script(
+            'domain-translate-google',
+            'http://translate.google.com/translate_a/element.js?cb=gtranslate_init',
+            [],
+            '1.0.0',
+            [
+                'in_footer' => 'true',
+                'strategy' => 'defer',
+            ]
+        );
+
+        wp_enqueue_script('domain-translate-google');
     }
 
     public function add_styles()
