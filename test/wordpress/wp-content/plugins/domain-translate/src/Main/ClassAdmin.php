@@ -16,7 +16,7 @@ class ClassAdmin
     public function __construct()
     {
         $this->options = [
-            'include' => ['fi.app.local', 'dk.app.local', 'de.app.local', 'es.app.local','th.app.local'],
+            'include' => ['fi.app.local', 'dk.app.local', 'de.app.local', 'es.app.local', 'th.app.local'],
         ];
     }
 
@@ -28,7 +28,7 @@ class ClassAdmin
     public static function activate()
     {
         $options = [
-            'include' => ['fi.app.local', 'dk.app.local', 'de.app.local', 'es.app.local','th.app.local'],
+            'include' => ['fi.app.local', 'dk.app.local', 'de.app.local', 'es.app.local', 'th.app.local'],
         ];
         if (false == get_option(WPDT_OPTION)) {
             update_option(WPDT_OPTION, $options);
@@ -96,8 +96,19 @@ class ClassAdmin
         );
 
         add_settings_field(
+            'source_lang_code',
+            __('Source Langauge Code:', 'domain-translate'),
+            [$this, 'field_source_lang_code'],
+            WPDT_OPTION,
+            'section1',
+            [
+                'label_for' => 'plugin_domain_translate[source_lang_code]',
+            ]
+        );
+
+        add_settings_field(
             'include',
-            __('Included Domains: ', 'domain-translate'),
+            __('Target Domains: ', 'domain-translate'),
             [$this, 'field_include'],
             WPDT_OPTION,
             'section1',
@@ -193,7 +204,40 @@ class ClassAdmin
                 $checked = 'checked=checked';
             }
         }
-        $html_content = "<input type='checkbox' id='key' name='{$args['label_for']}'  {$checked} />";
+        $html_content = "<input type='checkbox' name='{$args['label_for']}'  {$checked} />";
+        echo wp_kses($html_content, [
+            'input' => [
+                'id' => [],
+                'name' => [],
+                'type' => [],
+                'value' => [],
+                'checked' => [],
+            ],
+        ]);
+    }
+
+    /**
+     * Field Source Language Code HTML output.
+     *
+     * Generate a text checkbox field for the Plugin activation
+     *
+     * @since 1.0.0
+     *
+     * @param array $args {
+     *                    Field array
+     *
+     * @var string label_for
+     *             }
+     *
+     * @return string $input
+     */
+    public function field_source_lang_code($args)
+    {
+        $o = get_option(WPDT_OPTION);
+        if (isset($o['source_lang_code'])) {
+            $key = $o['source_lang_code'];
+        }
+        $html_content = "<input type='text' name='{$args['label_for']}' value='{$key}'   />";
         echo wp_kses($html_content, [
             'input' => [
                 'id' => [],
@@ -225,7 +269,7 @@ class ClassAdmin
         $o = get_option(WPDT_OPTION);
         if (isset($o['include'])) {
             foreach ($o['include'] as $i) {
-                $html_content = "<input id='key' name='{$args['label_for']}' type='text' value='{$i}'  /><br>";
+                $html_content = "<input name='{$args['label_for']}' type='text' value='{$i}'  /><br>";
                 echo wp_kses($html_content, ['br' => [],
                     'input' => [
                         'id' => [],
@@ -236,9 +280,8 @@ class ClassAdmin
                 ]);
             }
         } else {
-
             for ($i = 1; $i <= 10; ++$i) {
-                $html_content = "<input id='key' name='{$args['label_for']}' type='text'  /><br>";
+                $html_content = "<input name='{$args['label_for']}' type='text'  /><br>";
                 echo wp_kses($html_content, ['br' => [],
                     'input' => [
                         'id' => [],

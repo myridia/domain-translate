@@ -75,7 +75,7 @@ class ClassFrontend
 
         wp_register_script(
             'domain-translate-google',
-            'http://translate.google.com/translate_a/element.js?cb=gtranslate_init',
+            'https://translate.google.com/translate_a/element.js?cb=gtranslate_init',
             [],
             '1.0.0',
             [
