@@ -181,32 +181,60 @@ class ClassAdmin
      */
     public function register_settings()
     {
+        // https://developer.wordpress.org/reference/functions/add_settings_section/
         register_setting(WPDT_OPTION, WPDT_OPTION, [$this, 'validate']);
 
-        // https://developer.wordpress.org/reference/functions/add_settings_section/
         add_settings_section(
-            'section1',
+            'section',
             __('Section General:', 'domain-translate'),
             [$this, 'callback'],
             WPDT_OPTION
         );
 
-        // https://developer.wordpress.org/reference/functions/add_settings_section/
         add_settings_section(
-            'section2',
+            'section1',
             __('Section Domain 1:', 'domain-translate'),
             [$this, 'callback'],
             WPDT_OPTION
         );
-        // https://developer.wordpress.org/reference/functions/add_settings_field/
 
+        add_settings_section(
+            'section2',
+            __('Section Domain 2:', 'domain-translate'),
+            [$this, 'callback'],
+            WPDT_OPTION
+        );
+
+        add_settings_section(
+            'section3',
+            __('Section Domain 3:', 'domain-translate'),
+            [$this, 'callback'],
+            WPDT_OPTION
+        );
+
+        add_settings_section(
+            'section4',
+            __('Section Domain 4:', 'domain-translate'),
+            [$this, 'callback'],
+            WPDT_OPTION
+        );
+
+        add_settings_section(
+            'section5',
+            __('Section Domain 5:', 'domain-translate'),
+            [$this, 'callback'],
+            WPDT_OPTION
+        );
+
+        /************************* General ************************************/
         add_settings_field(
             'active',
             __('Active:', 'domain-translate'),
-            [$this, 'field_active'],
+            [$this, 'make_checkbox'],
             WPDT_OPTION,
-            'section1',
+            'section',
             [
+                'name' => 'active',
                 'label_for' => 'plugin_domain_translate[active]',
             ]
         );
@@ -216,33 +244,139 @@ class ClassAdmin
             __('Source Lang Code:', 'domain-translate'),
             [$this, 'make_select'],
             WPDT_OPTION,
-            'section1',
+            'section',
             [
                 'label_for' => 'plugin_domain_translate[source_lang_code]',
                 'name' => 'source_lang_code',
             ]
         );
 
+        /************************* Domain 1 ************************************/
         add_settings_field(
             'domain1',
             __('Domain 1:', 'domain-translate'),
-            [$this, 'domain1'],
+            [$this, 'make_input_text'],
             WPDT_OPTION,
-            'section2',
+            'section1',
             [
+                'name' => 'domain1',
                 'label_for' => 'plugin_domain_translate[domain1]',
             ]
         );
 
         add_settings_field(
             'target_lang_code1',
-            __('Target Lang Code 1:', 'domain-translate'),
+            __('Target Language 1:', 'domain-translate'),
+            [$this, 'make_select'],
+            WPDT_OPTION,
+            'section1',
+            [
+                'label_for' => 'plugin_domain_translate[target_lang_code1]',
+                'name' => 'target_lang_code1',
+            ]
+        );
+
+        /************************* Domain 2 ************************************/
+
+        add_settings_field(
+            'domain2',
+            __('Domain 2:', 'domain-translate'),
+            [$this, 'make_input_text'],
+            WPDT_OPTION,
+            'section2',
+            [
+                'name' => 'domain2',
+                'label_for' => 'plugin_domain_translate[domain2]',
+            ]
+        );
+
+        add_settings_field(
+            'target_lang_code2',
+            __('Target Language 2:', 'domain-translate'),
             [$this, 'make_select'],
             WPDT_OPTION,
             'section2',
             [
-                'label_for' => 'plugin_domain_translate[target_lang_code1]',
-                'name' => 'target_lang_code1',
+                'label_for' => 'plugin_domain_translate[target_lang_code2]',
+                'name' => 'target_lang_code2',
+            ]
+        );
+
+        /************************* Domain 3 ************************************/
+
+        add_settings_field(
+            'domain3',
+            __('Domain 3:', 'domain-translate'),
+            [$this, 'make_input_text'],
+            WPDT_OPTION,
+            'section3',
+            [
+                'name' => 'domain3',
+                'label_for' => 'plugin_domain_translate[domain3]',
+            ]
+        );
+
+        add_settings_field(
+            'target_lang_code3',
+            __('Target Language 3:', 'domain-translate'),
+            [$this, 'make_select'],
+            WPDT_OPTION,
+            'section3',
+            [
+                'label_for' => 'plugin_domain_translate[target_lang_code3]',
+                'name' => 'target_lang_code3',
+            ]
+        );
+
+        /************************* Domain 4 ************************************/
+
+        add_settings_field(
+            'domain4',
+            __('Domain 4:', 'domain-translate'),
+            [$this, 'make_input_text'],
+            WPDT_OPTION,
+            'section4',
+            [
+                'name' => 'domain4',
+                'label_for' => 'plugin_domain_translate[domain4]',
+            ]
+        );
+
+        add_settings_field(
+            'target_lang_code4',
+            __('Target Language 4:', 'domain-translate'),
+            [$this, 'make_select'],
+            WPDT_OPTION,
+            'section4',
+            [
+                'label_for' => 'plugin_domain_translate[target_lang_code4]',
+                'name' => 'target_lang_code4',
+            ]
+        );
+
+        /************************* Domain 5 ************************************/
+
+        add_settings_field(
+            'domain5',
+            __('Domain 5:', 'domain-translate'),
+            [$this, 'make_input_text'],
+            WPDT_OPTION,
+            'section5',
+            [
+                'name' => 'domain5',
+                'label_for' => 'plugin_domain_translate[domain5]',
+            ]
+        );
+
+        add_settings_field(
+            'target_lang_code5',
+            __('Target Language 5:', 'domain-translate'),
+            [$this, 'make_select'],
+            WPDT_OPTION,
+            'section5',
+            [
+                'label_for' => 'plugin_domain_translate[target_lang_code5]',
+                'name' => 'target_lang_code5',
             ]
         );
     }
@@ -262,12 +396,13 @@ class ClassAdmin
      *
      * @return string $input
      */
-    public function field_active($args)
+    public function make_checkbox($args)
     {
+        $name = esc_attr($args['name']);
         $o = get_option(WPDT_OPTION);
         $checked = '';
-        if (isset($o['active'])) {
-            if ('on' == $o['active']) {
+        if (isset($o[$name])) {
+            if ('on' == $o[$name]) {
                 $checked = 'checked=checked';
             }
         }
@@ -283,30 +418,12 @@ class ClassAdmin
         ]);
     }
 
-    public function domain1($args)
+    public function make_input_text($args)
     {
+        $name = esc_attr($args['name']);
         $o = get_option(WPDT_OPTION);
-        if (isset($o['domain1'])) {
-            $key = esc_attr($o['domain1']);
-        }
-
-        $html_content = "<input type='text' name='{$args['label_for']}' value='{$key}'   />";
-        echo wp_kses($html_content, [
-            'input' => [
-                'id' => [],
-                'name' => [],
-                'type' => [],
-                'value' => [],
-                'checked' => [],
-            ],
-        ]);
-    }
-
-    public function field_target_lang_code1($args)
-    {
-        $o = get_option(WPDT_OPTION);
-        if (isset($o['target_lang_code1'])) {
-            $key = esc_attr($o['target_lang_code1']);
+        if (isset($o[$name])) {
+            $key = esc_attr($o[$name]);
         }
 
         $html_content = "<input type='text' name='{$args['label_for']}' value='{$key}'   />";
