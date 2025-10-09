@@ -12,6 +12,114 @@ namespace WPDT\Ds\Main;
 class ClassAdmin
 {
     private $options;
+    private $lang_codes = [
+        ['af', 'Afrikaans'],
+        ['sq', 'Albanian'],
+        ['am', 'Amharic'],
+        ['ar', 'Arabic'],
+        ['hy', 'Armenian'],
+        ['az', 'Azerbaijani'],
+        ['eu', 'Basque'],
+        ['be', 'Belarusian'],
+        ['bn', 'Bengali'],
+        ['bs', 'Bosnian'],
+        ['bg', 'Bulgarian'],
+        ['ca', 'Catalan'],
+        ['ceb', 'Cebuano'],
+        ['ny', 'Chichewa'],
+        ['zh-CN', 'Chinese (Simplified)'],
+        ['zh-TW', 'Chinese (Traditional)'],
+        ['co', 'Corsican'],
+        ['hr', 'Croatian'],
+        ['cs', 'Czech'],
+        ['da', 'Danish'],
+        ['nl', 'Dutch'],
+        ['en', 'English'],
+        ['eo', 'Esperanto'],
+        ['et', 'Estonian'],
+        ['tl', 'Filipino'],
+        ['fi', 'Finnish'],
+        ['fr', 'French'],
+        ['fy', 'Frisian'],
+        ['gl', 'Galician'],
+        ['ka', 'Georgian'],
+        ['de', 'German'],
+        ['el', 'Greek'],
+        ['gu', 'Gujarati'],
+        ['ht', 'Haitian Creole'],
+        ['ha', 'Hausa'],
+        ['haw', 'Hawaiian'],
+        ['iw', 'Hebrew'],
+        ['hi', 'Hindi'],
+        ['hmn', 'Hmong'],
+        ['hu', 'Hungarian'],
+        ['is', 'Icelandic'],
+        ['ig', 'Igbo'],
+        ['id', 'Indonesian'],
+        ['ga', 'Irish'],
+        ['it', 'Italian'],
+        ['ja', 'Japanese'],
+        ['jw', 'Javanese'],
+        ['kn', 'Kannada'],
+        ['kk', 'Kazakh'],
+        ['km', 'Khmer'],
+        ['ko', 'Korean'],
+        ['ku', 'Kurdish (Kurmanji)'],
+        ['ky', 'Kyrgyz'],
+        ['lo', 'Lao'],
+        ['la', 'Latin'],
+        ['lv', 'Latvian'],
+        ['lt', 'Lithuanian'],
+        ['lb', 'Luxembourgish'],
+        ['mk', 'Macedonian'],
+        ['mg', 'Malagasy'],
+        ['ms', 'Malay'],
+        ['ml', 'Malayalam'],
+        ['mt', 'Maltese'],
+        ['mi', 'Maori'],
+        ['mr', 'Marathi'],
+        ['mn', 'Mongolian'],
+        ['my', 'Burmese'],
+        ['ne', 'Nepali'],
+        ['no', 'Norwegian'],
+        ['or', 'Odia'],
+        ['ps', 'Pashto'],
+        ['fa', 'Persian'],
+        ['pl', 'Polish'],
+        ['pt', 'Portuguese'],
+        ['pa', 'Punjabi'],
+        ['ro', 'Romanian'],
+        ['ru', 'Russian'],
+        ['sm', 'Samoan'],
+        ['gd', 'Scots Gaelic'],
+        ['sr', 'Serbian'],
+        ['st', 'Sesotho'],
+        ['sn', 'Shona'],
+        ['sd', 'Sindhi'],
+        ['si', 'Sinhala'],
+        ['sk', 'Slovak'],
+        ['sl', 'Slovenian'],
+        ['so', 'Somali'],
+        ['es', 'Spanish'],
+        ['su', 'Sundanese'],
+        ['sw', 'Swahili'],
+        ['sv', 'Swedish'],
+        ['tg', 'Tajik'],
+        ['ta', 'Tamil'],
+        ['te', 'Telugu'],
+        ['th', 'Thai'],
+        ['tr', 'Turkish'],
+        ['uk', 'Ukrainian'],
+        ['ur', 'Urdu'],
+        ['uz', 'Uzbek'],
+        ['vi', 'Vietnamese'],
+        ['cy', 'Welsh'],
+        ['xh', 'Xhosa'],
+        ['yi', 'Yiddish'],
+        ['yo', 'Yoruba'],
+        ['zu', 'Zulu'],
+        ['', ''],
+    ];
 
     public function __construct()
     {
@@ -78,7 +186,15 @@ class ClassAdmin
         // https://developer.wordpress.org/reference/functions/add_settings_section/
         add_settings_section(
             'section1',
-            __('Settings', 'domain-translate'),
+            __('Section General:', 'domain-translate'),
+            [$this, 'callback'],
+            WPDT_OPTION
+        );
+
+        // https://developer.wordpress.org/reference/functions/add_settings_section/
+        add_settings_section(
+            'section2',
+            __('Section Domain 1:', 'domain-translate'),
             [$this, 'callback'],
             WPDT_OPTION
         );
@@ -97,25 +213,189 @@ class ClassAdmin
 
         add_settings_field(
             'source_lang_code',
-            __('Source Langauge Code:', 'domain-translate'),
-            [$this, 'field_source_lang_code'],
+            __('Source Lang Code:', 'domain-translate'),
+            [$this, 'make_select'],
             WPDT_OPTION,
             'section1',
             [
                 'label_for' => 'plugin_domain_translate[source_lang_code]',
+                'name' => 'source_lang_code',
             ]
         );
 
         add_settings_field(
-            'include',
-            __('Target Domains: ', 'domain-translate'),
-            [$this, 'field_include'],
+            'domain1',
+            __('Domain 1:', 'domain-translate'),
+            [$this, 'domain1'],
             WPDT_OPTION,
-            'section1',
+            'section2',
             [
-                'label_for' => 'plugin_domain_translate[include][]',
+                'label_for' => 'plugin_domain_translate[domain1]',
             ]
         );
+
+        add_settings_field(
+            'target_lang_code1',
+            __('Target Lang Code 1:', 'domain-translate'),
+            [$this, 'make_select'],
+            WPDT_OPTION,
+            'section2',
+            [
+                'label_for' => 'plugin_domain_translate[target_lang_code1]',
+                'name' => 'target_lang_code1',
+            ]
+        );
+    }
+
+    /**
+     * Field Active HTML output.
+     *
+     * Generate a text checkbox field for the Plugin activation
+     *
+     * @since 1.0.0
+     *
+     * @param array $args {
+     *                    Field array
+     *
+     * @var string label_for
+     *             }
+     *
+     * @return string $input
+     */
+    public function field_active($args)
+    {
+        $o = get_option(WPDT_OPTION);
+        $checked = '';
+        if (isset($o['active'])) {
+            if ('on' == $o['active']) {
+                $checked = 'checked=checked';
+            }
+        }
+        $html_content = "<input type='checkbox' name='{$args['label_for']}'  {$checked} />";
+        echo wp_kses($html_content, [
+            'input' => [
+                'id' => [],
+                'name' => [],
+                'type' => [],
+                'value' => [],
+                'checked' => [],
+            ],
+        ]);
+    }
+
+    public function domain1($args)
+    {
+        $o = get_option(WPDT_OPTION);
+        if (isset($o['domain1'])) {
+            $key = esc_attr($o['domain1']);
+        }
+
+        $html_content = "<input type='text' name='{$args['label_for']}' value='{$key}'   />";
+        echo wp_kses($html_content, [
+            'input' => [
+                'id' => [],
+                'name' => [],
+                'type' => [],
+                'value' => [],
+                'checked' => [],
+            ],
+        ]);
+    }
+
+    public function field_target_lang_code1($args)
+    {
+        $o = get_option(WPDT_OPTION);
+        if (isset($o['target_lang_code1'])) {
+            $key = esc_attr($o['target_lang_code1']);
+        }
+
+        $html_content = "<input type='text' name='{$args['label_for']}' value='{$key}'   />";
+        echo wp_kses($html_content, [
+            'input' => [
+                'id' => [],
+                'name' => [],
+                'type' => [],
+                'value' => [],
+                'checked' => [],
+            ],
+        ]);
+    }
+
+    /**
+     * Select html.
+     *
+     * Generate a text checkbox field for the Plugin activation
+     *
+     * @since 1.0.0
+     *
+     * @param array $args {
+     *                    Field array
+     *
+     * @var string label_for
+     *             }
+     *
+     * @return string $input
+     */
+    public function make_select($args)
+    {
+        $name = esc_attr($args['name']);
+        $o = get_option(WPDT_OPTION);
+        if (isset($o[$name])) {
+            $key = esc_attr($o[$name]);
+        }
+
+        $html = "<select name='{$args['label_for']}' />";
+        foreach ($this->lang_codes as $i) {
+            $code = $i[0];
+            $name = $i[1];
+            $selected = '';
+            if ($key == $code) {
+                $selected = 'selected';
+            }
+
+            $html .= "<option value='{$code}' {$selected} >{$name}</option>";
+        }
+        $html .= '</select>';
+
+        echo wp_kses($html, [
+            'select' => [
+                'name' => true,
+                'id' => true,
+                'class' => true,
+            ],
+            'option' => [
+                'value' => true,
+                'selected' => true,
+            ],
+        ]);
+    }
+
+    /**
+     * Generate Setting Page.
+     *
+     * Generate a text input fields for the Domain names
+     *
+     * @since 1.0.0
+     */
+    public function wporg_options_page_html()
+    {
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+        settings_errors('wporg_messages');
+        ?>
+	<div class="wrap">
+		<h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+		<form action="options.php" method="post">
+	    <?php
+        wp_nonce_field('wpds_save', 'wpds_nonce');
+        settings_fields(WPDT_OPTION);
+        do_settings_sections(WPDT_OPTION);
+        submit_button('Save Settings');
+        ?>
+		</form>
+	</div>
+	<?php
     }
 
     /**
@@ -177,150 +457,6 @@ class ClassAdmin
      */
     public function callback()
     {
-        esc_html_e('Settings Saved to ', 'domain-translate');
-    }
-
-    /**
-     * Field Active HTML output.
-     *
-     * Generate a text checkbox field for the Plugin activation
-     *
-     * @since 1.0.0
-     *
-     * @param array $args {
-     *                    Field array
-     *
-     * @var string label_for
-     *             }
-     *
-     * @return string $input
-     */
-    public function field_active($args)
-    {
-        $o = get_option(WPDT_OPTION);
-        $checked = '';
-        if (isset($o['active'])) {
-            if ('on' == $o['active']) {
-                $checked = 'checked=checked';
-            }
-        }
-        $html_content = "<input type='checkbox' name='{$args['label_for']}'  {$checked} />";
-        echo wp_kses($html_content, [
-            'input' => [
-                'id' => [],
-                'name' => [],
-                'type' => [],
-                'value' => [],
-                'checked' => [],
-            ],
-        ]);
-    }
-
-    /**
-     * Field Source Language Code HTML output.
-     *
-     * Generate a text checkbox field for the Plugin activation
-     *
-     * @since 1.0.0
-     *
-     * @param array $args {
-     *                    Field array
-     *
-     * @var string label_for
-     *             }
-     *
-     * @return string $input
-     */
-    public function field_source_lang_code($args)
-    {
-        $o = get_option(WPDT_OPTION);
-        if (isset($o['source_lang_code'])) {
-            $key = $o['source_lang_code'];
-        }
-        $html_content = "<input type='text' name='{$args['label_for']}' value='{$key}'   />";
-        echo wp_kses($html_content, [
-            'input' => [
-                'id' => [],
-                'name' => [],
-                'type' => [],
-                'value' => [],
-                'checked' => [],
-            ],
-        ]);
-    }
-
-    /**
-     * Field Doomain HTML outputs.
-     *
-     * Generate a text input fields for the Domain names
-     *
-     * @since 1.0.0
-     *
-     * @param array $args {
-     *                    Field array
-     *
-     * @var string label_for
-     *             }
-     *
-     * @return string $input
-     */
-    public function field_include($args)
-    {
-        $o = get_option(WPDT_OPTION);
-        if (isset($o['include'])) {
-            foreach ($o['include'] as $i) {
-                $html_content = "<input name='{$args['label_for']}' type='text' value='{$i}'  /><br>";
-                echo wp_kses($html_content, ['br' => [],
-                    'input' => [
-                        'id' => [],
-                        'name' => [],
-                        'type' => [],
-                        'value' => [],
-                    ],
-                ]);
-            }
-        } else {
-            for ($i = 1; $i <= 10; ++$i) {
-                $html_content = "<input name='{$args['label_for']}' type='text'  /><br>";
-                echo wp_kses($html_content, ['br' => [],
-                    'input' => [
-                        'id' => [],
-                        'name' => [],
-                        'type' => [],
-                        'value' => [],
-                    ],
-                ]);
-            }
-        }
-    }
-
-    /**
-     * Generate Setting Page.
-     *
-     * Generate a text input fields for the Domain names
-     *
-     * @since 1.0.0
-     */
-    public function wporg_options_page_html()
-    {
-        if (!current_user_can('manage_options')) {
-            return;
-        }
-        settings_errors('wporg_messages');
-        ?>
-	<div class="wrap">
-		<h1><?php echo esc_html(get_admin_page_title()); ?></h1>
-		<form action="options.php" method="post">
-
-
-	    <?php
-        wp_nonce_field('wpds_save', 'wpds_nonce');
-        settings_fields(WPDT_OPTION);
-        do_settings_sections(WPDT_OPTION);
-        submit_button('Save Settings');
-        ?>
-		</form>
-	</div>
-	<?php
+        // esc_html_e('Settings Saved to ', 'domain-translate');
     }
 }
