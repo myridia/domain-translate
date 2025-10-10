@@ -2,7 +2,8 @@ function domain_translate_init() {
   domain_translate_object.init();
 }
 const domain_translate_object = {
-  data: 123,
+  domain: "",
+  domains: [],
   init() {
     const new_lang =
       "/" +
@@ -11,6 +12,9 @@ const domain_translate_object = {
       domain_translate_data.target_lang_code;
 
     let langs = domain_translate_data.lang_codes;
+    this.domain = domain_translate_data.domain;
+    this.domains = domain_translate_data.domains;
+
     langs.push(domain_translate_data.source_lang_code);
 
     let translate = new google.translate.TranslateElement(
@@ -23,23 +27,29 @@ const domain_translate_object = {
       "google_translate_element",
     );
 
-    this.delete_cookies(
-      domain_translate_data.source_lang_code,
-      domain_translate_data.lang_codes,
-      new_lang,
-    );
-
     const lang = this.get_cookie("googtrans");
-
+    console.log("...actual cookie: " + lang);
+    console.log("...new cookie: " + new_lang);
+    /*
     if (lang === "" || lang !== new_lang) {
-      this.set_cookie("googtrans", new_lang, 60);
+      console.log("...clean old cookies");
+      this.delete_cookies(
+        domain_translate_data.source_lang_code,
+        domain_translate_data.lang_codes,
+        new_lang,
+        this.domains,
+        this.domain,
+      );
+      console.log("...set new cookies");
+      this.set_cookie("googtrans", new_lang, 60, this.domain);
       let x = setTimeout(() => {
-        if (get_cookie("googtrans")) {
+        if (this.get_cookie("googtrans")) {
           //console.log("...reload page to set cookie");
-          window.location.reload();
+          //window.location.reload();
         }
       }, 4 * 1000);
-    }
+      }
+      */
   },
 
   get_cookie(c_name) {
@@ -57,7 +67,7 @@ const domain_translate_object = {
     return "";
   },
 
-  set_cookie(c_name, c_value, exp_days) {
+  set_cookie(c_name, c_value, exp_days, domain) {
     let date = new Date();
     date.setTime(date.getTime() + exp_days * 24 * 60 * 60 * 1000);
     const expires = "expires=" + date.toUTCString();
@@ -69,20 +79,24 @@ const domain_translate_object = {
       "; " +
       expires +
       "; path=/" +
-      "; domain = translate.local" +
+      "; domain = " +
+      domain +
       ";";
   },
 
-  delete_cookies(source_lang_code, lang_codes, new_lang) {
+  delete_cookies(source_lang_code, lang_codes, new_lang, domains, domain) {
+    console.log("...delete for domain: " + domain);
     for (let x = 0; x < lang_codes.length; x++) {
       const name = "/" + source_lang_code + "/" + lang_codes[x];
-      if (name !== new_lang && source_lang_code != lang_codes[x]) {
-        this.delete_cookie(name);
-      }
+      /*
+      if (name !== new_lang) {
+        //console.log("...delete cookie: " + name);
+        document.cookie =
+          name +
+          "= ; expires = Thu, 01 Jan 1970 00:00:00 GMT; path=/;domain=" +
+          domains;
+          }
+          */
     }
-  },
-
-  delete_cookie(c_name) {
-    document.cookie = c_name + "= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
   },
 };

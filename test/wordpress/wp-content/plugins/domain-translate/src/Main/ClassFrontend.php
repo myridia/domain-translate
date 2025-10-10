@@ -30,8 +30,8 @@ class ClassFrontend
         if ($this->is_active()) {
             $this->set_domain();
             $this->set_lang_codes($this->domain, $this->options);
-            error_log($this->source_lang_code);
-            error_log($this->target_lang_code);
+            // error_log($this->source_lang_code);
+            // error_log($this->target_lang_code);
             // error_log($this->domain);
             if ($this->source_lang_code && $this->target_lang_code) {
                 add_action('wp_enqueue_scripts', [$this, 'add_scripts']);
@@ -129,6 +129,8 @@ class ClassFrontend
             'source_lang_code' => $this->source_lang_code,
             'target_lang_code' => $this->target_lang_code,
             'lang_codes' => $this->lang_codes,
+            'domain' => $this->domain,
+            'domains' => $this->domains,
             'nonce' => wp_create_nonce('mg_ajax_nonce'),
         ]);
 
