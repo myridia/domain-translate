@@ -133,10 +133,11 @@ class ClassFrontend
         ]);
 
         wp_enqueue_script('domain-translate');
-
+        //            'https://translate.google.com/translate_a/element.js?cb=gtranslate_init',
         wp_register_script(
             'domain-translate-google',
-            'https://translate.google.com/translate_a/element.js?cb=gtranslate_init',
+
+            'https://translate.google.com/translate_a/element.js?cb=domain_translate_init',
             [],
             '1.0.0',
             [
