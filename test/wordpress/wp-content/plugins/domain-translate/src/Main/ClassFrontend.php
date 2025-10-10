@@ -11,8 +11,10 @@ namespace WPDT\DS\Main;
  */
 class ClassFrontend
 {
-    private $domains;
-    private $active;
+    private $domain;
+    private $options;
+    private $source_lang_code;
+    private $target_lang_code;
 
     /**
      * Init the Frontend Filter Hooks.
@@ -23,35 +25,85 @@ class ClassFrontend
      */
     public function __construct()
     {
-        // error_log('...swap browser frontent calls');
-        $this->set_domain_data();
+        if ($this->is_active()) {
+            $this->set_domain();
+            $this->set_lang_codes($this->domain, $this->options);
+            // error_log('...is active');
+            // error_log($this->domain);
+            // add_action('wp_enqueue_scripts', [$this, 'add_scripts']);
+            // add_action('wp_enqueue_scripts', [$this, 'add_styles']);
+        }
+    }
 
-        if ($this->active) {
-            add_action('wp_enqueue_scripts', [$this, 'add_scripts']);
-            add_action('wp_enqueue_scripts', [$this, 'add_styles']);
+    public function set_lang_codes($domain, $options)
+    {
+        // Set Source Lang
+        if (isset($options['source_lang_code'])) {
+            $this->source_lang_code = esc_attr($options['source_lang_code']);
+        }
+        $domains = [];
+        if (isset($options['domain1']) && isset($options['target_lang_code1'])) {
+            $domains[$options['domain1']] = esc_attr($options['target_lang_code1']);
+        }
+        if (isset($options['domain2']) && isset($options['target_lang_code2'])) {
+            $domains[$options['domain2']] = esc_attr($options['target_lang_code2']);
+        }
+        if (isset($options['domain3']) && isset($options['target_lang_code3'])) {
+            $domains[$options['domain3']] = esc_attr($options['target_lang_code3']);
+        }
+
+        if (isset($options['domain4']) && isset($options['target_lang_code4'])) {
+            $domains[$options['domain4']] = esc_attr($options['target_lang_code4']);
+        }
+
+        if (isset($options['domain5']) && isset($options['target_lang_code5'])) {
+            $domains[$options['domain5']] = esc_attr($options['target_lang_code5']);
+        }
+
+        // Set Target Lang
+        if (array_key_exists($domain, $domains)) {
+            $this->target_lang_code = $domains[$domain];
         }
     }
 
     /**
-     * Set Urls.
+     * Check if the plugin is set Active.
      *
-     * Set the new_domain and and old domain and other data
-     *
-     * Register and un-register the plugin. Setting Page render - Same like in ClassAjax
+     * @return boolen - true or false
      *
      * @since 1.0.0
      */
-    public function set_domain_data()
+    public function is_active()
     {
         $o = get_option(WPDT_OPTION);
         if (isset($o['active'])) {
-            $this->active = 1;
-        } else {
-            $this->active = 0;
+            $this->options = $o;
 
-            return;
+            return true;
+        } else {
+            $this->options = [];
+
+            return false;
         }
-        $this->domains = $o['include'];
+    }
+
+    public function set_domain()
+    {
+        $domain = get_option('siteurl'); // Set default url from the wordpress setting
+        if (isset($_SERVER['HTTP_HOST'])) {
+            $unslashed = sanitize_text_field(wp_unslash($_SERVER['HTTP_HOST']));
+            if ('' != $unslashed) {
+                $domain = $unslashed;
+            }
+        } elseif (isset($_SERVER['SERVER_NAME'])) {
+            $unslashed = sanitize_text_field(wp_unslash($_SERVER['SERVER_NAME']));
+            if ('' != $unslashed) {
+                $domain = $unslashed;
+            }
+        }
+        $this->domain = $domain;
+
+        return $domain;
     }
 
     public function add_scripts()

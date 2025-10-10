@@ -123,9 +123,6 @@ class ClassAdmin
 
     public function __construct()
     {
-        $this->options = [
-            'include' => ['fi.app.local', 'dk.app.local', 'de.app.local', 'es.app.local', 'th.app.local'],
-        ];
     }
 
     /**
@@ -135,12 +132,14 @@ class ClassAdmin
      */
     public static function activate()
     {
+        /*
         $options = [
             'include' => ['fi.app.local', 'dk.app.local', 'de.app.local', 'es.app.local', 'th.app.local'],
         ];
         if (false == get_option(WPDT_OPTION)) {
             update_option(WPDT_OPTION, $options);
         }
+        */
     }
 
     /**
@@ -457,6 +456,7 @@ class ClassAdmin
     {
         $name = esc_attr($args['name']);
         $o = get_option(WPDT_OPTION);
+        $key = '';
         if (isset($o[$name])) {
             $key = esc_attr($o[$name]);
         }
@@ -549,22 +549,38 @@ class ClassAdmin
      */
     public function validate($input)
     {
-        $newinput = $input;
-        $newinput['include'] = [];
-        if (isset($input['include'])) {
-            if ('array' == gettype($input['include'])) {
-                foreach ($input['include'] as $i) {
-                    if (true == $this->is_valid_domain_name($i)) {
-                        $newinput['include'][] = $i;
-                    } else {
-                        $newinput['include'][] = '';
-                    }
-                }
+        if (isset($input['domain1'])) {
+            if (false == $this->is_valid_domain_name($input['domain1'])) {
+                $input['domain1'] = '';
             }
         }
+
+        if (isset($input['domain2'])) {
+            if (false == $this->is_valid_domain_name($input['domain2'])) {
+                $input['domain2'] = '';
+            }
+        }
+
+        if (isset($input['domain3'])) {
+            if (false == $this->is_valid_domain_name($input['domain3'])) {
+                $input['domain3'] = '';
+            }
+        }
+
+        if (isset($input['domain4'])) {
+            if (false == $this->is_valid_domain_name($input['domain4'])) {
+                $input['domain4'] = '';
+            }
+        }
+        if (isset($input['domain5'])) {
+            if (false == $this->is_valid_domain_name($input['domain5'])) {
+                $input['domain5'] = '';
+            }
+        }
+
         add_settings_error('wporg_messages', 'wporg_message', __('Settings saved successfully to the database option settings:  plugin_domain_translate', 'domain-translate'), 'updated');
 
-        return $newinput;
+        return $input;
     }
 
     /**

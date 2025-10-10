@@ -11,11 +11,7 @@ namespace WPDT\DS\Main;
  */
 class ClassAjax
 {
-    private $domains;
-    private $siteurl;
-    private $new_siteurl;
-    private $new_domain;
-    private $old_domain;
+    private $domain;
     private $active;
 
     /**
@@ -27,32 +23,28 @@ class ClassAjax
      */
     public function __construct()
     {
-        // error_log('...swap ajax calls');
-        $this->set_domain_data();
-        if ($this->active) {
+        if ($this->is_active()) {
+            // error_log('...is active');
+            // $this->set_domain_data();
         }
     }
 
     /**
-     * Set Urls.
+     * Check if the plugin is set Active.
      *
-     * Set the new_domain and and old domain and other data
-     *
-     * Register and un-register the plugin. Setting Page render.
+     * @return boolen - true or false
      *
      * @since 1.0.0
      */
-    public function set_domain_data()
+    public function is_active()
     {
         $o = get_option(WPDT_OPTION);
         if ($o['active']) {
-            $this->active = 1;
+            return true;
         } else {
             $this->active = 0;
 
-            return;
+            return false;
         }
-
-        $this->domains = $o['include'];
     }
 }
