@@ -69,8 +69,7 @@ class ClassFrontend
         if (array_key_exists($domain, $domains)) {
             $this->target_lang_code = $domains[$domain];
         }
-        $this->lang_codes = array_values($domains);
-        $this->domains = array_keys($domains);
+        $this->domains = $domains;
     }
 
     /**
@@ -128,7 +127,6 @@ class ClassFrontend
         wp_localize_script('domain-translate', 'domain_translate_data', [
             'source_lang_code' => $this->source_lang_code,
             'target_lang_code' => $this->target_lang_code,
-            'lang_codes' => $this->lang_codes,
             'domain' => $this->domain,
             'domains' => $this->domains,
             'nonce' => wp_create_nonce('mg_ajax_nonce'),
