@@ -15,6 +15,8 @@ class ClassFrontend
     private $options;
     private $source_lang_code;
     private $target_lang_code;
+    private $lang_codes;
+    private $domains;
 
     /**
      * Init the Frontend Filter Hooks.
@@ -28,10 +30,13 @@ class ClassFrontend
         if ($this->is_active()) {
             $this->set_domain();
             $this->set_lang_codes($this->domain, $this->options);
-            // error_log('...is active');
+            error_log($this->source_lang_code);
+            error_log($this->target_lang_code);
             // error_log($this->domain);
-            // add_action('wp_enqueue_scripts', [$this, 'add_scripts']);
-            // add_action('wp_enqueue_scripts', [$this, 'add_styles']);
+            if ($this->source_lang_code && $this->target_lang_code) {
+                add_action('wp_enqueue_scripts', [$this, 'add_scripts']);
+                add_action('wp_enqueue_scripts', [$this, 'add_styles']);
+            }
         }
     }
 
@@ -64,6 +69,8 @@ class ClassFrontend
         if (array_key_exists($domain, $domains)) {
             $this->target_lang_code = $domains[$domain];
         }
+        $this->lang_codes = array_values($domains);
+        $this->domains = array_keys($domains);
     }
 
     /**
@@ -119,7 +126,9 @@ class ClassFrontend
         );
 
         wp_localize_script('domain-translate', 'domain_translate_data', [
-            'lang' => 'dk',
+            'source_lang_code' => $this->source_lang_code,
+            'target_lang_code' => $this->target_lang_code,
+            'lang_codes' => $this->lang_codes,
             'nonce' => wp_create_nonce('mg_ajax_nonce'),
         ]);
 
