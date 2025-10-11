@@ -6,47 +6,52 @@ const domain_translate_object = {
   domains: [],
   cookie: "googtrans",
   async init() {
-    const new_lang =
+    const trans_lang =
       "/" +
       domain_translate_data.source_lang_code +
       "/" +
       domain_translate_data.target_lang_code;
 
-    //let langs = domain_translate_data.lang_codes;
     this.domain = domain_translate_data.domain;
     this.domains = domain_translate_data.domains;
-
-    let translate = new google.translate.TranslateElement(
-      {
-        pageLanguage: domain_translate_data.source_lang_code,
-        includedLanguages: Object.values(this.domains).join(","),
-        autoDisplay: false,
-        multilanguagePage: true,
-      },
-      "google_translate_element",
-    );
-
-    const lang = this.get_cookie(this.cookie);
-    console.log("xxxxxxxxxxx");
-    //await this.delete_cookies("googtrans", this.domain);
-
-    if (lang === "" || lang !== new_lang) {
-      await this.set_cookie(this.cookie, new_lang, 60, this.domain);
-      //let x = setTimeout(() => {
-      //  if (this.get_cookie("googtrans")) {
-      //console.log("...reload page to set cookie");
-      //window.location.reload();
-      //  }
-      //}, 4 * 1000);
+    if (trans_lang) {
+      const cookie_value = await this.get_cookie_value(this.cookie);
+      console.log(cookie_value);
+      console.log(trans_lang);
+      if (cookie_value != trans_lang) {
+        await this.delete_cookies("googtrans", this.domain);
+        await this.set_cookie(this.cookie, trans_lang, 60, this.domain);
+        let translate = new google.translate.TranslateElement(
+          {
+            pageLanguage: domain_translate_data.source_lang_code,
+            includedLanguages: Object.values(this.domains).join(","),
+            autoDisplay: false,
+            multilanguagePage: true,
+          },
+          "google_translate_element",
+        );
+      } else {
+        let translate = new google.translate.TranslateElement(
+          {
+            pageLanguage: domain_translate_data.source_lang_code,
+            includedLanguages: Object.values(this.domains).join(","),
+            autoDisplay: false,
+            multilanguagePage: true,
+          },
+          "google_translate_element",
+        );
+      }
     }
   },
 
   async delete_cookies(name, domain) {
-    console.log("...try to delete cookie: " + name);
+    console.log(`...try to delete name: ${name}, domain:  ${domain}`);
+    document.cookie =
+      "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=.app.local; path=/";
     try {
       await cookieStore.delete({
         name: this.cookie,
-        domain: domain,
+        domain: "de.app.local",
       });
     } catch (error) {
       console.log(`...error deleting cookie: ${error}`);
@@ -57,7 +62,32 @@ const domain_translate_object = {
       .join(" ");
     console.log(`...cookies remaining: ${cookieNames}`);
   },
-  get_cookie(c_name) {
+
+  async get_cookie_value(name) {
+    const cookie = await cookieStore.get(name);
+    let cookie_value = "";
+    if (cookie) {
+      if (Object.hasOwn(cookie, "value")) {
+        cookie_value = cookie.value;
+      }
+    }
+    return cookie_value;
+  },
+
+  async get_cookies(name) {
+    const cookies = await cookieStore.getAll(name);
+
+    // Iterate the cookies, or log that none were found
+    if (cookies.length > 0) {
+      console.log(`Found cookies: ${cookies.length}:`);
+      cookies.forEach((cookie) => console.log(cookie));
+    } else {
+      console.log("Cookies not found");
+    }
+    return cookies;
+  },
+
+  get_cookiex(c_name) {
     if (document.cookie.length > 0) {
       c_start = document.cookie.indexOf(c_name + "=");
       if (c_start != -1) {
@@ -74,8 +104,7 @@ const domain_translate_object = {
 
   async set_cookie(c_name, c_value, exp_days, domain) {
     console.log("...set new cookie to:" + c_value);
-    console.log(domain);
-    const days = 60 * 24 * 60 * 60 * 1000;
+    //console.log(domain);
     try {
       await cookieStore.set({
         name: c_name,
@@ -83,13 +112,7 @@ const domain_translate_object = {
         domain: domain,
         sameSite: "strict",
         path: "/",
-      });
-
-      await cookieStore.set({
-        name: c_name,
-        value: c_value,
-        sameSite: "strict",
-        path: "/",
+        expires: Date.now() + 60 * 24 * 60 * 60 * 1000,
       });
     } catch (error) {
       console.log(`Error setting cookie1: ${error}`);
