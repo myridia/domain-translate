@@ -36,7 +36,7 @@ elif [ "$task" = "7" ]; then
    ./rd.sh    
 elif [ "$task" = "8" ]; then
     echo "...execute task ${task} | file ./clean.sh"
-    ./clean.sh
+    ./ask.d/clean.sh
 
 elif [ "$task" = "9" ]; then
     echo "... ${task} -- go into wpcli docker"
