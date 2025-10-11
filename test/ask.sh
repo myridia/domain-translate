@@ -8,6 +8,7 @@ echo -e "5\t./rm.sh\t\trename the database on the developt/test server"
 echo -e "6\t./rp.sh\t\trename the database on the production server"
 echo -e "7\t./rd.sh\t\trename the database on the docker server"
 echo -e "8\t./clean.sh\tclean the docker containers and volumes "
+echo -e "9\t./wpcli\t get into Wp cli "
 
 
 read task
@@ -36,6 +37,11 @@ elif [ "$task" = "7" ]; then
 elif [ "$task" = "8" ]; then
     echo "...execute task ${task} | file ./clean.sh"
     ./clean.sh
+
+elif [ "$task" = "9" ]; then
+    echo "... ${task} -- go into wpcli docker"
+    cd wordpress
+    docker exec -it wpcli bash 
 else
     echo "Goodbye! - Exit"
 fi
