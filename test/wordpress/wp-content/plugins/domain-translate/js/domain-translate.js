@@ -4,6 +4,7 @@ async function domain_translate_init() {
 const domain_translate_object = {
   domain: "",
   domains: [],
+  cookie: "googtrans",
   async init() {
     const new_lang =
       "/" +
@@ -25,40 +26,36 @@ const domain_translate_object = {
       "google_translate_element",
     );
 
-    /*
-    const lang = this.get_cookie("googtrans");
+    const lang = this.get_cookie(this.cookie);
     console.log("xxxxxxxxxxx");
     //await this.delete_cookies("googtrans", this.domain);
 
     if (lang === "" || lang !== new_lang) {
-      await this.set_cookie("googtrans", new_lang, 60, this.domain);
+      await this.set_cookie(this.cookie, new_lang, 60, this.domain);
       //let x = setTimeout(() => {
       //  if (this.get_cookie("googtrans")) {
       //console.log("...reload page to set cookie");
       //window.location.reload();
       //  }
       //}, 4 * 1000);
-      }
-      */
+    }
   },
 
   async delete_cookies(name, domain) {
-    console.log("...delete cookie: " + name);
+    console.log("...try to delete cookie: " + name);
     try {
       await cookieStore.delete({
-        name: "googtrans",
+        name: this.cookie,
         domain: domain,
       });
     } catch (error) {
-      console.log(`Error deleting cookie1: ${error}`);
+      console.log(`...error deleting cookie: ${error}`);
     }
 
     cookieNames = (await cookieStore.getAll())
       .map((cookie) => cookie.name)
       .join(" ");
-    console.log(
-      `Cookies remaining after attempted deletions (cookie2 should be deleted): ${cookieNames}`,
-    );
+    console.log(`...cookies remaining: ${cookieNames}`);
   },
   get_cookie(c_name) {
     if (document.cookie.length > 0) {
