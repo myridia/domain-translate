@@ -9,6 +9,9 @@ test/appdata/firefox/profile/*
 test/appdata/firefox/xdg
 !test/appdata/firefox/profile/cert9.db
 !test/appdata/firefox/profile/places.sqlite
+!test/appdata/firefox/profile/prefs.js
+
+
 
 
 
