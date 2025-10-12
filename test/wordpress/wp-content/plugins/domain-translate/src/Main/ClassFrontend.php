@@ -12,6 +12,7 @@ namespace WPDT\DS\Main;
 class ClassFrontend
 {
     private $domain;
+    private $base_domain;
     private $options;
     private $source_lang_code;
     private $target_lang_code;
@@ -106,6 +107,11 @@ class ClassFrontend
             if ('' != $unslashed) {
                 $domain = $unslashed;
             }
+        }
+
+        $a = array_reverse(explode('.', $domain));
+        if (count($a) > 2) {
+            $this->base_domain = $a[1].'.'.$a[0];
         }
         $this->domain = $domain;
 
