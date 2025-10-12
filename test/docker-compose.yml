@@ -125,6 +125,7 @@ services:
     volumes:
       - "./appdata/firefox:/config:rw"
       
+      
     networks:
       workgroup:
         ipv4_address: "10.5.0.8"
