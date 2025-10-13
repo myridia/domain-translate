@@ -19,7 +19,7 @@ class MakePages:
     def __init__(self):
         print("...init MakePages")
         self.server_name = "https://cb.neriene.com"
-        self.db_name = "domain_swapper"
+        self.db_name = "domain_translate"
         self.cache = False
         self.target_folder = "public"
         self.template_folder = "templates"
