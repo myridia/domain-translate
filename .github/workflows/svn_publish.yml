@@ -6,7 +6,7 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    if: github.repository_owner == 'myridia'
+    if: github.repository_owner == 'myridiax'
 
     steps:
       - name: Disable initramfs update
@@ -23,9 +23,9 @@ jobs:
               
       - name: Get Tags from readme.txt and online tags 
         run: |
-          # ls ./test/wordpress/wp-content/plugins/domain-swapper/
-          tag=$(grep "Stable Tag:" ./test/wordpress/wp-content/plugins/domain-swapper/readme.txt | cut -d' ' -f3) 
-          otag=$(svn list https://plugins.svn.wordpress.org/domain-swapper/tags | grep $tag | sed 's#/*$##' )
+          # ls ./test/wordpress/wp-content/plugins/domain-translate/
+          tag=$(grep "Stable Tag:" ./test/wordpress/wp-content/plugins/domain-translate/readme.txt | cut -d' ' -f3) 
+          otag=$(svn list https://plugins.svn.wordpress.org/domain-/tags | grep $tag | sed 's#/*$##' )
           echo $otag
           echo $tag 
       
@@ -60,10 +60,10 @@ jobs:
      
       - name: Get Tags from readme.txt and online tags 
         run: |
-          # ls ./test/wordpress/wp-content/plugins/domain-swapper/
-          tag=$(grep "Stable Tag:" ./test/wordpress/wp-content/plugins/domain-swapper/readme.txt | cut -d' ' -f3) 
+          # ls ./test/wordpress/wp-content/plugins/domain-translate/
+          tag=$(grep "Stable Tag:" ./test/wordpress/wp-content/plugins/domain-translate/readme.txt | cut -d' ' -f3) 
           echo "TAG_NAME=$tag" >> $GITHUB_ENV
-          otag=$(svn list https://plugins.svn.wordpress.org/domain-swapper/tags | grep $TAG_NAME | sed 's#/*$##' )
+          otag=$(svn list https://plugins.svn.wordpress.org/domain-translate/tags | grep $TAG_NAME | sed 's#/*$##' )
           echo "OTAG_NAME=$otag" >> $GITHUB_ENV
           
  
@@ -75,8 +75,8 @@ jobs:
 
       - name: Copy to trunk
         run: |
-          rsync -r --exclude=.svn --exclude=.github ./test/wordpress/wp-content/plugins/domain-swapper/ wp/trunk/
-          rsync -r --exclude=.svn --exclude=.github ./test/wordpress/wp-content/plugins/domain-swapper/assets/ wp/assets/
+          rsync -r --exclude=.svn --exclude=.github ./test/wordpress/wp-content/plugins/domain-translate/ wp/trunk/
+          rsync -r --exclude=.svn --exclude=.github ./test/wordpress/wp-content/plugins/domain-translate/assets/ wp/assets/
           
 
       - name: SVN add and trunk
