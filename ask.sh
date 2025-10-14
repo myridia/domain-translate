@@ -4,8 +4,6 @@ DB_PASSWORD=passpass
 DATE=$(date +"%F")
 
 
-
-
 echo -e "I'm ask.sh. What you like to do?, enter a Task Id from list below: \n"
 echo -e "TaskID\tFile\t\tDescription"
 echo -e "1\t./Export Db\t\texport the database on the docker/test server"
@@ -20,12 +18,12 @@ read task
 
 if [ "$task" = "1" ]; then
     echo "...execute task ${task} | file ./em.sh"
-     docker  run -i --rm --net=host  salamander1/mysqldump --verbose -h db -u "${DB_NAME}" -p"${DB_PASSWORD}"  "${DB_NAME}" | gzip > "./init/${DB_NAME}-${DATE}.sql.gz"
-     docker  run -i --rm --net=host  salamander1/mysqldump --verbose -h db -u "${DB_NAME}" -p"${DB_PASSWORD}"  "${DB_NAME}" | gzip > "./init/${DB_NAME}.sql.gz"
+     docker  run -i --rm --net=host  salamander1/mysqldump --verbose -h db -u "${DB_NAME}" -p"${DB_PASSWORD}"  "${DB_NAME}" | gzip > "./test/init/${DB_NAME}-${DATE}.sql.gz"
+     docker  run -i --rm --net=host  salamander1/mysqldump --verbose -h db -u "${DB_NAME}" -p"${DB_PASSWORD}"  "${DB_NAME}" | gzip > "./test/init/${DB_NAME}.sql.gz"
 
 elif [ "$task" = "2" ]; then
     echo "...execute task ${task} | "
-    cd wordpress/
+    cd test/wordpress/
     wp search-replace "https://en.app.local" "https://app.local"  --skip-columns=guid
     
 elif [ "$task" = "3" ]; then
@@ -43,7 +41,7 @@ elif [ "$task" = "4" ]; then
 
 elif [ "$task" = "5" ]; then
     echo "... ${task} -- go into wpcli docker"
-    cd wordpress
+    cd test/wordpress
     docker exec -it wpcli bash
     
 elif [ "$task" = "6" ]; then
