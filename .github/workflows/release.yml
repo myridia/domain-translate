@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   deploy:
-    if: github.repository_owner == 'myridia'
+    if: github.repository_owner == 'myridiax'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -26,7 +26,7 @@ jobs:
       - name: zip domain-swapper
         run: |
           cd test/wordpress/wp-content/plugins/
-          zip -r domain-swapper.zip domain-translate 
+          zip -r domain-translate.zip domain-translate 
          
       - name: release 
         uses: svenstaro/upload-release-action@v2
