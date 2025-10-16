@@ -6,26 +6,33 @@ DATE=$(date +"%F")
 
 echo -e "I'm ask.sh. What you like to do?, enter a Task Id from list below: \n"
 echo -e "TaskID\t Description"
-echo -e "1\t Export Db - Export the database on the docker/test server"
-echo -e "2\t Rename WP - Rename the database on the docker server"
+echo -e "1\t Run - Docker Test Enviroment "
+echo -e "2\t Run - Docker Page "
 echo -e "3\t Clean Docker - Clean the docker containers and volumes "
 echo -e "4\t Clean All - Clean the docker containers and volumes and images "
 echo -e "5\t WPCLI - Get into Wp cli "
 echo -e "6\t Gen PHP docs - Generate php docs into pages/public/docs "
-echo -e "7\t Run - Docker Test Enviroment "
+echo -e "7\t Export Db - Export the database on the docker/test server"
+echo -e "8\t Rename WP - Rename the database on the docker server"
+
 
 
 read task
 
 if [ "$task" = "1" ]; then
-    echo "...execute task ${task} | file ./em.sh"
-     docker  run -i --rm --net=host  salamander1/mysqldump --verbose -h db -u "${DB_NAME}" -p"${DB_PASSWORD}"  "${DB_NAME}" | gzip > "./test/init/${DB_NAME}-${DATE}.sql.gz"
-     docker  run -i --rm --net=host  salamander1/mysqldump --verbose -h db -u "${DB_NAME}" -p"${DB_PASSWORD}"  "${DB_NAME}" | gzip > "./test/init/${DB_NAME}.sql.gz"
-
+    echo "... ${task} -- Run Docker Test"
+    cd test
+    docker-compose up -d    
+    echo "Visit:"
+    echo "https://app.local"
+    
 elif [ "$task" = "2" ]; then
-    echo "...execute task ${task} | "
-    cd test/wordpress/
-    wp search-replace "https://en.app.local" "https://app.local"  --skip-columns=guid
+    echo "... ${task} -- Run Docker Test"
+    cd pages/dockers
+    docker-compose up -d    
+    echo "Visit:"
+    echo "http://127.0.0.1:88"    
+
     
 elif [ "$task" = "3" ]; then
     echo "...execute task ${task} | clean all"    
@@ -50,9 +57,15 @@ elif [ "$task" = "6" ]; then
     phpDocumentor run -d  test/wordpress/wp-content/plugins/domain-translate/  -t pages/public/docs/
 
 elif [ "$task" = "7" ]; then
-    echo "... ${task} -- Run Docker Test"
-    cd test
-    docker-compose up -d
+    echo "...execute task ${task} | file ./em.sh"
+    docker  run -i --rm --net=host  salamander1/mysqldump --verbose -h db -u "${DB_NAME}" -p"${DB_PASSWORD}"  "${DB_NAME}" | gzip > "./test/init/${DB_NAME}-${DATE}.sql.gz"
+    docker  run -i --rm --net=host  salamander1/mysqldump --verbose -h db -u "${DB_NAME}" -p"${DB_PASSWORD}"  "${DB_NAME}" | gzip > "./test/init/${DB_NAME}.sql.gz"
+
+elif [ "$task" = "8" ]; then
+    echo "...execute task ${task} | "
+    cd test/wordpress/
+    wp search-replace "https://en.app.local" "https://app.local"  --skip-columns=guid
+    
 else
     echo "Goodbye! - Exit"
 fi
