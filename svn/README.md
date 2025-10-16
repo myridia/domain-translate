@@ -1,7 +1,7 @@
 ## How to checkout 
 
 ```
-svn --force checkout https://plugins.svn.wordpress.org/domain-swapper 
+svn --force checkout https://plugins.svn.wordpress.org/domain-translate
 ```
 
 ## Add new 
