@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   deploy:
-    if: github.repository_owner == 'myridiax'
+    if: github.repository_owner == 'myridia'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
