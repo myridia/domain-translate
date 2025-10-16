@@ -10,7 +10,6 @@ permissions:
   pull-requests: write 
   issues: read
   packages: none
-
 jobs:
   deploy:
     if: github.repository_owner == 'myridia'
