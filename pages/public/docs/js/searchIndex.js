@@ -23,17 +23,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\WPDT\\Ds\\Main\\ClassAdmin\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Class\u0020Constructor.",
             "url": "classes/WPDT-Ds-Main-ClassAdmin.html#method___construct"
         },                {
             "fqsen": "\\WPDT\\Ds\\Main\\ClassAdmin\u003A\u003Aactivate\u0028\u0029",
             "name": "activate",
-            "summary": "Default\u0020On.",
+            "summary": "Default\u0020Activate.",
             "url": "classes/WPDT-Ds-Main-ClassAdmin.html#method_activate"
         },                {
             "fqsen": "\\WPDT\\Ds\\Main\\ClassAdmin\u003A\u003Adeactivate\u0028\u0029",
             "name": "deactivate",
-            "summary": "Default\u0020Deacativation.",
+            "summary": "Default\u0020Deactivate.",
             "url": "classes/WPDT-Ds-Main-ClassAdmin.html#method_deactivate"
         },                {
             "fqsen": "\\WPDT\\Ds\\Main\\ClassAdmin\u003A\u003Aadd_menu_setting\u0028\u0029",
@@ -48,17 +48,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\WPDT\\Ds\\Main\\ClassAdmin\u003A\u003Amake_checkbox\u0028\u0029",
             "name": "make_checkbox",
-            "summary": "Field\u0020Active\u0020HTML\u0020output.",
+            "summary": "Generate\u0020a\u0020text\u0020checkbox\u0020field.",
             "url": "classes/WPDT-Ds-Main-ClassAdmin.html#method_make_checkbox"
         },                {
             "fqsen": "\\WPDT\\Ds\\Main\\ClassAdmin\u003A\u003Amake_input_text\u0028\u0029",
             "name": "make_input_text",
-            "summary": "",
+            "summary": "Generate\u0020a\u0020text\u0020input\u0020field.",
             "url": "classes/WPDT-Ds-Main-ClassAdmin.html#method_make_input_text"
         },                {
             "fqsen": "\\WPDT\\Ds\\Main\\ClassAdmin\u003A\u003Amake_select\u0028\u0029",
             "name": "make_select",
-            "summary": "Select\u0020html.",
+            "summary": "Generate\u0020HTML\u0020Select.",
             "url": "classes/WPDT-Ds-Main-ClassAdmin.html#method_make_select"
         },                {
             "fqsen": "\\WPDT\\Ds\\Main\\ClassAdmin\u003A\u003Awporg_options_page_html\u0028\u0029",
@@ -73,12 +73,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\WPDT\\Ds\\Main\\ClassAdmin\u003A\u003Avalidate\u0028\u0029",
             "name": "validate",
-            "summary": "Validate\u0020input.",
+            "summary": "Validate\u0020input\u0020of\u0020valid\u0020Domains.",
             "url": "classes/WPDT-Ds-Main-ClassAdmin.html#method_validate"
         },                {
             "fqsen": "\\WPDT\\Ds\\Main\\ClassAdmin\u003A\u003Acallback\u0028\u0029",
             "name": "callback",
-            "summary": "Callback\u0020after\u0020Save\u0020Settings.",
+            "summary": "Callback\u0020after\u0020add\u0020Settings\u0020\u002D\u0020for\u0020the\u0020moment\u0020a\u0020placeholder.",
             "url": "classes/WPDT-Ds-Main-ClassAdmin.html#method_callback"
         },                {
             "fqsen": "\\WPDT\\Ds\\Main\\ClassAdmin\u003A\u003A\u0024options",
@@ -98,12 +98,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\WPDT\\DS\\Main\\ClassFrontend\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Init\u0020the\u0020Frontend\u0020Filter\u0020Hooks.",
+            "summary": "Class\u0020Constructor.",
             "url": "classes/WPDT-DS-Main-ClassFrontend.html#method___construct"
         },                {
             "fqsen": "\\WPDT\\DS\\Main\\ClassFrontend\u003A\u003Aset_lang_codes\u0028\u0029",
             "name": "set_lang_codes",
-            "summary": "",
+            "summary": "Class\u0020function\u0020to\u0020set\u0020all\u0020set\u0020domain\u0020target\u0020language\u0020combinations.",
             "url": "classes/WPDT-DS-Main-ClassFrontend.html#method_set_lang_codes"
         },                {
             "fqsen": "\\WPDT\\DS\\Main\\ClassFrontend\u003A\u003Ais_active\u0028\u0029",
@@ -113,17 +113,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\WPDT\\DS\\Main\\ClassFrontend\u003A\u003Aset_domain\u0028\u0029",
             "name": "set_domain",
-            "summary": "",
+            "summary": "Set\u0020Class\u0020Propertier\u0020like\u0020actual\u0020Domain.",
             "url": "classes/WPDT-DS-Main-ClassFrontend.html#method_set_domain"
         },                {
             "fqsen": "\\WPDT\\DS\\Main\\ClassFrontend\u003A\u003Aadd_scripts\u0028\u0029",
             "name": "add_scripts",
-            "summary": "",
+            "summary": "Add\u0020the\u0020extra\u0020plugins\u0020JavaScript\u0020files,\u0020like\u0020google\u0020translate\u0020and\u0020its\u0020callback\u0020ini\u0020functions.",
             "url": "classes/WPDT-DS-Main-ClassFrontend.html#method_add_scripts"
         },                {
             "fqsen": "\\WPDT\\DS\\Main\\ClassFrontend\u003A\u003Aadd_styles\u0028\u0029",
             "name": "add_styles",
-            "summary": "",
+            "summary": "Add\u0020the\u0020extra\u0020plugins\u0020CSS\u0020files\u0020for\u0020hiding\u0020the\u0020google\u0020trans\u0020tool\u0020bar\nSee\u0020doc\u0020https\u003A\/\/developer.wordpress.org\/reference\/functions\/wp_register_style\/.",
             "url": "classes/WPDT-DS-Main-ClassFrontend.html#method_add_styles"
         },                {
             "fqsen": "\\WPDT\\DS\\Main\\ClassFrontend\u003A\u003A\u0024domain",

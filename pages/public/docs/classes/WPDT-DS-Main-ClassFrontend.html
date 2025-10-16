@@ -225,19 +225,22 @@
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd>Init the Frontend Filter Hooks.</dd>
+<dd>Class Constructor.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/WPDT-DS-Main-ClassFrontend.html#method_add_scripts">add_scripts()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: void    </span>
 </dt>
+<dd>Add the extra plugins JavaScript files, like google translate and its callback ini functions.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/WPDT-DS-Main-ClassFrontend.html#method_add_styles">add_styles()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: void    </span>
 </dt>
+<dd>Add the extra plugins CSS files for hiding the google trans tool bar
+See doc https://developer.wordpress.org/reference/functions/wp_register_style/.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/WPDT-DS-Main-ClassFrontend.html#method_is_active">is_active()</a>
@@ -249,14 +252,16 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/WPDT-DS-Main-ClassFrontend.html#method_set_domain">set_domain()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: string    </span>
 </dt>
+<dd>Set Class Propertier like actual Domain.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/WPDT-DS-Main-ClassFrontend.html#method_set_lang_codes">set_lang_codes()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: void    </span>
 </dt>
+<dd>Class function to set all set domain target language combinations.</dd>
 
     </dl>
 
@@ -563,7 +568,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">Init the Frontend Filter Hooks.</p>
+        <p class="phpdocumentor-summary">Class Constructor.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -572,7 +577,7 @@
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>If Plugin is active  and if the new_siteurl is different to the base stieurl, then init the ajax filter hooks</p>
+        <section class="phpdocumentor-description"><p>If Source and Target is set, init the plugins</p>
 </section>
 
     
@@ -611,14 +616,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="test/wordpress/wp-content/plugins/domain-translate/src/Main/ClassFrontend.php"><a href="files/test-wordpress-wp-content-plugins-domain-translate-src-main-classfrontend.html"><abbr title="test/wordpress/wp-content/plugins/domain-translate/src/Main/ClassFrontend.php">ClassFrontend.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">121</span>
+    <span class="phpdocumentor-element-found-in__line">139</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Add the extra plugins JavaScript files, like google translate and its callback ini functions.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">add_scripts</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">add_scripts</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -626,6 +632,21 @@
     
     
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/WPDT-DS-Main-ClassFrontend.html#method_add_scripts#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">since</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.0.0</span>
+                                                                                
+                                             
+                                    </dd>
+                                            </dl>
 
     
 
@@ -645,14 +666,16 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="test/wordpress/wp-content/plugins/domain-translate/src/Main/ClassFrontend.php"><a href="files/test-wordpress-wp-content-plugins-domain-translate-src-main-classfrontend.html"><abbr title="test/wordpress/wp-content/plugins/domain-translate/src/Main/ClassFrontend.php">ClassFrontend.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">158</span>
+    <span class="phpdocumentor-element-found-in__line">184</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Add the extra plugins CSS files for hiding the google trans tool bar
+See doc https://developer.wordpress.org/reference/functions/wp_register_style/.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">add_styles</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">add_styles</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -660,6 +683,21 @@
     
     
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/WPDT-DS-Main-ClassFrontend.html#method_add_styles#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">since</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.0.0</span>
+                                                                                
+                                             
+                                    </dd>
+                                            </dl>
 
     
 
@@ -679,7 +717,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="test/wordpress/wp-content/plugins/domain-translate/src/Main/ClassFrontend.php"><a href="files/test-wordpress-wp-content-plugins-domain-translate-src-main-classfrontend.html"><abbr title="test/wordpress/wp-content/plugins/domain-translate/src/Main/ClassFrontend.php">ClassFrontend.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">83</span>
+    <span class="phpdocumentor-element-found-in__line">87</span>
 
     </aside>
 
@@ -739,14 +777,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="test/wordpress/wp-content/plugins/domain-translate/src/Main/ClassFrontend.php"><a href="files/test-wordpress-wp-content-plugins-domain-translate-src-main-classfrontend.html"><abbr title="test/wordpress/wp-content/plugins/domain-translate/src/Main/ClassFrontend.php">ClassFrontend.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">97</span>
+    <span class="phpdocumentor-element-found-in__line">108</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Set Class Propertier like actual Domain.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">set_domain</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">set_domain</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -754,10 +793,35 @@
     
     
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/WPDT-DS-Main-ClassFrontend.html#method_set_domain#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">since</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.0.0</span>
+                                                                                
+                                             
+                                    </dd>
+                                            </dl>
 
     
 
-    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><ul>
+<li>Actual Domain</li>
+</ul>
+</section>
+
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -773,14 +837,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="test/wordpress/wp-content/plugins/domain-translate/src/Main/ClassFrontend.php"><a href="files/test-wordpress-wp-content-plugins-domain-translate-src-main-classfrontend.html"><abbr title="test/wordpress/wp-content/plugins/domain-translate/src/Main/ClassFrontend.php">ClassFrontend.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">48</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Class function to set all set domain target language combinations.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">set_lang_codes</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$domain</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">set_lang_codes</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$domain</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -805,6 +870,21 @@
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/WPDT-DS-Main-ClassFrontend.html#method_set_lang_codes#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">since</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.0.0</span>
+                                                                                
+                                             
+                                    </dd>
+                                            </dl>
 
     
 
