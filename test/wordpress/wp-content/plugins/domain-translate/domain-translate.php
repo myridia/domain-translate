@@ -7,7 +7,7 @@
  * @wordpress-plugin
  * Plugin Name: Domain-translate
  * Plugin URI: https://wordpress.org/plugins/domain-translate
- * Description: Automatically translate your Site based on your language code subdomain like de., es. dk. etc.
+ * Description: Automatically translate your Site based your Domain, Source and Target Language.
  * Version: 1.0.0
  * Author: veto, Myridia Company
  * Author URI: http://domain-translate.myridia.com
@@ -34,7 +34,6 @@ defined('ABSPATH') or exit('Something went wrong');
  * @since 1.0.0 (if available)
  */
 use WPDT\Ds\Main\ClassAdmin;
-use WPDT\Ds\Main\ClassAjax;
 use WPDT\Ds\Main\ClassFrontend;
 
 /*
@@ -79,22 +78,15 @@ function myridia_wpdt_plugin_admin_init()
 /**
  * Init the User Front Plugin.
  *
- * Init ClassAdmin,ClassFrontend and ClassAjax
+ * Init ClassAdmin,ClassFrontend
  *
  * @since 1.0.0
  */
 function myridia_wpdt_plugin_init()
 {
-    if (defined('DOING_AJAX') && DOING_AJAX) {
-        // error_log('.....ajax');
-        $plugin3 = new ClassAjax();
-    } else {
-        $plugin = new ClassAdmin();
-        $plugin->add_menu_setting();
-        $plugin2 = new ClassFrontend();
-
-        // $plugin2->add_menu_setting();
-    }
+    $plugin = new ClassAdmin();
+    $plugin->add_menu_setting();
+    $plugin2 = new ClassFrontend();
 }
 
 /*

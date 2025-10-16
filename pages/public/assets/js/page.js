@@ -11,7 +11,7 @@ window.onload = async function () {
 
     let host = await vwu.get_host();
     let url =
-      "https://api.grallator.com/token?page=domain-swapper&client_host=" +
+      "https://api.grallator.com/token?page=domain-translate&client_host=" +
       host +
       "&r=" +
       random;

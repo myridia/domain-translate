@@ -12,6 +12,7 @@ namespace WPDT\Ds\Main;
 class ClassAdmin
 {
     private $options;
+    // Possible Google Translate Codes with Name
     private $lang_codes = [
         ['af', 'Afrikaans'],
         ['sq', 'Albanian'],
@@ -121,29 +122,30 @@ class ClassAdmin
         ['', ''],
     ];
 
+    /**
+     * Class Constructor.
+     *
+     * Place Holder for the moment
+     *
+     * @since 1.0.0
+     */
     public function __construct()
     {
     }
 
     /**
-     *  Default On.
+     * Default Activate.
+     *
+     * Place Holder for the moment
      *
      * @since 1.0.0
      */
     public static function activate()
     {
-        /*
-        $options = [
-            'include' => ['fi.app.local', 'dk.app.local', 'de.app.local', 'es.app.local', 'th.app.local'],
-        ];
-        if (false == get_option(WPDT_OPTION)) {
-            update_option(WPDT_OPTION, $options);
-        }
-        */
     }
 
     /**
-     * Default Deacativation.
+     * Default Deactivate.
      *
      * @since 1.0.0
      */
@@ -381,19 +383,13 @@ class ClassAdmin
     }
 
     /**
-     * Field Active HTML output.
-     *
-     * Generate a text checkbox field for the Plugin activation
+     * Generate a text checkbox field.
      *
      * @since 1.0.0
      *
-     * @param array $args {
-     *                    Field array
+     * @param array $args {Field array }
      *
-     * @var string label_for
-     *             }
-     *
-     * @return string $input
+     * @return string
      */
     public function make_checkbox($args)
     {
@@ -417,6 +413,15 @@ class ClassAdmin
         ]);
     }
 
+    /**
+     * Generate a text input field.
+     *
+     * @since 1.0.0
+     *
+     * @param array $args {Field array }
+     *
+     * @return string
+     */
     public function make_input_text($args)
     {
         $name = esc_attr($args['name']);
@@ -438,19 +443,13 @@ class ClassAdmin
     }
 
     /**
-     * Select html.
-     *
-     * Generate a text checkbox field for the Plugin activation
+     * Generate HTML Select.
      *
      * @since 1.0.0
      *
-     * @param array $args {
-     *                    Field array
+     * @param array $args { Field array}
      *
-     * @var string label_for
-     *             }
-     *
-     * @return string $input
+     * @return string
      */
     public function make_select($args)
     {
@@ -539,7 +538,7 @@ class ClassAdmin
     }
 
     /**
-     * Validate input.
+     * Validate input of valid Domains.
      *
      * @since 1.0.0
      *
@@ -584,12 +583,12 @@ class ClassAdmin
     }
 
     /**
-     * Callback after Save Settings.
+     * Callback after add Settings - for the moment a placeholder.
      *
      * @since 1.0.0
      */
     public function callback()
     {
-        // esc_html_e('Settings Saved to ', 'domain-translate');
+        // esc_html_e('Settings added to ', 'domain-translate');
     }
 }

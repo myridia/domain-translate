@@ -9,17 +9,19 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: **https://domain-translate.myridia.com/**
 
-Domain Swapper is a plugin which lets to access one  WordPress site with different domains.
+Translates WordPress pages in the client browser. You can select 107 languages for translation.
 
 == Description ==
 
-Automatically translate your wordpress website based on your subdomain like de.app.local or es.app.local. The plugin detet your subomain like de. or es and translate your site.
-https://domain-translate.myridia.com
+Domain Translate is a WordPress Plugin what translates on the client browser the WordPress page. You can select in the WordPress Admin the Domain, the Source and the Target Language. There are 107 Languages available.
+Currently, it's based on the Google Translate service. Because your visitor's browser translates the page, it's free for you as a WordPress site administrator. The downside of this browser-side translation approach is that search engine crawlers may not index the translated page.
+
 
 == Whom it will help? == 
 
-- Quick translation without much installation
-- You can use for multi language.
+- Quick translation without much settings.
+- You can use for a multi language site.
+- Not worry about SEO translated pages.
 
 
 == Installation ==

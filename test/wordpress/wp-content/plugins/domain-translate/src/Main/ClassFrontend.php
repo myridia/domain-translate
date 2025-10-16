@@ -20,9 +20,9 @@ class ClassFrontend
     private $domains;
 
     /**
-     * Init the Frontend Filter Hooks.
+     * Class Constructor.
      *
-     * If Plugin is active  and if the new_siteurl is different to the base stieurl, then init the ajax filter hooks
+     * If Source and Target is set, init the plugins
      *
      * @since 1.0.0
      */
@@ -31,9 +31,6 @@ class ClassFrontend
         if ($this->is_active()) {
             $this->set_domain();
             $this->set_lang_codes($this->domain, $this->options);
-            // error_log($this->source_lang_code);
-            // error_log($this->target_lang_code);
-            // error_log($this->domain);
             if ($this->source_lang_code && $this->target_lang_code) {
                 add_action('wp_enqueue_scripts', [$this, 'add_scripts']);
                 add_action('wp_enqueue_scripts', [$this, 'add_styles']);
@@ -41,6 +38,13 @@ class ClassFrontend
         }
     }
 
+    /**
+     * Class function to set all set domain target language combinations.
+     *
+     * @return void
+     *
+     * @since 1.0.0
+     */
     public function set_lang_codes($domain, $options)
     {
         // Set Source Lang
@@ -94,6 +98,13 @@ class ClassFrontend
         }
     }
 
+    /**
+     * Set Class Propertier like actual Domain.
+     *
+     * @return string - Actual Domain
+     *
+     * @since 1.0.0
+     */
     public function set_domain()
     {
         $domain = get_option('siteurl'); // Set default url from the wordpress setting
@@ -118,6 +129,13 @@ class ClassFrontend
         return $domain;
     }
 
+    /**
+     * Add the extra plugins JavaScript files, like google translate and its callback ini functions.
+     *
+     * @return void
+     *
+     * @since 1.0.0
+     */
     public function add_scripts()
     {
         wp_register_script(
@@ -155,10 +173,18 @@ class ClassFrontend
         wp_enqueue_script('domain-translate-google');
     }
 
+    /**
+     * Add the extra plugins CSS files for hiding the google trans tool bar
+     * See doc https://developer.wordpress.org/reference/functions/wp_register_style/.
+     *
+     * @return void
+     *
+     * @since 1.0.0
+     */
     public function add_styles()
     {
         wp_register_style('domain-translate',
-            plugins_url('domain-translate/css/domain-translate.css'));
+            plugins_url('domain-translate/css/domain-translate.css'), [], 1);
         wp_enqueue_style('domain-translate');
     }
 }
