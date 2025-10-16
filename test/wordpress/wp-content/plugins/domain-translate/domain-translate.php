@@ -7,7 +7,7 @@
  * @wordpress-plugin
  * Plugin Name: Domain-translate
  * Plugin URI: https://wordpress.org/plugins/domain-translate
- * Description: Automatically translate your Site based on your language code subdomain like de., es. dk. etc.
+ * Description: Automatically translate your Site based your Domain, Source and Target Language.
  * Version: 1.0.0
  * Author: veto, Myridia Company
  * Author URI: http://domain-translate.myridia.com
