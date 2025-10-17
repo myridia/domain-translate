@@ -7,6 +7,7 @@ test/appdata/firefox/minica-key.pem
 test/appdata/firefox/minica.pem
 test/appdata/firefox/profile/*
 test/appdata/firefox/xdg
+!test/appdata/firefox/*.pem
 !test/appdata/firefox/profile/cert9.db
 !test/appdata/firefox/profile/places.sqlite
 !test/appdata/firefox/profile/prefs.js
