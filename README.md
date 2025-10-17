@@ -1,4 +1,4 @@
-# domain-translate
+# ![domain-translate](pages/public/assets/img/logo.png) Domain-Translate
 Automatic Translate a WordPress Website based on its Subdomain
 
 ## Homepage
