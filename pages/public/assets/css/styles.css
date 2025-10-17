@@ -46,3 +46,9 @@
     font-weight:bold;
 }
 
+
+.company {
+    font-size: 25px;
+    text-decoration:none;
+    font-family: "Nimbus Sans L", Helvetica, Arial, sans-serif;
+}
