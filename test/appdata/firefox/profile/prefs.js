@@ -106,7 +106,7 @@ user_pref("privacy.clearOnShutdown_v2.formdata", true);
 user_pref("privacy.purge_trackers.date_in_cookie_database", "0");
 user_pref("privacy.purge_trackers.last_purge", "1760675677071");
 user_pref("privacy.sanitize.clearOnShutdown.hasMigratedToNewPrefs3", true);
-user_pref("privacy.sanitize.pending", "[{\"id\":\"newtab-container\",\"itemsToClear\":[],\"options\":{}}]");
+user_pref("privacy.sanitize.pending", "[]");
 user_pref("privacy.trackingprotection.allow_list.hasMigratedCategoryPrefs", true);
 user_pref("security.disable_button.openCertManager", false);
 user_pref("services.settings.blocklists.addons-bloomfilters.last_check", 1760675707);
