@@ -22,8 +22,10 @@ read task
 if [ "$task" = "1" ]; then
     echo "... ${task} -- Run Docker Test"
     cd test
-    docker-compose up -d    
-    echo "Visit:"
+    docker-compose up -d
+    echo "Open:"
+    echo "http://127.0.0.1:5800"    
+    echo "Visit if you set your host:"
     echo "https://app.local"
     
 elif [ "$task" = "2" ]; then
