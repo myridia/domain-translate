@@ -22,12 +22,14 @@ read task
 if [ "$task" = "1" ]; then
     echo "... ${task} -- Run Docker Test"
     cd test
-    docker-compose up -d    
-    echo "Visit:"
+    docker-compose up -d
+    echo "Open:"
+    echo "http://127.0.0.1:5800"    
+    echo "Visit if you set your host:"
     echo "https://app.local"
     
 elif [ "$task" = "2" ]; then
-    echo "... ${task} -- Run Docker Test"
+    echo "... ${task} -- Run Docker Page"
     cd pages/dockers
     docker-compose up -d    
     echo "Visit:"
@@ -36,9 +38,9 @@ elif [ "$task" = "2" ]; then
     
 elif [ "$task" = "3" ]; then
     echo "...execute task ${task} | clean all"    
-    docker rm --force `docker ps -qa`
-    docker volume rm $(docker volume ls -q --filter dangling=true)
-    docker network prune
+    docker rm ---force `docker ps -qa`
+    docker volume rm $(docker volume ls -q --force --filter dangling=true)
+    docker network prune --force
     
 elif [ "$task" = "4" ]; then
     echo "...execute task ${task} | clean all"
