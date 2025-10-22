@@ -35,7 +35,25 @@ class ClassFrontend
                 add_action('wp_enqueue_scripts', [$this, 'add_scripts']);
                 add_action('wp_enqueue_scripts', [$this, 'add_styles']);
             }
+
+            add_filter('gettext', [$this, 'gettext'], 10, 3);
+            add_filter('the_content', [$this, 'the_content'], 1);
         }
+    }
+
+    public function the_content($content)
+    {
+        error_log($content);
+        $content = 'zzzzzzzzzzzzzzzzzzz';
+
+        return $content;
+    }
+
+    public function gettext($translation, $text, $domain)
+    {
+        $translation = 'xxxxxxxxxxxxxx';
+
+        return $translation;
     }
 
     /**
