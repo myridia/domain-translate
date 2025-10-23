@@ -20,7 +20,7 @@ echo -e "8\t Rename WP - Rename the database on the docker server"
 read task
 
 if [ "$task" = "1" ]; then
-    echo "... ${task} -- Run Docker Test"
+    echo "...${task}"
     cd test
     docker-compose up -d
     echo "Open:"
@@ -29,7 +29,7 @@ if [ "$task" = "1" ]; then
     echo "https://app.local"
     
 elif [ "$task" = "2" ]; then
-    echo "... ${task} -- Run Docker Page"
+    echo "...${task}"
     cd pages/dockers
     docker-compose up -d    
     echo "Visit:"
@@ -37,34 +37,34 @@ elif [ "$task" = "2" ]; then
 
     
 elif [ "$task" = "3" ]; then
-    echo "...execute task ${task} | clean all"    
+    echo "...${task}"    
     docker rm  `docker ps -qa`
     docker volume rm $(docker volume ls -q --force --filter dangling=true)
     docker network prune --force
     
 elif [ "$task" = "4" ]; then
-    echo "...execute task ${task} | clean all"
+    echo "...${task}"
     docker rm --force `docker ps -qa`
     docker volume rm $(docker volume ls -q --filter dangling=true)
     docker network prune
     docker rmi --force `docker images -aq`    
 
 elif [ "$task" = "5" ]; then
-    echo "... ${task} -- go into wpcli docker"
+    echo "...${task}"
     cd test/wordpress
     docker exec -it wpcli bash
     
 elif [ "$task" = "6" ]; then
-    echo "... ${task} -- generate php docs"
+    echo "...${task}"
     phpDocumentor run -d  test/wordpress/wp-content/plugins/domain-translate/  -t pages/public/docs/
 
 elif [ "$task" = "7" ]; then
-    echo "...execute task ${task} | file ./em.sh"
+    echo "...${task}"
     docker  run -i --rm --net=host  salamander1/mysqldump --verbose -h db -u "${DB_NAME}" -p"${DB_PASSWORD}"  "${DB_NAME}" | gzip > "./test/init/${DB_NAME}-${DATE}.sql.gz"
     docker  run -i --rm --net=host  salamander1/mysqldump --verbose -h db -u "${DB_NAME}" -p"${DB_PASSWORD}"  "${DB_NAME}" | gzip > "./test/init/${DB_NAME}.sql.gz"
 
 elif [ "$task" = "8" ]; then
-    echo "...execute task ${task} | "
+    echo "...${task}"
     cd test/wordpress/
     wp search-replace "https://en.app.local" "https://app.local"  --skip-columns=guid
     
