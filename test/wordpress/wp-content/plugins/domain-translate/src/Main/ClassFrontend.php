@@ -178,7 +178,6 @@ class ClassFrontend
 
         wp_register_script(
             'domain-translate-google',
-            //            plugins_url('domain-translate/js/google_translate.js?cb=domain_translate_init'),
             'https://translate.google.com/translate_a/element.js?cb=domain_translate_init',
             [],
             '1.0.0',

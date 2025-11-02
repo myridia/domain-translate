@@ -14,6 +14,7 @@ echo -e "5\t WPCLI - Get into Wp cli "
 echo -e "6\t Gen PHP docs - Generate php docs into pages/public/docs "
 echo -e "7\t Export Db - Export the database on the docker/test server"
 echo -e "8\t Rename WP - Rename the database on the docker server"
+echo -e "9\t Watch debug.log "
 
 
 
@@ -69,7 +70,11 @@ elif [ "$task" = "8" ]; then
     echo "...${task}"
     cd test/wordpress/
     wp search-replace "https://en.app.local" "https://app.local"  --skip-columns=guid
-    
+
+elif [ "$task" = "9" ]; then
+    echo "...${task}"
+    tail  test/wordpress/wp-content/debug.log  -f
+
 else
     echo "Goodbye! - Exit"
 fi

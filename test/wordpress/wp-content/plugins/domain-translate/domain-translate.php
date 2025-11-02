@@ -7,8 +7,8 @@
  * @wordpress-plugin
  * Plugin Name: Domain-translate
  * Plugin URI: https://wordpress.org/plugins/domain-translate
- * Description: Automatically translate your Site based your Domain, Source and Target Language.
- * Version: 1.0.0
+ * Description: Automatically translate your Site based on your Domain, a source and target Language.
+ * Version: 1.1.0
  * Author: veto, Myridia Company
  * Author URI: http://domain-translate.myridia.com
  * License: GPL-2.0+
@@ -18,7 +18,7 @@
  * Update URL: https://github.com/myridia/domain-translate
  * Constant Prefix: WPDT_
  * Prefix: wpdt_
- * Option_key: plugin_domain_translate
+ * Option_key: myridia_domain_translate
  **/
 
 /*
@@ -40,7 +40,7 @@ use WPDT\Ds\Main\ClassFrontend;
  * Constants Calls
  * @since 1.0.0 (if available)
  */
-define('WPDT_OPTION', 'plugin_domain_translate');
+define('WPDT_OPTION', 'myridia_domain_translate');
 
 /*
  * Default Plugin activate hooks. Started as a static class functions
@@ -72,7 +72,6 @@ function myridia_wpdt_plugin_admin_init()
 {
     $plugin = new ClassAdmin();
     $plugin->register_settings();
-    // $plugin->key();
 }
 
 /**

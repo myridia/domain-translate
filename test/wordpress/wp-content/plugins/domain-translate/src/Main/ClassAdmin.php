@@ -236,7 +236,7 @@ class ClassAdmin
             'section',
             [
                 'name' => 'active',
-                'label_for' => 'plugin_domain_translate[active]',
+                'label_for' => 'myridia_domain_translate[active]',
             ]
         );
 
@@ -247,7 +247,7 @@ class ClassAdmin
             WPDT_OPTION,
             'section',
             [
-                'label_for' => 'plugin_domain_translate[source_lang_code]',
+                'label_for' => 'myridia_domain_translate[source_lang_code]',
                 'name' => 'source_lang_code',
             ]
         );
@@ -261,7 +261,7 @@ class ClassAdmin
             'section1',
             [
                 'name' => 'domain1',
-                'label_for' => 'plugin_domain_translate[domain1]',
+                'label_for' => 'myridia_domain_translate[domain1]',
             ]
         );
 
@@ -272,7 +272,7 @@ class ClassAdmin
             WPDT_OPTION,
             'section1',
             [
-                'label_for' => 'plugin_domain_translate[target_lang_code1]',
+                'label_for' => 'myridia_domain_translate[target_lang_code1]',
                 'name' => 'target_lang_code1',
             ]
         );
@@ -287,7 +287,7 @@ class ClassAdmin
             'section2',
             [
                 'name' => 'domain2',
-                'label_for' => 'plugin_domain_translate[domain2]',
+                'label_for' => 'myridia_domain_translate[domain2]',
             ]
         );
 
@@ -298,7 +298,7 @@ class ClassAdmin
             WPDT_OPTION,
             'section2',
             [
-                'label_for' => 'plugin_domain_translate[target_lang_code2]',
+                'label_for' => 'myridia_domain_translate[target_lang_code2]',
                 'name' => 'target_lang_code2',
             ]
         );
@@ -313,7 +313,7 @@ class ClassAdmin
             'section3',
             [
                 'name' => 'domain3',
-                'label_for' => 'plugin_domain_translate[domain3]',
+                'label_for' => 'myridia_domain_translate[domain3]',
             ]
         );
 
@@ -324,7 +324,7 @@ class ClassAdmin
             WPDT_OPTION,
             'section3',
             [
-                'label_for' => 'plugin_domain_translate[target_lang_code3]',
+                'label_for' => 'myridia_domain_translate[target_lang_code3]',
                 'name' => 'target_lang_code3',
             ]
         );
@@ -339,7 +339,7 @@ class ClassAdmin
             'section4',
             [
                 'name' => 'domain4',
-                'label_for' => 'plugin_domain_translate[domain4]',
+                'label_for' => 'myridia_domain_translate[domain4]',
             ]
         );
 
@@ -350,7 +350,7 @@ class ClassAdmin
             WPDT_OPTION,
             'section4',
             [
-                'label_for' => 'plugin_domain_translate[target_lang_code4]',
+                'label_for' => 'myridia_domain_translate[target_lang_code4]',
                 'name' => 'target_lang_code4',
             ]
         );
@@ -365,7 +365,7 @@ class ClassAdmin
             'section5',
             [
                 'name' => 'domain5',
-                'label_for' => 'plugin_domain_translate[domain5]',
+                'label_for' => 'myridia_domain_translate[domain5]',
             ]
         );
 
@@ -376,7 +376,7 @@ class ClassAdmin
             WPDT_OPTION,
             'section5',
             [
-                'label_for' => 'plugin_domain_translate[target_lang_code5]',
+                'label_for' => 'myridia_domain_translate[target_lang_code5]',
                 'name' => 'target_lang_code5',
             ]
         );
@@ -577,7 +577,7 @@ class ClassAdmin
             }
         }
 
-        add_settings_error('wporg_messages', 'wporg_message', __('Settings saved successfully to the database option settings:  plugin_domain_translate', 'domain-translate'), 'updated');
+        add_settings_error('wporg_messages', 'wporg_message', __('Settings saved successfully to the database option settings:  myridia_domain_translate', 'domain-translate'), 'updated');
 
         return $input;
     }

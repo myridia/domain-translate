@@ -9,19 +9,27 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: **https://domain-translate.myridia.com/**
 
-Translates WordPress pages in the client browser. You can select 107 languages for translation.
+Automatically translate your Site based on your Domain, a source and target Language.          
 
 == Description ==
 
-Domain Translate is a WordPress Plugin what translates on the client browser the WordPress page. You can select in the WordPress Admin the Domain, the Source and the Target Language. There are 107 Languages available.
-Currently, it's based on the Google Translate service. Because your visitor's browser translates the page, it's free for you as a WordPress site administrator. The downside of this browser-side translation approach is that search engine crawlers may not index the translated page.
+Domain Translate is a WordPress Plugin what translates your Wordpress Site automatically. There are 2 Modes you can use it.
+1. Google Translation Service via the user Browser.
+2. Server Side via the mtranslation.myridia.com API or with a custom API.
+
+1. Google Translation Service via the user Browser:
+The Plugin will add the google translation JS file to Website.
+The Translation is a client based translation, means the user browser uses google JavaScript to translate.
+
+2. Server Side via the mtranslation.myridia.com API or with a custom API:
+the Text of the Website is send to the API for translation. The Plugin will than save the translated text to it own database table for a repeated request.
 
 
-== Whom it will help? == 
 
-- Quick translation without much settings.
-- You can use for a multi language site.
-- Not worry about SEO translated pages.
+
+You can select in the WordPress Admin the Domain, the Source and the Target Language. There are 107 Languages available.
+
+
 
 
 == Installation ==

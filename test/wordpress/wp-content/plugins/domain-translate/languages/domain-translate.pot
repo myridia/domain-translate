@@ -57,7 +57,7 @@ msgid "Included Domains: "
 msgstr ""
 
 #: src/Main/ClassAdmin.php:157
-msgid "Settings saved successfully to the database option settings:  plugin_domain_translate"
+msgid "Settings saved successfully to the database option settings:  myridia_domain_translate"
 msgstr ""
 
 #: src/Main/ClassAdmin.php:169
