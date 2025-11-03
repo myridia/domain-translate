@@ -41,6 +41,9 @@ use WPDT\Ds\Main\ClassFrontend;
  * @since 1.0.0 (if available)
  */
 define('WPDT_OPTION', 'myridia_domain_translate');
+define('WPDT_PLUGIN_FILE', __FILE__);
+define('WPDT_PLUGIN_DIR', plugin_dir_path(__FILE__));
+define('WPDT_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 /*
  * Default Plugin activate hooks. Started as a static class functions
