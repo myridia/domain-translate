@@ -22,12 +22,16 @@ Automatically translate your Site based on your Domain, a source and target Lang
 
 ## Description 
 
-Automatic Website Translation: Integrates directly with the Google Translate JavaScript API to provide instant, machine-powered translation of your entire WordPress website content.[1] This includes posts, pages, widgets, and other dynamic content.[3]
-    User-Friendly Interface: The plugin typically adds a customizable translation widget or a floating language selector to your website, allowing visitors to easily choose their preferred language.[4]
-    No Database Modifications: Unlike traditional multilingual plugins that store translated content in your database, this plugin translates content dynamically in the user's browser, meaning no additional database tables or content duplication are required.[2] This simplifies maintenance and reduces server load.
-    Lightweight and Efficient: By leveraging Google's robust infrastructure, the plugin remains lightweight on your server, as the translation processing occurs client-side.[1]
-    Customizable Appearance: Many implementations allow for customization of the translation widget's appearance and placement to seamlessly integrate with your website's design.[4]
-    Broad Language Support: Benefits from the extensive language support offered by Google Translate, enabling your website to be translated into a wide array of languages.[3]
+Domain-Trnalsate is an automatic Website Translation based on your domainame, its integrates directly with the Google Translate JavaScript API to provide instant,
+machine-powered translation of your entire WordPress website content.
+This includes posts, pages, widgets, and other dynamic content.
+There is no database modifications, unlike traditional multilingual plugins that store translated content in your database,
+this plugin translates content dynamically in the user's browser, meaning no additional database tables or content duplication are required.
+This simplifies maintenance and reduces server load.
+Its lightweight and efficient, because  by leveraging Google's robust infrastructure, the plugin remains lightweight on your server,
+as the translation processing occurs client-side.
+It as broad language support, its benefits from the extensive language support offered by Google Translate,
+enabling your website to be translated into a wide array of languages.
 
 ### How it Works
 
