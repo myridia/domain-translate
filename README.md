@@ -40,7 +40,7 @@ The Google Translate script intercepts the page's content and dynamically transl
 This process happens client-side, meaning the original content on your server remains in its primary language,
 and the translated version is rendered directly for the end-user.
 
-Installation
+### Installation
 
 Download the plugin (if applicable, from the WordPress plugin repository or a provided ZIP file).
 Upload the plugin to your WordPress installation via Plugins > Add New > Upload Plugin or by uploading the unzipped folder to the /wp-content/plugins/ directory.
@@ -49,12 +49,20 @@ Configure the plugin settings (found under Settings > Domain-Translate ) to cust
 
 ### Usage
 
-Once activated and configured, a translation widget or language selector will appear on your website's frontend. Visitors can then select their desired language to view the translated content.[4] The translation is performed automatically by Google Translate.
-Limitations
+The translation is performed automatically by Google Translate based on your domain and language settings.
 
-    Machine Translation Accuracy: While Google Translate is highly advanced, machine translations may not always be perfectly accurate or contextually appropriate.[6] Human review for critical content is always recommended.
-    SEO Considerations: Since the translation happens client-side, search engines typically index only the original language content of your website.[2] This plugin is primarily for user experience and accessibility, not for improving multilingual SEO. For robust multilingual SEO, dedicated multilingual plugins that store translated content are generally preferred.[7]
-    Dynamic Content Challenges: While generally effective, some highly dynamic or JavaScript-rendered content might occasionally present challenges for seamless translation.[3]
+## Limitations
+
+### Machine Translation Accuracy
+
+While Google Translate is highly advanced, machine translations may not always be perfectly accurate or contextually appropriate.
+Human review for critical content is always recommended.
+
+### SEO Considerations
+
+Since the translation happens client-side, search engines typically index only the original language content of your website.[
+This plugin is primarily for user experience and accessibility, not for improving multilingual SEO. For robust multilingual SEO, dedicated multilingual plugins that store translated content are generally preferred.
+Dynamic Content Challenges: While generally effective, some highly dynamic or JavaScript-rendered content might occasionally present challenges for seamless translation.
 
 ### Support
 
