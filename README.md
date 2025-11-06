@@ -7,7 +7,7 @@ Automatic Translate a WordPress Website based on its Subdomain
 ## Documentation   
 *  https://domain-translate.myridia.com/docs
 
-=== Domain-translate ===
+## Domain-translate 
 Contributors: veto
 Tags: translate domains, google translate, automatic translate
 Requires PHP: 8.2.0
@@ -20,7 +20,7 @@ Plugin URI: **https://domain-translate.myridia.com/**
 
 Automatically translate your Site based on your Domain, a source and target Language.          
 
-== Description ==
+## Description 
 
 Automatic Website Translation: Integrates directly with the Google Translate JavaScript API to provide instant, machine-powered translation of your entire WordPress website content.[1] This includes posts, pages, widgets, and other dynamic content.[3]
     User-Friendly Interface: The plugin typically adds a customizable translation widget or a floating language selector to your website, allowing visitors to easily choose their preferred language.[4]
@@ -29,7 +29,7 @@ Automatic Website Translation: Integrates directly with the Google Translate Jav
     Customizable Appearance: Many implementations allow for customization of the translation widget's appearance and placement to seamlessly integrate with your website's design.[4]
     Broad Language Support: Benefits from the extensive language support offered by Google Translate, enabling your website to be translated into a wide array of languages.[3]
 
-How it Works
+### How it Works
 
 The plugin injects the Google Translate JavaScript API into your WordPress website's frontend.[1] When a user selects a language from the provided widget or selector, the Google Translate script intercepts the page's content and dynamically translates it in the user's browser.[2] This process happens client-side, meaning the original content on your server remains in its primary language, and the translated version is rendered directly for the end-user.[3]
 Installation
@@ -39,7 +39,7 @@ Installation
     Activate the plugin through the 'Plugins' menu in WordPress.[5]
     Configure the plugin settings (usually found under Settings > Google Translate or a similar menu item) to customize language options, widget placement, and appearance.[4]
 
-Usage
+### Usage
 
 Once activated and configured, a translation widget or language selector will appear on your website's frontend. Visitors can then select their desired language to view the translated content.[4] The translation is performed automatically by Google Translate.
 Limitations
@@ -48,7 +48,7 @@ Limitations
     SEO Considerations: Since the translation happens client-side, search engines typically index only the original language content of your website.[2] This plugin is primarily for user experience and accessibility, not for improving multilingual SEO. For robust multilingual SEO, dedicated multilingual plugins that store translated content are generally preferred.[7]
     Dynamic Content Challenges: While generally effective, some highly dynamic or JavaScript-rendered content might occasionally present challenges for seamless translation.[3]
 
-Support
+### Support
 
 For support, please refer to the plugin's documentation or the support forums on WordPress.org (if applicable).
 
@@ -56,7 +56,7 @@ For support, please refer to the plugin's documentation or the support forums on
 
 
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions 
 
 = Can I suggest/request a feature to be added? =
 
