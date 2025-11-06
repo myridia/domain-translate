@@ -53,12 +53,12 @@ The translation is performed automatically by Google Translate based on your dom
 
 ### Limitations
 
-### Machine Translation Accuracy
+#### Machine Translation Accuracy
 
 While Google Translate is highly advanced, machine translations may not always be perfectly accurate or contextually appropriate.
 Human review for critical content is always recommended.
 
-### SEO Considerations
+#### SEO Considerations
 
 Since the translation happens client-side, search engines typically index only the original language content of your website.[
 This plugin is primarily for user experience and accessibility, not for improving multilingual SEO.
