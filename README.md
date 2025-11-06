@@ -51,7 +51,7 @@ Configure the plugin settings (found under Settings > Domain-Translate ) to cust
 
 The translation is performed automatically by Google Translate based on your domain and language settings.
 
-## Limitations
+### Limitations
 
 ### Machine Translation Accuracy
 
