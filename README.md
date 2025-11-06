@@ -61,12 +61,13 @@ Human review for critical content is always recommended.
 ### SEO Considerations
 
 Since the translation happens client-side, search engines typically index only the original language content of your website.[
-This plugin is primarily for user experience and accessibility, not for improving multilingual SEO. For robust multilingual SEO, dedicated multilingual plugins that store translated content are generally preferred.
-Dynamic Content Challenges: While generally effective, some highly dynamic or JavaScript-rendered content might occasionally present challenges for seamless translation.
+This plugin is primarily for user experience and accessibility, not for improving multilingual SEO.
+For robust multilingual SEO, dedicated multilingual plugins that store translated content are generally preferred.
+
 
 ### Support
 
-For support, please refer to the plugin's documentation or the support forums on WordPress.org (if applicable).
+For support, please refer to the plugin's documentation or the support forums on WordPress.org.
 
 
 
