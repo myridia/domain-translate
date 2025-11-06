@@ -42,10 +42,10 @@ and the translated version is rendered directly for the end-user.
 
 Installation
 
-    Download the plugin (if applicable, from the WordPress plugin repository or a provided ZIP file).
-    Upload the plugin to your WordPress installation via Plugins > Add New > Upload Plugin or by uploading the unzipped folder to the /wp-content/plugins/ directory.[5]
-    Activate the plugin through the 'Plugins' menu in WordPress.[5]
-    Configure the plugin settings (usually found under Settings > Google Translate or a similar menu item) to customize language options, widget placement, and appearance.[4]
+Download the plugin (if applicable, from the WordPress plugin repository or a provided ZIP file).
+Upload the plugin to your WordPress installation via Plugins > Add New > Upload Plugin or by uploading the unzipped folder to the /wp-content/plugins/ directory.
+Activate the plugin through the 'Plugins' menu in WordPress.
+Configure the plugin settings (found under Settings > Domain-Translate ) to customize language and domain options.
 
 ### Usage
 
