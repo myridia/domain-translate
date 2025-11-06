@@ -25,7 +25,7 @@ Automatically translate your Site based on your Domain, a source and target Lang
 Domain-Trnalsate is an automatic Website Translation based on your domainame, its integrates directly with the Google Translate JavaScript API to provide instant,
 machine-powered translation of your entire WordPress website content.
 This includes posts, pages, widgets, and other dynamic content.
-There is no database modifications, unlike traditional multilingual plugins that store translated content in your database,
+There is no database modifications, execpt for the plugin options settins. Unlike traditional multilingual plugins that store translated content in your database,
 this plugin translates content dynamically in the user's browser, meaning no additional database tables or content duplication are required.
 This simplifies maintenance and reduces server load.
 Its lightweight and efficient, because  by leveraging Google's robust infrastructure, the plugin remains lightweight on your server,
@@ -35,7 +35,11 @@ enabling your website to be translated into a wide array of languages.
 
 ### How it Works
 
-The plugin injects the Google Translate JavaScript API into your WordPress website's frontend.[1] When a user selects a language from the provided widget or selector, the Google Translate script intercepts the page's content and dynamically translates it in the user's browser.[2] This process happens client-side, meaning the original content on your server remains in its primary language, and the translated version is rendered directly for the end-user.[3]
+The plugin checks your domain and if its setup for a translation it injects the Google Translate JavaScript API into your WordPress website's frontend.
+The Google Translate script intercepts the page's content and dynamically translates it in the user's browser.
+This process happens client-side, meaning the original content on your server remains in its primary language,
+and the translated version is rendered directly for the end-user.
+
 Installation
 
     Download the plugin (if applicable, from the WordPress plugin repository or a provided ZIP file).
