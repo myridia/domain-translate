@@ -1,5 +1,5 @@
 # ![domain-translate](pages/public/assets/img/logo.png) Domain-Translate
-Automatic Translate a WordPress Website based on its Subdomain
+The automatic translation of a WordPress website based on its domain.
 
 ## Homepage
 * https://domain-translate.myridia.com
@@ -13,12 +13,12 @@ Tags: translate domains, google translate, automatic translate
 Requires PHP: 8.2.0
 Requires at least: 6.7
 Tested up to: 6.8
-Stable Tag: 1.0.0
+Stable Tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: **https://domain-translate.myridia.com/**
 
-Automatically translate your Site based on your Domain, a source and target Language.          
+The automatic translation of a WordPress website based on its domain.
 
 ## Description 
 
@@ -28,10 +28,8 @@ This includes posts, pages, widgets, and other dynamic content.
 There is no database modifications, execpt for the plugin options settins. Unlike traditional multilingual plugins that store translated content in your database,
 this plugin translates content dynamically in the user's browser, meaning no additional database tables or content duplication are required.
 This simplifies maintenance and reduces server load.
-Its lightweight and efficient, because  by leveraging Google's robust infrastructure, the plugin remains lightweight on your server,
-as the translation processing occurs client-side.
-It as broad language support, its benefits from the extensive language support offered by Google Translate,
-enabling your website to be translated into a wide array of languages.
+Its lightweight and efficient, because by leveraging Google's robust infrastructure, the plugin remains lightweight on your server, as the translation processing occurs client-side.
+It as broad language support, its benefits from the extensive language support offered byGoogle Translate, enabling your website to be translated into a wide array of languages.
 
 ### How it Works
 
@@ -68,9 +66,6 @@ For robust multilingual SEO, dedicated multilingual plugins that store translate
 ### Support
 
 For support, please refer to the plugin's documentation or the support forums on WordPress.org.
-
-
-
 
 
 ## Frequently Asked Questions 
