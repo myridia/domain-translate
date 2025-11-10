@@ -140,7 +140,7 @@ class ClassFrontend
     {
         wp_register_script(
             'domain-translate',
-            plugins_url('domain-translate/js/domain-translate.js'),
+            plugins_url('/js/domain-translate.js', WPDT_PLUGIN_FILE),
             [],
             '1.0.0',
             [
@@ -160,7 +160,6 @@ class ClassFrontend
 
         wp_register_script(
             'domain-translate-google',
-            //            plugins_url('domain-translate/js/google_translate.js?cb=domain_translate_init'),
             'https://translate.google.com/translate_a/element.js?cb=domain_translate_init',
             [],
             '1.0.0',
@@ -184,7 +183,7 @@ class ClassFrontend
     public function add_styles()
     {
         wp_register_style('domain-translate',
-            plugins_url('domain-translate/css/domain-translate.css'), [], 1);
+            plugins_url('css/domain-translate.css', WPDT_PLUGIN_FILE), [], 1);
         wp_enqueue_style('domain-translate');
     }
 }
