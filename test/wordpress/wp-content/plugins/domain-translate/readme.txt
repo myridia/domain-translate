@@ -65,9 +65,13 @@ For support, please refer to the plugin's documentation or the support forums on
 
 
 == Frequently Asked Questions ==
+* Can I suggest/request a feature to be added? ===
+** Yes, we really need any feedback and requests <a href="mailto:domain-translate@myridia.com">email</a>.
 
-=== Can I suggest/request a feature to be added? ===
 
-Yes, we really need any feedback and requests <a href="mailto:domain-translate@myridia.com">email</a>.
+== Changelog == 
 
+== Upgrade Notice == 
+
+== Screenshots ==
 
