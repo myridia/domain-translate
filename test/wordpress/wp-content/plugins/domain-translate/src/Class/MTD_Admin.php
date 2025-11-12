@@ -1,6 +1,6 @@
 <?php
 
-namespace WPDT\Ds\Main;
+namespace MWPDT\Dt\Class;
 
 /**
  * Main Admin Class.
@@ -9,7 +9,7 @@ namespace WPDT\Ds\Main;
  *
  * @since 1.0.0
  */
-class ClassAdmin
+class MDT_Admin
 {
     private $options;
     // Possible Google Translate Codes with Name
@@ -151,7 +151,7 @@ class ClassAdmin
      */
     public static function deactivate()
     {
-        delete_option(WPDT_OPTION);
+        delete_option(MWPDT_OPTION);
     }
 
     /**
@@ -183,48 +183,48 @@ class ClassAdmin
     public function register_settings()
     {
         // https://developer.wordpress.org/reference/functions/add_settings_section/
-        register_setting(WPDT_OPTION, WPDT_OPTION, [$this, 'validate']);
+        register_setting(MWPDT_OPTION, MWPDT_OPTION, [$this, 'validate']);
 
         add_settings_section(
             'section',
             __('Section General:', 'domain-translate'),
             [$this, 'callback'],
-            WPDT_OPTION
+            MWPDT_OPTION
         );
 
         add_settings_section(
             'section1',
             __('Section Domain 1:', 'domain-translate'),
             [$this, 'callback'],
-            WPDT_OPTION
+            MWPDT_OPTION
         );
 
         add_settings_section(
             'section2',
             __('Section Domain 2:', 'domain-translate'),
             [$this, 'callback'],
-            WPDT_OPTION
+            MWPDT_OPTION
         );
 
         add_settings_section(
             'section3',
             __('Section Domain 3:', 'domain-translate'),
             [$this, 'callback'],
-            WPDT_OPTION
+            MWPDT_OPTION
         );
 
         add_settings_section(
             'section4',
             __('Section Domain 4:', 'domain-translate'),
             [$this, 'callback'],
-            WPDT_OPTION
+            MWPDT_OPTION
         );
 
         add_settings_section(
             'section5',
             __('Section Domain 5:', 'domain-translate'),
             [$this, 'callback'],
-            WPDT_OPTION
+            MWPDT_OPTION
         );
 
         /************************* General ************************************/
@@ -244,7 +244,7 @@ class ClassAdmin
             'source_lang_code',
             __('Source Lang Code:', 'domain-translate'),
             [$this, 'make_select'],
-            WPDT_OPTION,
+            MWPDT_OPTION,
             'section',
             [
                 'label_for' => 'myridia_domain_translate[source_lang_code]',
@@ -257,7 +257,7 @@ class ClassAdmin
             'domain1',
             __('Domain 1:', 'domain-translate'),
             [$this, 'make_input_text'],
-            WPDT_OPTION,
+            MWPDT_OPTION,
             'section1',
             [
                 'name' => 'domain1',
@@ -269,7 +269,7 @@ class ClassAdmin
             'target_lang_code1',
             __('Target Language 1:', 'domain-translate'),
             [$this, 'make_select'],
-            WPDT_OPTION,
+            MWPDT_OPTION,
             'section1',
             [
                 'label_for' => 'myridia_domain_translate[target_lang_code1]',
@@ -283,7 +283,7 @@ class ClassAdmin
             'domain2',
             __('Domain 2:', 'domain-translate'),
             [$this, 'make_input_text'],
-            WPDT_OPTION,
+            MWPDT_OPTION,
             'section2',
             [
                 'name' => 'domain2',
@@ -295,7 +295,7 @@ class ClassAdmin
             'target_lang_code2',
             __('Target Language 2:', 'domain-translate'),
             [$this, 'make_select'],
-            WPDT_OPTION,
+            MWPDT_OPTION,
             'section2',
             [
                 'label_for' => 'myridia_domain_translate[target_lang_code2]',
@@ -309,7 +309,7 @@ class ClassAdmin
             'domain3',
             __('Domain 3:', 'domain-translate'),
             [$this, 'make_input_text'],
-            WPDT_OPTION,
+            MWPDT_OPTION,
             'section3',
             [
                 'name' => 'domain3',
@@ -321,7 +321,7 @@ class ClassAdmin
             'target_lang_code3',
             __('Target Language 3:', 'domain-translate'),
             [$this, 'make_select'],
-            WPDT_OPTION,
+            MWPDT_OPTION,
             'section3',
             [
                 'label_for' => 'myridia_domain_translate[target_lang_code3]',
@@ -335,7 +335,7 @@ class ClassAdmin
             'domain4',
             __('Domain 4:', 'domain-translate'),
             [$this, 'make_input_text'],
-            WPDT_OPTION,
+            MWPDT_OPTION,
             'section4',
             [
                 'name' => 'domain4',
@@ -347,7 +347,7 @@ class ClassAdmin
             'target_lang_code4',
             __('Target Language 4:', 'domain-translate'),
             [$this, 'make_select'],
-            WPDT_OPTION,
+            MWPDT_OPTION,
             'section4',
             [
                 'label_for' => 'myridia_domain_translate[target_lang_code4]',
@@ -361,7 +361,7 @@ class ClassAdmin
             'domain5',
             __('Domain 5:', 'domain-translate'),
             [$this, 'make_input_text'],
-            WPDT_OPTION,
+            MWPDT_OPTION,
             'section5',
             [
                 'name' => 'domain5',
@@ -373,7 +373,7 @@ class ClassAdmin
             'target_lang_code5',
             __('Target Language 5:', 'domain-translate'),
             [$this, 'make_select'],
-            WPDT_OPTION,
+            MWPDT_OPTION,
             'section5',
             [
                 'label_for' => 'myridia_domain_translate[target_lang_code5]',
@@ -394,7 +394,7 @@ class ClassAdmin
     public function make_checkbox($args)
     {
         $name = esc_attr($args['name']);
-        $o = get_option(WPDT_OPTION);
+        $o = get_option(MWPDT_OPTION);
         $checked = '';
         if (isset($o[$name])) {
             if ('on' == $o[$name]) {
@@ -425,7 +425,7 @@ class ClassAdmin
     public function make_input_text($args)
     {
         $name = esc_attr($args['name']);
-        $o = get_option(WPDT_OPTION);
+        $o = get_option(MWPDT_OPTION);
         if (isset($o[$name])) {
             $key = esc_attr($o[$name]);
         }
@@ -454,7 +454,7 @@ class ClassAdmin
     public function make_select($args)
     {
         $name = esc_attr($args['name']);
-        $o = get_option(WPDT_OPTION);
+        $o = get_option(MWPDT_OPTION);
         $key = '';
         if (isset($o[$name])) {
             $key = esc_attr($o[$name]);
@@ -505,8 +505,8 @@ class ClassAdmin
 		<form action="options.php" method="post">
 	    <?php
         wp_nonce_field('wpds_save', 'wpds_nonce');
-        settings_fields(WPDT_OPTION);
-        do_settings_sections(WPDT_OPTION);
+        settings_fields(MWPDT_OPTION);
+        do_settings_sections(MWPDT_OPTION);
         submit_button('Save Settings');
         ?>
 		</form>

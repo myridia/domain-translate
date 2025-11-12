@@ -1,6 +1,6 @@
 <?php
 
-namespace WPDT\DS\Main;
+namespace MWPDT\Dt\Class;
 
 /**
  * Class Frontend.
@@ -9,7 +9,7 @@ namespace WPDT\DS\Main;
  *
  * @since 1.0.0
  */
-class ClassFrontend
+class MDT_Frontend
 {
     private $domain;
     private $base_domain;
@@ -86,7 +86,7 @@ class ClassFrontend
      */
     public function is_active()
     {
-        $o = get_option(WPDT_OPTION);
+        $o = get_option(MWPDT_OPTION);
         if (isset($o['active'])) {
             $this->options = $o;
 
@@ -140,7 +140,7 @@ class ClassFrontend
     {
         wp_register_script(
             'domain-translate',
-            plugins_url('/js/domain-translate.js', WPDT_PLUGIN_FILE),
+            plugins_url('/js/domain-translate.js', MWPDT_PLUGIN_FILE),
             [],
             '1.0.0',
             [
@@ -183,7 +183,7 @@ class ClassFrontend
     public function add_styles()
     {
         wp_register_style('domain-translate',
-            plugins_url('css/domain-translate.css', WPDT_PLUGIN_FILE), [], 1);
+            plugins_url('css/domain-translate.css', MWPDT_PLUGIN_FILE), [], 1);
         wp_enqueue_style('domain-translate');
     }
 }
