@@ -131,6 +131,7 @@ class MDT_Admin
      */
     public function __construct()
     {
+
     }
 
     /**
@@ -142,6 +143,11 @@ class MDT_Admin
      */
     public static function activate()
     {
+
+        $options = ["domain1"=>"","domain2"=>"","domain3"=>"","domain4"=>"","domain5"=>""];
+        if (false == get_option(MWPDT_OPTION)) {
+            update_option(MWPDT_OPTION, $options);
+        }
     }
 
     /**
@@ -183,7 +189,12 @@ class MDT_Admin
     public function register_settings()
     {
         // https://developer.wordpress.org/reference/functions/add_settings_section/
-        register_setting(MWPDT_OPTION, MWPDT_OPTION, [$this, 'validate']);
+        register_setting(MWPDT_OPTION
+                         , MWPDT_OPTION
+                         ,[
+                          'type' => 'string',
+                          'sanitize_callback' => [$this, 'validate']
+                         ]);
 
         add_settings_section(
             'section',
@@ -232,11 +243,11 @@ class MDT_Admin
             'active',
             __('Active:', 'domain-translate'),
             [$this, 'make_checkbox'],
-            WPDT_OPTION,
+            MWPDT_OPTION,
             'section',
             [
                 'name' => 'active',
-                'label_for' => 'myridia_domain_translate[active]',
+                'label_for' => 'myridiadt_settings[active]',
             ]
         );
 
@@ -247,7 +258,7 @@ class MDT_Admin
             MWPDT_OPTION,
             'section',
             [
-                'label_for' => 'myridia_domain_translate[source_lang_code]',
+                'label_for' => 'myridiadt_settings[source_lang_code]',
                 'name' => 'source_lang_code',
             ]
         );
@@ -261,7 +272,7 @@ class MDT_Admin
             'section1',
             [
                 'name' => 'domain1',
-                'label_for' => 'myridia_domain_translate[domain1]',
+                'label_for' => 'myridiadt_settings[domain1]',
             ]
         );
 
@@ -272,7 +283,7 @@ class MDT_Admin
             MWPDT_OPTION,
             'section1',
             [
-                'label_for' => 'myridia_domain_translate[target_lang_code1]',
+                'label_for' => 'myridiadt_settings[target_lang_code1]',
                 'name' => 'target_lang_code1',
             ]
         );
@@ -287,7 +298,7 @@ class MDT_Admin
             'section2',
             [
                 'name' => 'domain2',
-                'label_for' => 'myridia_domain_translate[domain2]',
+                'label_for' => 'myridiadt_settings[domain2]',
             ]
         );
 
@@ -298,7 +309,7 @@ class MDT_Admin
             MWPDT_OPTION,
             'section2',
             [
-                'label_for' => 'myridia_domain_translate[target_lang_code2]',
+                'label_for' => 'myridiadt_settings[target_lang_code2]',
                 'name' => 'target_lang_code2',
             ]
         );
@@ -313,7 +324,7 @@ class MDT_Admin
             'section3',
             [
                 'name' => 'domain3',
-                'label_for' => 'myridia_domain_translate[domain3]',
+                'label_for' => 'myridiadt_settings[domain3]',
             ]
         );
 
@@ -324,7 +335,7 @@ class MDT_Admin
             MWPDT_OPTION,
             'section3',
             [
-                'label_for' => 'myridia_domain_translate[target_lang_code3]',
+                'label_for' => 'myridiadt_settings[target_lang_code3]',
                 'name' => 'target_lang_code3',
             ]
         );
@@ -339,7 +350,7 @@ class MDT_Admin
             'section4',
             [
                 'name' => 'domain4',
-                'label_for' => 'myridia_domain_translate[domain4]',
+                'label_for' => 'myridiadt_settings[domain4]',
             ]
         );
 
@@ -350,7 +361,7 @@ class MDT_Admin
             MWPDT_OPTION,
             'section4',
             [
-                'label_for' => 'myridia_domain_translate[target_lang_code4]',
+                'label_for' => 'myridiadt_settings[target_lang_code4]',
                 'name' => 'target_lang_code4',
             ]
         );
@@ -365,7 +376,7 @@ class MDT_Admin
             'section5',
             [
                 'name' => 'domain5',
-                'label_for' => 'myridia_domain_translate[domain5]',
+                'label_for' => 'myridiadt_settings[domain5]',
             ]
         );
 
@@ -376,7 +387,7 @@ class MDT_Admin
             MWPDT_OPTION,
             'section5',
             [
-                'label_for' => 'myridia_domain_translate[target_lang_code5]',
+                'label_for' => 'myridiadt_settings[target_lang_code5]',
                 'name' => 'target_lang_code5',
             ]
         );
@@ -426,9 +437,11 @@ class MDT_Admin
     {
         $name = esc_attr($args['name']);
         $o = get_option(MWPDT_OPTION);
+        
         if (isset($o[$name])) {
             $key = esc_attr($o[$name]);
-        }
+    
+
 
         $html_content = "<input type='text' name='{$args['label_for']}' value='{$key}'   />";
         echo wp_kses($html_content, [
@@ -440,6 +453,8 @@ class MDT_Admin
                 'checked' => [],
             ],
         ]);
+        }        
+
     }
 
     /**
@@ -577,7 +592,7 @@ class MDT_Admin
             }
         }
 
-        add_settings_error('wporg_messages', 'wporg_message', __('Settings saved successfully to the database option settings:  myridia_domain_translate', 'domain-translate'), 'updated');
+        add_settings_error('wporg_messages', 'wporg_message', __('Settings saved successfully to the database option settings:  myridiadt_settings', 'domain-translate'), 'updated');
 
         return $input;
     }

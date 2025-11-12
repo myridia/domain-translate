@@ -95,14 +95,18 @@ function myridia_dt_plugin_init()
  * Register Classes
  *
  *  Register a PHP Class with Namespace
+ *  Check for all Classes, then filter out only our name space one and get their full file path.
+ *  Use this file path to use it for the php require_once
  *
  * @since 1.0.0
  * @param String $className
  */
 spl_autoload_register(function (string $className) {
+
     if (false === strpos($className, 'MWPDT\\Dt')) {
         return;
     }
+    
     $className = str_replace('MWPDT\\Dt\\', __DIR__.'/src/', $className);
     $classFile = str_replace('\\', '/', $className).'.php';
     require_once $classFile;
