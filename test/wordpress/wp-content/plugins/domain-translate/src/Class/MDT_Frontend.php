@@ -11,6 +11,7 @@ namespace MWPDT\Dt\Class;
  */
 class MDT_Frontend
 {
+    private $option_name = "myridiadt_settings";        
     private $domain;
     private $base_domain;
     private $options;
@@ -86,7 +87,7 @@ class MDT_Frontend
      */
     public function is_active()
     {
-        $o = get_option(MWPDT_OPTION);
+        $o = get_option($this->option_name);
         if (isset($o['active'])) {
             $this->options = $o;
 

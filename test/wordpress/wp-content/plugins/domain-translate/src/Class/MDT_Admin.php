@@ -11,6 +11,7 @@ namespace MWPDT\Dt\Class;
  */
 class MDT_Admin
 {
+    private $option_name = "myridiadt_settings";    
     private $options;
     // Possible Google Translate Codes with Name
     private $lang_codes = [
@@ -143,10 +144,10 @@ class MDT_Admin
      */
     public static function activate()
     {
-
-        $options = ["domain1"=>"","domain2"=>"","domain3"=>"","domain4"=>"","domain5"=>""];
-        if (false == get_option(MWPDT_OPTION)) {
-            update_option(MWPDT_OPTION, $options);
+        $p = new MDT_Admin();        
+        $options = ["domains"=>[],"source_lang_code"=>"en","active"=>0];
+        if (false == get_option($p->option_name)) {
+            update_option($p->option_name, $options);
         }
     }
 
@@ -157,7 +158,8 @@ class MDT_Admin
      */
     public static function deactivate()
     {
-        delete_option(MWPDT_OPTION);
+        $p = new MDT_Admin();        
+        delete_option($p->option_name);
     }
 
     /**
@@ -189,8 +191,8 @@ class MDT_Admin
     public function register_settings()
     {
         // https://developer.wordpress.org/reference/functions/add_settings_section/
-        register_setting(MWPDT_OPTION
-                         , MWPDT_OPTION
+        register_setting($this->option_name
+                         , $this->option_name
                          ,[
                           'type' => 'string',
                           'sanitize_callback' => [$this, 'validate']
@@ -200,54 +202,28 @@ class MDT_Admin
             'section',
             __('Section General:', 'domain-translate'),
             [$this, 'callback'],
-            MWPDT_OPTION
+            $this->option_name
         );
 
         add_settings_section(
             'section1',
             __('Section Domain 1:', 'domain-translate'),
             [$this, 'callback'],
-            MWPDT_OPTION
+            $this->option_name
         );
 
-        add_settings_section(
-            'section2',
-            __('Section Domain 2:', 'domain-translate'),
-            [$this, 'callback'],
-            MWPDT_OPTION
-        );
 
-        add_settings_section(
-            'section3',
-            __('Section Domain 3:', 'domain-translate'),
-            [$this, 'callback'],
-            MWPDT_OPTION
-        );
-
-        add_settings_section(
-            'section4',
-            __('Section Domain 4:', 'domain-translate'),
-            [$this, 'callback'],
-            MWPDT_OPTION
-        );
-
-        add_settings_section(
-            'section5',
-            __('Section Domain 5:', 'domain-translate'),
-            [$this, 'callback'],
-            MWPDT_OPTION
-        );
 
         /************************* General ************************************/
         add_settings_field(
             'active',
             __('Active:', 'domain-translate'),
             [$this, 'make_checkbox'],
-            MWPDT_OPTION,
+            $this->option_name,
             'section',
             [
                 'name' => 'active',
-                'label_for' => 'myridiadt_settings[active]',
+                'label_for' => "{$this->option_name}[active]",
             ]
         );
 
@@ -255,142 +231,41 @@ class MDT_Admin
             'source_lang_code',
             __('Source Lang Code:', 'domain-translate'),
             [$this, 'make_select'],
-            MWPDT_OPTION,
+            $this->option_name,
             'section',
             [
-                'label_for' => 'myridiadt_settings[source_lang_code]',
+                'label_for' => "{$this->option_name}[source_lang_code]",
                 'name' => 'source_lang_code',
             ]
         );
 
         /************************* Domain 1 ************************************/
         add_settings_field(
-            'domain1',
-            __('Domain 1:', 'domain-translate'),
+            'domains',
+            __('Domain:', 'domain-translate'),
             [$this, 'make_input_text'],
-            MWPDT_OPTION,
+            $this->option_name,
             'section1',
             [
-                'name' => 'domain1',
-                'label_for' => 'myridiadt_settings[domain1]',
+                'name' => 'domains',
+                'label_for' => "{$this->option_name}[domains]",
             ]
         );
 
+        /*
         add_settings_field(
-            'target_lang_code1',
+            'domains',
             __('Target Language 1:', 'domain-translate'),
             [$this, 'make_select'],
-            MWPDT_OPTION,
+            $this->option_name,
             'section1',
             [
-                'label_for' => 'myridiadt_settings[target_lang_code1]',
+                'label_for' => "{$this->option_name}[domains][]",
                 'name' => 'target_lang_code1',
             ]
         );
+        */
 
-        /************************* Domain 2 ************************************/
-
-        add_settings_field(
-            'domain2',
-            __('Domain 2:', 'domain-translate'),
-            [$this, 'make_input_text'],
-            MWPDT_OPTION,
-            'section2',
-            [
-                'name' => 'domain2',
-                'label_for' => 'myridiadt_settings[domain2]',
-            ]
-        );
-
-        add_settings_field(
-            'target_lang_code2',
-            __('Target Language 2:', 'domain-translate'),
-            [$this, 'make_select'],
-            MWPDT_OPTION,
-            'section2',
-            [
-                'label_for' => 'myridiadt_settings[target_lang_code2]',
-                'name' => 'target_lang_code2',
-            ]
-        );
-
-        /************************* Domain 3 ************************************/
-
-        add_settings_field(
-            'domain3',
-            __('Domain 3:', 'domain-translate'),
-            [$this, 'make_input_text'],
-            MWPDT_OPTION,
-            'section3',
-            [
-                'name' => 'domain3',
-                'label_for' => 'myridiadt_settings[domain3]',
-            ]
-        );
-
-        add_settings_field(
-            'target_lang_code3',
-            __('Target Language 3:', 'domain-translate'),
-            [$this, 'make_select'],
-            MWPDT_OPTION,
-            'section3',
-            [
-                'label_for' => 'myridiadt_settings[target_lang_code3]',
-                'name' => 'target_lang_code3',
-            ]
-        );
-
-        /************************* Domain 4 ************************************/
-
-        add_settings_field(
-            'domain4',
-            __('Domain 4:', 'domain-translate'),
-            [$this, 'make_input_text'],
-            MWPDT_OPTION,
-            'section4',
-            [
-                'name' => 'domain4',
-                'label_for' => 'myridiadt_settings[domain4]',
-            ]
-        );
-
-        add_settings_field(
-            'target_lang_code4',
-            __('Target Language 4:', 'domain-translate'),
-            [$this, 'make_select'],
-            MWPDT_OPTION,
-            'section4',
-            [
-                'label_for' => 'myridiadt_settings[target_lang_code4]',
-                'name' => 'target_lang_code4',
-            ]
-        );
-
-        /************************* Domain 5 ************************************/
-
-        add_settings_field(
-            'domain5',
-            __('Domain 5:', 'domain-translate'),
-            [$this, 'make_input_text'],
-            MWPDT_OPTION,
-            'section5',
-            [
-                'name' => 'domain5',
-                'label_for' => 'myridiadt_settings[domain5]',
-            ]
-        );
-
-        add_settings_field(
-            'target_lang_code5',
-            __('Target Language 5:', 'domain-translate'),
-            [$this, 'make_select'],
-            MWPDT_OPTION,
-            'section5',
-            [
-                'label_for' => 'myridiadt_settings[target_lang_code5]',
-                'name' => 'target_lang_code5',
-            ]
-        );
     }
 
     /**
@@ -405,7 +280,7 @@ class MDT_Admin
     public function make_checkbox($args)
     {
         $name = esc_attr($args['name']);
-        $o = get_option(MWPDT_OPTION);
+        $o = get_option($this->option_name);
         $checked = '';
         if (isset($o[$name])) {
             if ('on' == $o[$name]) {
@@ -435,16 +310,19 @@ class MDT_Admin
      */
     public function make_input_text($args)
     {
+
         $name = esc_attr($args['name']);
-        $o = get_option(MWPDT_OPTION);
-        
-        if (isset($o[$name])) {
-            $key = esc_attr($o[$name]);
-    
+        $o = get_option($this->option_name);
 
+        $a  = $o[$name] ;
+        //var_dump($a);
+        $nk=0;
+        foreach($a as $k=>$i ) {
 
-        $html_content = "<input type='text' name='{$args['label_for']}' value='{$key}'   />";
-        echo wp_kses($html_content, [
+          if(isset($i['domain']) && isset($i['lang'])) {
+          $nk = $k+1;            
+          $html_content = "<input type='text' name='{$args['label_for']}[$k][domain]' value='{$i["domain"]}'   />";
+          echo wp_kses($html_content, [
             'input' => [
                 'id' => [],
                 'name' => [],
@@ -453,7 +331,47 @@ class MDT_Admin
                 'checked' => [],
             ],
         ]);
-        }        
+
+
+          $html_content = "<input type='text' name='{$args['label_for']}[$k][lang]' value='{$i["lang"]}'   />";
+          echo wp_kses($html_content, [
+            'input' => [
+                'id' => [],
+                'name' => [],
+                'type' => [],
+                'value' => [],
+                'checked' => [],
+            ],
+        ]);
+
+        echo "<br>";
+            }
+        }
+        echo "<br>";
+          $html_content = "<input type='text' name='{$args['label_for']}[$nk][domain]' value=''   />";
+          echo wp_kses($html_content, [
+            'input' => [
+                'id' => [],
+                'name' => [],
+                'type' => [],
+                'value' => [],
+                'checked' => [],
+            ],
+        ]);
+
+
+          $html_content = "<input type='text' name='{$args['label_for']}[$nk][lang]' value=''   />";
+          echo wp_kses($html_content, [
+            'input' => [
+                'id' => [],
+                'name' => [],
+                'type' => [],
+                'value' => [],
+                'checked' => [],
+            ],
+        ]);                    
+
+
 
     }
 
@@ -469,7 +387,7 @@ class MDT_Admin
     public function make_select($args)
     {
         $name = esc_attr($args['name']);
-        $o = get_option(MWPDT_OPTION);
+        $o = get_option($this->option_name);
         $key = '';
         if (isset($o[$name])) {
             $key = esc_attr($o[$name]);
@@ -520,8 +438,8 @@ class MDT_Admin
 		<form action="options.php" method="post">
 	    <?php
         wp_nonce_field('wpds_save', 'wpds_nonce');
-        settings_fields(MWPDT_OPTION);
-        do_settings_sections(MWPDT_OPTION);
+        settings_fields($this->option_name);
+        do_settings_sections($this->option_name);
         submit_button('Save Settings');
         ?>
 		</form>

@@ -61,8 +61,8 @@ register_deactivation_hook(__FILE__, ['MWPDT\Dt\Class\MDT_Admin', 'deactivate'])
 
 // Register to start the Plugin
 
-add_action('init', 'myridia_dt_plugin_init', 80);
-add_action('admin_init', 'myridia_dt_plugin_admin_init', 99);
+add_action('init', 'mwpdt_init', 80);
+add_action('admin_init', 'mwpdt_admin_init', 99);
 
 /**
  * Init the Admin Plugin .
@@ -71,7 +71,7 @@ add_action('admin_init', 'myridia_dt_plugin_admin_init', 99);
  *
  * @since 1.0.0
  */
-function myridia_dt_plugin_admin_init()
+function mwpdt_admin_init()
 {
     $plugin = new MDT_Admin();
     $plugin->register_settings();
@@ -84,7 +84,7 @@ function myridia_dt_plugin_admin_init()
  *
  * @since 1.0.0
  */
-function myridia_dt_plugin_init()
+function mwpdt_init()
 {
     $plugin = new MDT_Admin();
     $plugin->add_menu_setting();
