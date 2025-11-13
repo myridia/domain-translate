@@ -40,7 +40,6 @@ use MWPDT\Dt\Class\MDT_Frontend;
  * Constants Calls
  * @since 1.0.0 (if available)
  */
-define('MWPDT_OPTION', 'myridiadt_settings');
 define('MWPDT_PLUGIN_FILE', __FILE__);
 define('MWPDT_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('MWPDT_PLUGIN_URL', plugin_dir_url(__FILE__));

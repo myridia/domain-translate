@@ -239,7 +239,7 @@ class MDT_Admin
             ]
         );
 
-        /************************* Domain 1 ************************************/
+        /************************* Domain ************************************/
         add_settings_field(
             'domains',
             __('Domain:', 'domain-translate'),
@@ -252,19 +252,6 @@ class MDT_Admin
             ]
         );
 
-        /*
-        add_settings_field(
-            'domains',
-            __('Target Language 1:', 'domain-translate'),
-            [$this, 'make_select'],
-            $this->option_name,
-            'section1',
-            [
-                'label_for' => "{$this->option_name}[domains][]",
-                'name' => 'target_lang_code1',
-            ]
-        );
-        */
 
     }
 
@@ -333,20 +320,38 @@ class MDT_Admin
         ]);
 
 
-          $html_content = "<input type='text' name='{$args['label_for']}[$k][lang]' value='{$i["lang"]}'   />";
-          echo wp_kses($html_content, [
-            'input' => [
-                'id' => [],
-                'name' => [],
-                'type' => [],
-                'value' => [],
-                'checked' => [],
+        $html = "<select name='{$args['label_for']}[$k][lang]' />";
+        foreach ($this->lang_codes as $x) {
+            $code = $x[0];
+            $name = $x[1];
+            $selected = '';
+             if ($i["lang"] == $code) {
+               $selected = 'selected';
+             }
+
+            $html .= "<option value='{$code}' {$selected} >{$name}</option>";
+        }
+        $html .= '</select>';
+
+        echo wp_kses($html, [
+            'select' => [
+                'name' => true,
+                'id' => true,
+                'class' => true,
+            ],
+            'option' => [
+                'value' => true,
+                'selected' => true,
             ],
         ]);
+
+
+
 
         echo "<br>";
             }
         }
+
         echo "<br>";
           $html_content = "<input type='text' name='{$args['label_for']}[$nk][domain]' value=''   />";
           echo wp_kses($html_content, [
@@ -360,16 +365,30 @@ class MDT_Admin
         ]);
 
 
-          $html_content = "<input type='text' name='{$args['label_for']}[$nk][lang]' value=''   />";
-          echo wp_kses($html_content, [
-            'input' => [
-                'id' => [],
-                'name' => [],
-                'type' => [],
-                'value' => [],
-                'checked' => [],
+        $html = "<select name='{$args['label_for']}[$nk][lang]' />";
+        $html .= "<option value='' ></option>";        
+        foreach ($this->lang_codes as $i) {
+            $code = $i[0];
+            $name = $i[1];
+            $html .= "<option value='{$code}' >{$name}</option>";
+        }
+        $html .= '</select>';
+
+        echo wp_kses($html, [
+            'select' => [
+                'name' => true,
+                'id' => true,
+                'class' => true,
             ],
-        ]);                    
+            'option' => [
+                'value' => true,
+                'selected' => true,
+            ],
+        ]);          
+
+
+        
+
 
 
 
