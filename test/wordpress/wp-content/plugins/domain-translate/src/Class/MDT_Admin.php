@@ -310,40 +310,6 @@ class MDT_Admin
 
 
 
-          $html_content = "<input type='text' name='{$args['label_for']}[$nk][domain]' value=''   />";
-          echo wp_kses($html_content, [
-            'input' => [
-                'id' => [],
-                'name' => [],
-                'type' => [],
-                'value' => [],
-                'checked' => [],
-            ],
-        ]);
-
-
-        $h = "<select name='{$args['label_for']}[$nk][lang]' />";
-        $h .= "<option value='' ></option>";        
-        foreach ($this->lang_codes as $i) {
-            $code = $i[0];
-            $name = $i[1];
-            $h .= "<option value='{$code}' >{$name}</option>";
-        }
-        $h .= '</select>';
-
-        echo wp_kses($h, [
-            'select' => [
-                'name' => true,
-                'id' => true,
-                'class' => true,
-            ],
-            'option' => [
-                'value' => true,
-                'selected' => true,
-            ],
-        ]);          
-
-        echo "<br>";
         
         foreach($a as $k=>$i ) {
 
@@ -392,17 +358,46 @@ class MDT_Admin
 
         echo "<br>";
             }
+
+
+
+
         }
+        echo "<br>";        
+                    $html_content = "<input type='text' name='{$args['label_for']}[$nk][domain]' value=''   />";
+          echo wp_kses($html_content, [
+            'input' => [
+                'id' => [],
+                'name' => [],
+                'type' => [],
+                'value' => [],
+                'checked' => [],
+            ],
+        ]);
 
 
+        $h = "<select name='{$args['label_for']}[$nk][lang]' />";
+        $h .= "<option value='' ></option>";        
+        foreach ($this->lang_codes as $i) {
+            $code = $i[0];
+            $name = $i[1];
+            $h .= "<option value='{$code}' >{$name}</option>";
+        }
+        $h .= '</select>';
 
+        echo wp_kses($h, [
+            'select' => [
+                'name' => true,
+                'id' => true,
+                'class' => true,
+            ],
+            'option' => [
+                'value' => true,
+                'selected' => true,
+            ],
+        ]);          
 
-
-        
-
-
-
-
+        echo "<br>";
     }
 
     /**
@@ -514,7 +509,7 @@ class MDT_Admin
 
         foreach($input["domains"] as $k=>$v) {
             if($this->is_valid_domain_name($v["domain"]) == false):
-                unset($input["domains"][$k]);
+                    unset($input["domains"][$k]);
             endif;
 
         }
