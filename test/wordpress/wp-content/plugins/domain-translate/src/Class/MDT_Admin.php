@@ -239,11 +239,11 @@ class MDT_Admin
             ]
         );
 
-        /************************* Domain ************************************/
+        /************************* Domains ************************************/
         add_settings_field(
             'domains',
-            __('Domain:', 'domain-translate'),
-            [$this, 'make_input_text'],
+            __('Domains:', 'domain-translate'),
+            [$this, 'make_domain_input'],
             $this->option_name,
             'section1',
             [
@@ -295,15 +295,56 @@ class MDT_Admin
      *
      * @return string
      */
-    public function make_input_text($args)
+    public function make_domain_input($args)
     {
 
+        $html = "<table>";
+        
         $name = esc_attr($args['name']);
         $o = get_option($this->option_name);
 
         $a  = $o[$name] ;
         //var_dump($a);
         $nk=0;
+
+
+
+
+          $html_content = "<input type='text' name='{$args['label_for']}[$nk][domain]' value=''   />";
+          echo wp_kses($html_content, [
+            'input' => [
+                'id' => [],
+                'name' => [],
+                'type' => [],
+                'value' => [],
+                'checked' => [],
+            ],
+        ]);
+
+
+        $h = "<select name='{$args['label_for']}[$nk][lang]' />";
+        $h .= "<option value='' ></option>";        
+        foreach ($this->lang_codes as $i) {
+            $code = $i[0];
+            $name = $i[1];
+            $h .= "<option value='{$code}' >{$name}</option>";
+        }
+        $h .= '</select>';
+
+        echo wp_kses($h, [
+            'select' => [
+                'name' => true,
+                'id' => true,
+                'class' => true,
+            ],
+            'option' => [
+                'value' => true,
+                'selected' => true,
+            ],
+        ]);          
+
+        echo "<br>";
+        
         foreach($a as $k=>$i ) {
 
           if(isset($i['domain']) && isset($i['lang'])) {
@@ -317,11 +358,11 @@ class MDT_Admin
                 'value' => [],
                 'checked' => [],
             ],
-        ]);
+          ]);
 
 
-        $html = "<select name='{$args['label_for']}[$k][lang]' />";
-        foreach ($this->lang_codes as $x) {
+          $h = "<select name='{$args['label_for']}[$k][lang]' />";
+          foreach ($this->lang_codes as $x) {
             $code = $x[0];
             $name = $x[1];
             $selected = '';
@@ -329,11 +370,12 @@ class MDT_Admin
                $selected = 'selected';
              }
 
-            $html .= "<option value='{$code}' {$selected} >{$name}</option>";
+            $h .= "<option value='{$code}' {$selected} >{$name}</option>";
         }
-        $html .= '</select>';
+        $h .= '</select>';
 
-        echo wp_kses($html, [
+        
+        echo wp_kses($h, [
             'select' => [
                 'name' => true,
                 'id' => true,
@@ -352,39 +394,8 @@ class MDT_Admin
             }
         }
 
-        echo "<br>";
-          $html_content = "<input type='text' name='{$args['label_for']}[$nk][domain]' value=''   />";
-          echo wp_kses($html_content, [
-            'input' => [
-                'id' => [],
-                'name' => [],
-                'type' => [],
-                'value' => [],
-                'checked' => [],
-            ],
-        ]);
 
 
-        $html = "<select name='{$args['label_for']}[$nk][lang]' />";
-        $html .= "<option value='' ></option>";        
-        foreach ($this->lang_codes as $i) {
-            $code = $i[0];
-            $name = $i[1];
-            $html .= "<option value='{$code}' >{$name}</option>";
-        }
-        $html .= '</select>';
-
-        echo wp_kses($html, [
-            'select' => [
-                'name' => true,
-                'id' => true,
-                'class' => true,
-            ],
-            'option' => [
-                'value' => true,
-                'selected' => true,
-            ],
-        ]);          
 
 
         
@@ -500,34 +511,14 @@ class MDT_Admin
      */
     public function validate($input)
     {
-        if (isset($input['domain1'])) {
-            if (false == $this->is_valid_domain_name($input['domain1'])) {
-                $input['domain1'] = '';
-            }
-        }
 
-        if (isset($input['domain2'])) {
-            if (false == $this->is_valid_domain_name($input['domain2'])) {
-                $input['domain2'] = '';
-            }
-        }
+        foreach($input["domains"] as $k=>$v) {
+            if($this->is_valid_domain_name($v["domain"]) == false):
+                unset($input["domains"][$k]);
+            endif;
 
-        if (isset($input['domain3'])) {
-            if (false == $this->is_valid_domain_name($input['domain3'])) {
-                $input['domain3'] = '';
-            }
         }
-
-        if (isset($input['domain4'])) {
-            if (false == $this->is_valid_domain_name($input['domain4'])) {
-                $input['domain4'] = '';
-            }
-        }
-        if (isset($input['domain5'])) {
-            if (false == $this->is_valid_domain_name($input['domain5'])) {
-                $input['domain5'] = '';
-            }
-        }
+        
 
         add_settings_error('wporg_messages', 'wporg_message', __('Settings saved successfully to the database option settings:  myridiadt_settings', 'domain-translate'), 'updated');
 
