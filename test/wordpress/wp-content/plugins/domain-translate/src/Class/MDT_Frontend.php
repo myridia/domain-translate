@@ -48,30 +48,15 @@ class MDT_Frontend
      */
     public function set_lang_codes($domain, $options)
     {
-        // Set Source Lang
+        $domains = [];
         if (isset($options['source_lang_code'])) {
             $this->source_lang_code = esc_attr($options['source_lang_code']);
         }
-        $domains = [];
-        if (isset($options['domain1']) && isset($options['target_lang_code1'])) {
-            $domains[$options['domain1']] = esc_attr($options['target_lang_code1']);
-        }
-        if (isset($options['domain2']) && isset($options['target_lang_code2'])) {
-            $domains[$options['domain2']] = esc_attr($options['target_lang_code2']);
-        }
-        if (isset($options['domain3']) && isset($options['target_lang_code3'])) {
-            $domains[$options['domain3']] = esc_attr($options['target_lang_code3']);
-        }
 
-        if (isset($options['domain4']) && isset($options['target_lang_code4'])) {
-            $domains[$options['domain4']] = esc_attr($options['target_lang_code4']);
+        foreach($options["domains"] as $k=>$i) {
+         $domains[$i["domain"]] = $i["lang"];            
         }
-
-        if (isset($options['domain5']) && isset($options['target_lang_code5'])) {
-            $domains[$options['domain5']] = esc_attr($options['target_lang_code5']);
-        }
-
-        // Set Target Lang
+        
         if (array_key_exists($domain, $domains)) {
             $this->target_lang_code = $domains[$domain];
         }
