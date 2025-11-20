@@ -223,7 +223,7 @@ class MDT_Admin
         add_settings_field(
             'source_lang_code',
             __('Source Lang Code:', 'domain-translate'),
-            [$this, 'make_select'],
+            [$this, 'echo_select'],
             $this->option_name,
             'section',
             [
@@ -296,7 +296,7 @@ class MDT_Admin
     }
 
 
-    public function make_select2($label_for,$k,$kname,$value)
+    public function make_select($label_for,$k,$kname,$value)
     {
         $html = "";
 
@@ -353,7 +353,7 @@ class MDT_Admin
           if(isset($i['domain']) && isset($i['lang'])) {
             $nk = $k+1;
             $html .="<td>". $this->make_input($args['label_for'],$k,'domain',$i["domain"]) . "</td>";
-            $html .="<td>". $this->make_select2($args['label_for'],$k,'lang',$i["lang"]) . "</td>";          
+            $html .="<td>". $this->make_select($args['label_for'],$k,'lang',$i["lang"]) . "</td>";          
 
             $html .="<td><button class='button action' onClick=\"(function(){
             const el = this.event.target ;
@@ -366,7 +366,7 @@ class MDT_Admin
         
         $html .="<tr>";
         $html .="<td>". $this->make_input($args['label_for'],$nk,'domain',"") . "</td>";
-        $html .="<td>". $this->make_select2($args['label_for'],$nk,'lang',"") . "</td>";        
+        $html .="<td>". $this->make_select($args['label_for'],$nk,'lang',"") . "</td>";        
         $html .="</tr>";                                  
         $html .= "</table>";
         
@@ -382,14 +382,16 @@ class MDT_Admin
      *
      * @return string
      */
-    public function make_select($args)
+    public function echo_select($args)
     {
+        $html = "";
         $name = esc_attr($args['name']);
         $o = get_option($this->option_name);
         $key = '';
         if (isset($o[$name])) {
             $key = esc_attr($o[$name]);
         }
+
 
         $html = "<select name='{$args['label_for']}' />";
         foreach ($this->lang_codes as $i) {
@@ -415,6 +417,7 @@ class MDT_Admin
                 'selected' => true,
             ],
         ]);
+
     }
 
     /**
