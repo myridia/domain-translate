@@ -81,7 +81,7 @@ elif [ "$task" = "9" ]; then
 
 elif [ "$task" = "10" ]; then
     echo "...${task}"
-    docker exec wpcli wp i18n make-pot . languages/domain-translate.pot  --allow-root    
+    docker exec wpcli wp i18n make-pot wp-content/plugins/domain-translate  wp-content/plugins/domain-translate/languages/domain-translate.pot  --allow-root    
 
 
 

@@ -168,8 +168,7 @@ class MDT_Frontend
      */
     public function add_styles()
     {
-        wp_register_style('domain-translate',
-            plugins_url('css/domain-translate.css', MWPDT_PLUGIN_FILE), [], 1);
-        wp_enqueue_style('domain-translate');
+        wp_register_style('mwpdt_domain-translate',plugins_url('css/domain-translate.css', MWPDT_PLUGIN_FILE), [], 1);
+        wp_enqueue_style('mwpdt_domain-translate');
     }
 }
