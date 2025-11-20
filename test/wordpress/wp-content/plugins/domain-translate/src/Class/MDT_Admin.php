@@ -205,13 +205,6 @@ class MDT_Admin
             $this->option_name
         );
 
-        add_settings_section(
-            'section1',
-            __('Section Domain 1:', 'domain-translate'),
-            [$this, 'callback'],
-            $this->option_name
-        );
-
 
 
         /************************* General ************************************/
@@ -245,7 +238,7 @@ class MDT_Admin
             __('Domains:', 'domain-translate'),
             [$this, 'make_domain_input'],
             $this->option_name,
-            'section1',
+            'section',
             [
                 'name' => 'domains',
                 'label_for' => "{$this->option_name}[domains]",
@@ -298,8 +291,8 @@ class MDT_Admin
     public function make_domain_input($args)
     {
 
-        $html = "<table>";
-        
+        $html = "<table class='wp-list-table widefat fixed striped'>";
+        $html .="<thead><tr><td>Domain</td><td>Language</td><td>Delete</td></tr></thead>";        
         $name = esc_attr($args['name']);
         $o = get_option($this->option_name);
 
@@ -307,16 +300,13 @@ class MDT_Admin
         //var_dump($a);
         $nk=0;
 
-
-
-
-        
         foreach($a as $k=>$i ) {
-
+          $html .="<tr>";
           if(isset($i['domain']) && isset($i['lang'])) {
           $nk = $k+1;            
           $html_content = "<input type='text' name='{$args['label_for']}[$k][domain]' value='{$i["domain"]}'   />";
-          echo wp_kses($html_content, [
+          $html .="<td>";          
+          $html .= wp_kses($html_content, [
             'input' => [
                 'id' => [],
                 'name' => [],
@@ -325,7 +315,7 @@ class MDT_Admin
                 'checked' => [],
             ],
           ]);
-
+          $html .="</td>";          
 
           $h = "<select name='{$args['label_for']}[$k][lang]' />";
           foreach ($this->lang_codes as $x) {
@@ -340,8 +330,8 @@ class MDT_Admin
         }
         $h .= '</select>';
 
-        
-        echo wp_kses($h, [
+        $html .="<td>";                  
+        $html .= wp_kses($h, [
             'select' => [
                 'name' => true,
                 'id' => true,
@@ -352,20 +342,29 @@ class MDT_Admin
                 'selected' => true,
             ],
         ]);
+        $html .="</td>";                          
+
+        $html .="<td><button class='button action' onClick=\"(function(){
+        const el = this.event.target ;
+        el.parentElement.parentElement.remove();
+        return false;
+        })();return false;\">Delete</button></td>";
+
+        
+        $html .="</tr>";                  
 
 
 
-
-        echo "<br>";
             }
 
 
 
 
         }
-        echo "<br>";        
+        $html .="<tr>";
+        $html .="<td>";                          
                     $html_content = "<input type='text' name='{$args['label_for']}[$nk][domain]' value=''   />";
-          echo wp_kses($html_content, [
+        $html .=  wp_kses($html_content, [
             'input' => [
                 'id' => [],
                 'name' => [],
@@ -374,8 +373,9 @@ class MDT_Admin
                 'checked' => [],
             ],
         ]);
+        $html .="</td>";                          
 
-
+        $html .="<td>";                                  
         $h = "<select name='{$args['label_for']}[$nk][lang]' />";
         $h .= "<option value='' ></option>";        
         foreach ($this->lang_codes as $i) {
@@ -385,7 +385,7 @@ class MDT_Admin
         }
         $h .= '</select>';
 
-        echo wp_kses($h, [
+        $html .=  wp_kses($h, [
             'select' => [
                 'name' => true,
                 'id' => true,
@@ -396,8 +396,10 @@ class MDT_Admin
                 'selected' => true,
             ],
         ]);          
-
-        echo "<br>";
+        $html .="</td>";
+        $html .="</tr>";                                  
+        $html .= "</table>";
+        echo $html;
     }
 
     /**
