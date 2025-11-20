@@ -279,6 +279,54 @@ class MDT_Admin
         ]);
     }
 
+    public function make_input($label_for,$k,$name,$value)
+    {
+        $html = "";
+          $html_content = "<input type='text' name='{$label_for}[$k][$name]' value='{$value}'   />";
+          $html .= wp_kses($html_content, [
+            'input' => [
+                'id' => [],
+                'name' => [],
+                'type' => [],
+                'value' => [],
+                'checked' => [],
+            ],
+          ]);
+        return $html;
+    }
+
+
+    public function make_select2($label_for,$k,$kname,$value)
+    {
+        $html = "";
+
+          $h = "<select name='{$label_for}[$k][$kname]' />";
+          foreach ($this->lang_codes as $x) {
+            $code = $x[0];
+            $name = $x[1];
+            $selected = '';
+             if ($value == $code) {
+               $selected = 'selected';
+             }
+
+            $h .= "<option value='{$code}' {$selected} >{$name}</option>";
+        }
+        $h .= '</select>';
+       
+        $html .= wp_kses($h, [
+            'select' => [
+                'name' => true,
+                'id' => true,
+                'class' => true,
+            ],
+            'option' => [
+                'value' => true,
+                'selected' => true,
+            ],
+        ]);
+        
+        return $html;
+    }        
     /**
      * Generate a text input field.
      *
@@ -303,102 +351,25 @@ class MDT_Admin
         foreach($a as $k=>$i ) {
           $html .="<tr>";
           if(isset($i['domain']) && isset($i['lang'])) {
-          $nk = $k+1;            
-          $html_content = "<input type='text' name='{$args['label_for']}[$k][domain]' value='{$i["domain"]}'   />";
-          $html .="<td>";          
-          $html .= wp_kses($html_content, [
-            'input' => [
-                'id' => [],
-                'name' => [],
-                'type' => [],
-                'value' => [],
-                'checked' => [],
-            ],
-          ]);
-          $html .="</td>";          
+            $nk = $k+1;
+            $html .="<td>". $this->make_input($args['label_for'],$k,'domain',$i["domain"]) . "</td>";
+            $html .="<td>". $this->make_select2($args['label_for'],$k,'lang',$i["lang"]) . "</td>";          
 
-          $h = "<select name='{$args['label_for']}[$k][lang]' />";
-          foreach ($this->lang_codes as $x) {
-            $code = $x[0];
-            $name = $x[1];
-            $selected = '';
-             if ($i["lang"] == $code) {
-               $selected = 'selected';
-             }
-
-            $h .= "<option value='{$code}' {$selected} >{$name}</option>";
+            $html .="<td><button class='button action' onClick=\"(function(){
+            const el = this.event.target ;
+            el.parentElement.parentElement.remove();
+            return false;
+            })();return false;\">Delete</button></td>";
+            $html .="</tr>";                  
+          }
         }
-        $h .= '</select>';
-
-        $html .="<td>";                  
-        $html .= wp_kses($h, [
-            'select' => [
-                'name' => true,
-                'id' => true,
-                'class' => true,
-            ],
-            'option' => [
-                'value' => true,
-                'selected' => true,
-            ],
-        ]);
-        $html .="</td>";                          
-
-        $html .="<td><button class='button action' onClick=\"(function(){
-        const el = this.event.target ;
-        el.parentElement.parentElement.remove();
-        return false;
-        })();return false;\">Delete</button></td>";
-
         
-        $html .="</tr>";                  
-
-
-
-            }
-
-
-
-
-        }
         $html .="<tr>";
-        $html .="<td>";                          
-                    $html_content = "<input type='text' name='{$args['label_for']}[$nk][domain]' value=''   />";
-        $html .=  wp_kses($html_content, [
-            'input' => [
-                'id' => [],
-                'name' => [],
-                'type' => [],
-                'value' => [],
-                'checked' => [],
-            ],
-        ]);
-        $html .="</td>";                          
-
-        $html .="<td>";                                  
-        $h = "<select name='{$args['label_for']}[$nk][lang]' />";
-        $h .= "<option value='' ></option>";        
-        foreach ($this->lang_codes as $i) {
-            $code = $i[0];
-            $name = $i[1];
-            $h .= "<option value='{$code}' >{$name}</option>";
-        }
-        $h .= '</select>';
-
-        $html .=  wp_kses($h, [
-            'select' => [
-                'name' => true,
-                'id' => true,
-                'class' => true,
-            ],
-            'option' => [
-                'value' => true,
-                'selected' => true,
-            ],
-        ]);          
-        $html .="</td>";
+        $html .="<td>". $this->make_input($args['label_for'],$nk,'domain',"") . "</td>";
+        $html .="<td>". $this->make_select2($args['label_for'],$nk,'lang',"") . "</td>";        
         $html .="</tr>";                                  
         $html .= "</table>";
+        
         echo $html;
     }
 
