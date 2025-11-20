@@ -200,7 +200,7 @@ class MDT_Admin
 
         add_settings_section(
             'section',
-            __('Section General:', 'domain-translate'),
+            __('Settings:', 'domain-translate'),
             [$this, 'callback'],
             $this->option_name
         );
@@ -340,7 +340,7 @@ class MDT_Admin
     {
 
         $html = "<table class='wp-list-table widefat fixed striped'>";
-        $html .="<thead><tr><td>Domain</td><td>Language</td><td>Delete</td></tr></thead>";        
+        $html .="<thead><tr><td>".__("Domain","domain-translate") . "</td><td>" . __("Language","domain-translate") . "</td><td>" . __("Delete","domain-translate") . "</td></tr></thead>";        
         $name = esc_attr($args['name']);
         $o = get_option($this->option_name);
 
@@ -441,7 +441,7 @@ class MDT_Admin
         wp_nonce_field('wpds_save', 'wpds_nonce');
         settings_fields($this->option_name);
         do_settings_sections($this->option_name);
-        submit_button('Save Settings');
+        submit_button(__('Save Settings','domain-translate'));
         ?>
 		</form>
 	</div>
