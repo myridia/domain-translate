@@ -25,7 +25,18 @@ It as broad language support, its benefits from the extensive language support o
 == Privacy ==
 * It uses https://translate.google.com/translate_a/element.js Google Translate Service
 * The Website HTML is send to the Google Translate Service
-* 
+* Googles Privacy and Terms:  https://policies.google.com/privacy?hl=en-GB#intro
+
+=== List of information collected by google ==
+* Google will collect the website user GPS and other sensor data from your device
+* Google will collect the website user IP address
+* Google will collect the  Activity on Google services; for example, from your searches or places that you label such as home or work
+
+
+As a website operator employing this plugin, you have the prerogative to obtain consent from your visitors.
+This can be archived by such by GDPR and CCPA plugins.
+
+
 
 == Demo Page ==
 * https://shock.se
