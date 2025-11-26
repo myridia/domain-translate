@@ -3,7 +3,7 @@ DB_USER=dbsql1
 DB_PASSWORD=passpass
 DATE=$(date +"%F")
 
-
+ask() {
 echo -e "I'm ask.sh. What you like to do?, enter a Task Id from list below: \n"
 echo -e "TaskID\t Description"
 echo -e "1\t Run - Docker Test Enviroment "
@@ -15,11 +15,15 @@ echo -e "6\t Gen PHP docs - Generate php docs into pages/public/docs "
 echo -e "7\t Export Db - Export the database on the docker/test server"
 echo -e "8\t Rename WP - Rename the database on the docker server"
 echo -e "9\t Watch debug.log "
+echo -e "10\t Create Pot file -Language"
+echo -e "0\t Exit "
+}
 
 
+ask
 
+until [ "$task" = "0" ]; do 
 read task
-
 if [ "$task" = "1" ]; then
     echo "...${task}"
     cd test
@@ -75,8 +79,19 @@ elif [ "$task" = "9" ]; then
     echo "...${task}"
     tail  test/wordpress/wp-content/debug.log  -f
 
+elif [ "$task" = "10" ]; then
+    echo "...${task}"
+    docker exec wpcli wp i18n make-pot wp-content/plugins/domain-translate  wp-content/plugins/domain-translate/languages/domain-translate.pot  --allow-root    
+
+
+
+
+    
 else
     echo "Goodbye! - Exit"
 fi
 
+ask
+
+done 
 

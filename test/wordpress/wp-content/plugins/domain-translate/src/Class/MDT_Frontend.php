@@ -1,6 +1,6 @@
 <?php
 
-namespace WPDT\DS\Main;
+namespace MWPDT\Dt\Class;
 
 /**
  * Class Frontend.
@@ -9,8 +9,9 @@ namespace WPDT\DS\Main;
  *
  * @since 1.0.0
  */
-class ClassFrontend
+class MDT_Frontend
 {
+    private $option_name = "myridiadt_settings";        
     private $domain;
     private $base_domain;
     private $options;
@@ -47,30 +48,15 @@ class ClassFrontend
      */
     public function set_lang_codes($domain, $options)
     {
-        // Set Source Lang
+        $domains = [];
         if (isset($options['source_lang_code'])) {
             $this->source_lang_code = esc_attr($options['source_lang_code']);
         }
-        $domains = [];
-        if (isset($options['domain1']) && isset($options['target_lang_code1'])) {
-            $domains[$options['domain1']] = esc_attr($options['target_lang_code1']);
-        }
-        if (isset($options['domain2']) && isset($options['target_lang_code2'])) {
-            $domains[$options['domain2']] = esc_attr($options['target_lang_code2']);
-        }
-        if (isset($options['domain3']) && isset($options['target_lang_code3'])) {
-            $domains[$options['domain3']] = esc_attr($options['target_lang_code3']);
-        }
 
-        if (isset($options['domain4']) && isset($options['target_lang_code4'])) {
-            $domains[$options['domain4']] = esc_attr($options['target_lang_code4']);
+        foreach($options["domains"] as $k=>$i) {
+         $domains[$i["domain"]] = $i["lang"];            
         }
-
-        if (isset($options['domain5']) && isset($options['target_lang_code5'])) {
-            $domains[$options['domain5']] = esc_attr($options['target_lang_code5']);
-        }
-
-        // Set Target Lang
+        
         if (array_key_exists($domain, $domains)) {
             $this->target_lang_code = $domains[$domain];
         }
@@ -86,7 +72,7 @@ class ClassFrontend
      */
     public function is_active()
     {
-        $o = get_option(WPDT_OPTION);
+        $o = get_option($this->option_name);
         if (isset($o['active'])) {
             $this->options = $o;
 
@@ -139,8 +125,8 @@ class ClassFrontend
     public function add_scripts()
     {
         wp_register_script(
-            'domain-translate',
-            plugins_url('/js/domain-translate.js', WPDT_PLUGIN_FILE),
+            'mwpdt_domain-translate',
+            plugins_url('/js/domain-translate.js', MWPDT_PLUGIN_FILE),
             [],
             '1.0.0',
             [
@@ -148,7 +134,7 @@ class ClassFrontend
             ]
         );
 
-        wp_localize_script('domain-translate', 'domain_translate_data', [
+        wp_localize_script('mwpdt_domain-translate', 'domain_translate_data', [
             'source_lang_code' => $this->source_lang_code,
             'target_lang_code' => $this->target_lang_code,
             'domain' => $this->domain,
@@ -156,10 +142,10 @@ class ClassFrontend
             'nonce' => wp_create_nonce('mg_ajax_nonce'),
         ]);
 
-        wp_enqueue_script('domain-translate');
+        wp_enqueue_script('mwpdt_domain-translate');
 
         wp_register_script(
-            'domain-translate-google',
+            'mwpdt_domain-translate-google',
             'https://translate.google.com/translate_a/element.js?cb=domain_translate_init',
             [],
             '1.0.0',
@@ -169,7 +155,7 @@ class ClassFrontend
             ]
         );
 
-        wp_enqueue_script('domain-translate-google');
+        wp_enqueue_script('mwpdt_domain-translate-google');
     }
 
     /**
@@ -182,8 +168,7 @@ class ClassFrontend
      */
     public function add_styles()
     {
-        wp_register_style('domain-translate',
-            plugins_url('css/domain-translate.css', WPDT_PLUGIN_FILE), [], 1);
-        wp_enqueue_style('domain-translate');
+        wp_register_style('mwpdt_domain-translate',plugins_url('css/domain-translate.css', MWPDT_PLUGIN_FILE), [], 1);
+        wp_enqueue_style('mwpdt_domain-translate');
     }
 }
