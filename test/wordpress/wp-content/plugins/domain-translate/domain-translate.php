@@ -8,7 +8,7 @@
  * Plugin Name: Domain-translate
  * Plugin URI: https://wordpress.org/plugins/domain-translate
  * Description: Automatically translate your Site based on your Domain, a source and target Language.
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: veto, Myridia Company
  * Author URI: http://domain-translate.myridia.com
  * License: GPL-2.0+
@@ -101,11 +101,10 @@ function mwpdt_init()
  * @param String $className
  */
 spl_autoload_register(function (string $className) {
-
     if (false === strpos($className, 'MWPDT\\Dt')) {
         return;
     }
-    
+
     $className = str_replace('MWPDT\\Dt\\', __DIR__.'/src/', $className);
     $classFile = str_replace('\\', '/', $className).'.php';
     require_once $classFile;
