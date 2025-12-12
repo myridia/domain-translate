@@ -11,7 +11,7 @@ namespace MWPDT\Dt\Class;
  */
 class MDT_Frontend
 {
-    private $option_name = "myridiadt_settings";        
+    private $option_name = 'myridiadt_settings';
     private $domain;
     private $base_domain;
     private $options;
@@ -53,10 +53,10 @@ class MDT_Frontend
             $this->source_lang_code = esc_attr($options['source_lang_code']);
         }
 
-        foreach($options["domains"] as $k=>$i) {
-         $domains[$i["domain"]] = $i["lang"];            
+        foreach ($options['domains'] as $k => $i) {
+            $domains[$i['domain']] = $i['lang'];
         }
-        
+
         if (array_key_exists($domain, $domains)) {
             $this->target_lang_code = $domains[$domain];
         }
@@ -168,7 +168,7 @@ class MDT_Frontend
      */
     public function add_styles()
     {
-        wp_register_style('mwpdt_domain-translate',plugins_url('css/domain-translate.css', MWPDT_PLUGIN_FILE), [], 1);
+        wp_register_style('mwpdt_domain-translate', plugins_url('css/domain-translate.css', MWPDT_PLUGIN_FILE), [], 1);
         wp_enqueue_style('mwpdt_domain-translate');
     }
 }

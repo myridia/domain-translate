@@ -11,115 +11,115 @@ namespace MWPDT\Dt\Class;
  */
 class MDT_Admin
 {
-    private $option_name = "myridiadt_settings";    
+    private $option_name = 'myridiadt_settings';
     private $options;
     // Possible Google Translate Codes with Name
     private $lang_codes = [
-        ['af', __('Afrikaans','domain-translate')],
-        ['sq', __('Albanian','domain-translate')],
-        ['am', __('Amharic','domain-translate')],
-        ['ar', __('Arabic','domain-translate')],
-        ['hy', __('Armenian','domain-translate')],
-        ['az', __('Azerbaijani','domain-translate')],
-        ['eu', __('Basque','domain-translate')],
-        ['be', __('Belarusian','domain-translate')],
-        ['bn', __('Bengali','domain-translate')],
-        ['bs', __('Bosnian','domain-translate')],
-        ['bg', __('Bulgarian','domain-translate')],
-        ['ca', __('Catalan','domain-translate')],
-        ['ceb', __('Cebuano','domain-translate')],
-        ['ny', __('Chichewa','domain-translate')],
-        ['zh-CN', __('Chinese (Simplified)','domain-translate')],
-        ['zh-TW', __('Chinese (Traditional)','domain-translate')],
-        ['co', __('Corsican','domain-translate')],
-        ['hr', __('Croatian','domain-translate')],
-        ['cs', __('Czech','domain-translate')],
-        ['da', __('Danish','domain-translate')],
-        ['nl', __('Dutch','domain-translate')],
-        ['en', __('English','domain-translate')],
-        ['eo', __('Esperanto','domain-translate')],
-        ['et', __('Estonian','domain-translate')],
-        ['tl', __('Filipino','domain-translate')],
-        ['fi', __('Finnish','domain-translate')],
-        ['fr', __('French','domain-translate')],
-        ['fy', __('Frisian','domain-translate')],
-        ['gl', __('Galician','domain-translate')],
-        ['ka', __('Georgian','domain-translate')],
-        ['de', __('German','domain-translate')],
-        ['el', __('Greek','domain-translate')],
-        ['gu', __('Gujarati','domain-translate')],
-        ['ht', __('Haitian Creole','domain-translate')],
-        ['ha', __('Hausa','domain-translate')],
-        ['haw', __('Hawaiian','domain-translate')],
-        ['iw', __('Hebrew','domain-translate')],
-        ['hi', __('Hindi','domain-translate')],
-        ['hmn', __('Hmong','domain-translate')],
-        ['hu', __('Hungarian','domain-translate')],
-        ['is', __('Icelandic','domain-translate')],
-        ['ig', __('Igbo','domain-translate')],
-        ['id', __('Indonesian','domain-translate')],
-        ['ga', __('Irish','domain-translate')],
-        ['it', __('Italian','domain-translate')],
-        ['ja', __('Japanese','domain-translate')],
-        ['jw', __('Javanese','domain-translate')],
-        ['kn', __('Kannada','domain-translate')],
-        ['kk', __('Kazakh','domain-translate')],
-        ['km', __('Khmer','domain-translate')],
-        ['ko', __('Korean','domain-translate')],
-        ['ku', __('Kurdish (Kurmanji)','domain-translate')],
-        ['ky', __('Kyrgyz','domain-translate')],
-        ['lo', __('Lao','domain-translate')],
-        ['la', __('Latin','domain-translate')],
-        ['lv', __('Latvian','domain-translate')],
-        ['lt', __('Lithuanian','domain-translate')],
-        ['lb', __('Luxembourgish','domain-translate')],
-        ['mk', __('Macedonian','domain-translate')],
-        ['mg', __('Malagasy','domain-translate')],
-        ['ms', __('Malay','domain-translate')],
-        ['ml', __('Malayalam','domain-translate')],
-        ['mt', __('Maltese','domain-translate')],
-        ['mi', __('Maori','domain-translate')],
-        ['mr', __('Marathi','domain-translate')],
-        ['mn', __('Mongolian','domain-translate')],
-        ['my', __('Burmese','domain-translate')],
-        ['ne', __('Nepali','domain-translate')],
-        ['no', __('Norwegian','domain-translate')],
-        ['or', __('Odia','domain-translate')],
-        ['ps', __('Pashto','domain-translate')],
-        ['fa', __('Persian','domain-translate')],
-        ['pl', __('Polish','domain-translate')],
-        ['pt', __('Portuguese','domain-translate')],
-        ['pa', __('Punjabi','domain-translate')],
-        ['ro', __('Romanian','domain-translate')],
-        ['ru', __('Russian','domain-translate')],
-        ['sm', __('Samoan','domain-translate')],
-        ['gd', __('Scots Gaelic','domain-translate')],
-        ['sr', __('Serbian','domain-translate')],
-        ['st', __('Sesotho','domain-translate')],
-        ['sn', __('Shona','domain-translate')],
-        ['sd', __('Sindhi','domain-translate')],
-        ['si', __('Sinhala','domain-translate')],
-        ['sk', __('Slovak','domain-translate')],
-        ['sl', __('Slovenian','domain-translate')],
-        ['so', __('Somali','domain-translate')],
-        ['es', __('Spanish','domain-translate')],
-        ['su', __('Sundanese','domain-translate')],
-        ['sw', __('Swahili','domain-translate')],
-        ['sv', __('Swedish','domain-translate')],
-        ['tg', __('Tajik','domain-translate')],
-        ['ta', __('Tamil','domain-translate')],
-        ['te', __('Telugu','domain-translate')],
-        ['th', __('Thai','domain-translate')],
-        ['tr', __('Turkish','domain-translate')],
-        ['uk', __('Ukrainian','domain-translate')],
-        ['ur', __('Urdu','domain-translate')],
-        ['uz', __('Uzbek','domain-translate')],
-        ['vi', __('Vietnamese','domain-translate')],
-        ['cy', __('Welsh','domain-translate')],
-        ['xh', __('Xhosa','domain-translate')],
-        ['yi', __('Yiddish','domain-translate')],
-        ['yo', __('Yoruba','domain-translate')],
-        ['zu', __('Zulu','domain-translate')],
+        ['af', 'Afrikaans'],
+        ['sq', 'Albanian'],
+        ['am', 'Amharic'],
+        ['ar', 'Arabic'],
+        ['hy', 'Armenian'],
+        ['az', 'Azerbaijani'],
+        ['eu', 'Basque'],
+        ['be', 'Belarusian'],
+        ['bn', 'Bengali'],
+        ['bs', 'Bosnian'],
+        ['bg', 'Bulgarian'],
+        ['ca', 'Catalan'],
+        ['ceb', 'Cebuano'],
+        ['ny', 'Chichewa'],
+        ['zh-CN', 'Chinese (Simplified)'],
+        ['zh-TW', 'Chinese (Traditional)'],
+        ['co', 'Corsican'],
+        ['hr', 'Croatian'],
+        ['cs', 'Czech'],
+        ['da', 'Danish'],
+        ['nl', 'Dutch'],
+        ['en', 'English'],
+        ['eo', 'Esperanto'],
+        ['et', 'Estonian'],
+        ['tl', 'Filipino'],
+        ['fi', 'Finnish'],
+        ['fr', 'French'],
+        ['fy', 'Frisian'],
+        ['gl', 'Galician'],
+        ['ka', 'Georgian'],
+        ['de', 'German'],
+        ['el', 'Greek'],
+        ['gu', 'Gujarati'],
+        ['ht', 'Haitian Creole'],
+        ['ha', 'Hausa'],
+        ['haw', 'Hawaiian'],
+        ['iw', 'Hebrew'],
+        ['hi', 'Hindi'],
+        ['hmn', 'Hmong'],
+        ['hu', 'Hungarian'],
+        ['is', 'Icelandic'],
+        ['ig', 'Igbo'],
+        ['id', 'Indonesian'],
+        ['ga', 'Irish'],
+        ['it', 'Italian'],
+        ['ja', 'Japanese'],
+        ['jw', 'Javanese'],
+        ['kn', 'Kannada'],
+        ['kk', 'Kazakh'],
+        ['km', 'Khmer'],
+        ['ko', 'Korean'],
+        ['ku', 'Kurdish (Kurmanji)'],
+        ['ky', 'Kyrgyz'],
+        ['lo', 'Lao'],
+        ['la', 'Latin'],
+        ['lv', 'Latvian'],
+        ['lt', 'Lithuanian'],
+        ['lb', 'Luxembourgish'],
+        ['mk', 'Macedonian'],
+        ['mg', 'Malagasy'],
+        ['ms', 'Malay'],
+        ['ml', 'Malayalam'],
+        ['mt', 'Maltese'],
+        ['mi', 'Maori'],
+        ['mr', 'Marathi'],
+        ['mn', 'Mongolian'],
+        ['my', 'Burmese'],
+        ['ne', 'Nepali'],
+        ['no', 'Norwegian'],
+        ['or', 'Odia'],
+        ['ps', 'Pashto'],
+        ['fa', 'Persian'],
+        ['pl', 'Polish'],
+        ['pt', 'Portuguese'],
+        ['pa', 'Punjabi'],
+        ['ro', 'Romanian'],
+        ['ru', 'Russian'],
+        ['sm', 'Samoan'],
+        ['gd', 'Scots Gaelic'],
+        ['sr', 'Serbian'],
+        ['st', 'Sesotho'],
+        ['sn', 'Shona'],
+        ['sd', 'Sindhi'],
+        ['si', 'Sinhala'],
+        ['sk', 'Slovak'],
+        ['sl', 'Slovenian'],
+        ['so', 'Somali'],
+        ['es', 'Spanish'],
+        ['su', 'Sundanese'],
+        ['sw', 'Swahili'],
+        ['sv', 'Swedish'],
+        ['tg', 'Tajik'],
+        ['ta', 'Tamil'],
+        ['te', 'Telugu'],
+        ['th', 'Thai'],
+        ['tr', 'Turkish'],
+        ['uk', 'Ukrainian'],
+        ['ur', 'Urdu'],
+        ['uz', 'Uzbek'],
+        ['vi', 'Vietnamese'],
+        ['cy', 'Welsh'],
+        ['xh', 'Xhosa'],
+        ['yi', 'Yiddish'],
+        ['yo', 'Yoruba'],
+        ['zu', 'Zulu'],
         ['', ''],
     ];
 
@@ -132,7 +132,6 @@ class MDT_Admin
      */
     public function __construct()
     {
-
     }
 
     /**
@@ -144,8 +143,8 @@ class MDT_Admin
      */
     public static function activate()
     {
-        $p = new MDT_Admin();        
-        $options = ["domains"=>[],"source_lang_code"=>"en","active"=>0];
+        $p = new MDT_Admin();
+        $options = ['domains' => [], 'source_lang_code' => 'en', 'active' => 0];
         if (false == get_option($p->option_name)) {
             update_option($p->option_name, $options);
         }
@@ -158,7 +157,7 @@ class MDT_Admin
      */
     public static function deactivate()
     {
-        $p = new MDT_Admin();        
+        $p = new MDT_Admin();
         delete_option($p->option_name);
     }
 
@@ -191,12 +190,10 @@ class MDT_Admin
     public function register_settings()
     {
         // https://developer.wordpress.org/reference/functions/add_settings_section/
-        register_setting($this->option_name
-                         , $this->option_name
-                         ,[
-                          'type' => 'string',
-                          'sanitize_callback' => [$this, 'validate']
-                         ]);
+        register_setting($this->option_name, $this->option_name, [
+            'type' => 'string',
+            'sanitize_callback' => [$this, 'validate'],
+        ]);
 
         add_settings_section(
             'section',
@@ -204,8 +201,6 @@ class MDT_Admin
             [$this, 'callback'],
             $this->option_name
         );
-
-
 
         /************************* General ************************************/
         add_settings_field(
@@ -244,8 +239,6 @@ class MDT_Admin
                 'label_for' => "{$this->option_name}[domains]",
             ]
         );
-
-
     }
 
     /**
@@ -279,11 +272,11 @@ class MDT_Admin
         ]);
     }
 
-    public function make_input($label_for,$k,$name,$value)
+    public function make_input($label_for, $k, $name, $value)
     {
-        $html = "";
-          $html_content = "<input type='text' name='{$label_for}[$k][$name]' value='{$value}'   />";
-          $html .= wp_kses($html_content, [
+        $html = '';
+        $html_content = "<input type='text' name='{$label_for}[$k][$name]' value='{$value}'   />";
+        $html .= wp_kses($html_content, [
             'input' => [
                 'id' => [],
                 'name' => [],
@@ -291,28 +284,28 @@ class MDT_Admin
                 'value' => [],
                 'checked' => [],
             ],
-          ]);
+        ]);
+
         return $html;
     }
 
-
-    public function make_select($label_for,$k,$kname,$value)
+    public function make_select($label_for, $k, $kname, $value)
     {
-        $html = "";
+        $html = '';
 
-          $h = "<select name='{$label_for}[$k][$kname]' />";
-          foreach ($this->lang_codes as $x) {
+        $h = "<select name='{$label_for}[$k][$kname]' />";
+        foreach ($this->lang_codes as $x) {
             $code = $x[0];
             $name = $x[1];
             $selected = '';
-             if ($value == $code) {
-               $selected = 'selected';
-             }
+            if ($value == $code) {
+                $selected = 'selected';
+            }
 
             $h .= "<option value='{$code}' {$selected} >{$name}</option>";
         }
         $h .= '</select>';
-       
+
         $html .= wp_kses($h, [
             'select' => [
                 'name' => true,
@@ -324,9 +317,10 @@ class MDT_Admin
                 'selected' => true,
             ],
         ]);
-        
+
         return $html;
-    }        
+    }
+
     /**
      * Generate a text input field.
      *
@@ -338,39 +332,84 @@ class MDT_Admin
      */
     public function make_domain_input($args)
     {
-
         $html = "<table class='wp-list-table widefat fixed striped'>";
-        $html .="<thead><tr><td>".__("Domain","domain-translate") . "</td><td>" . __("Language","domain-translate") . "</td><td>" . __("Delete","domain-translate") . "</td></tr></thead>";        
+        $html .= '<thead><tr><td>'.__('Domain', 'domain-translate').'</td><td>'.__('Language', 'domain-translate').'</td><td>'.__('Delete', 'domain-translate').'</td></tr></thead>';
         $name = esc_attr($args['name']);
         $o = get_option($this->option_name);
 
-        $a  = $o[$name] ;
-        //var_dump($a);
-        $nk=0;
+        $a = $o[$name];
+        // var_dump($a);
+        $nk = 0;
 
-        foreach($a as $k=>$i ) {
-          $html .="<tr>";
-          if(isset($i['domain']) && isset($i['lang'])) {
-            $nk = $k+1;
-            $html .="<td>". $this->make_input($args['label_for'],$k,'domain',$i["domain"]) . "</td>";
-            $html .="<td>". $this->make_select($args['label_for'],$k,'lang',$i["lang"]) . "</td>";          
+        foreach ($a as $k => $i) {
+            $html .= '<tr>';
+            if (isset($i['domain']) && isset($i['lang'])) {
+                $nk = $k + 1;
+                $html .= '<td>'.$this->make_input($args['label_for'], $k, 'domain', $i['domain']).'</td>';
+                $html .= '<td>'.$this->make_select($args['label_for'], $k, 'lang', $i['lang']).'</td>';
 
-            $html .="<td><button class='button action' onClick=\"(function(){
+                $html .= "<td><button class='button action' onClick=\"(function(){
             const el = this.event.target ;
             el.parentElement.parentElement.remove();
             return false;
-            })();return false;\">". __("Delete","domain-translate") . "</button></td>";
-            $html .="</tr>";                  
-          }
+            })();return false;\">".__('Delete', 'domain-translate').'</button></td>';
+                $html .= '</tr>';
+            }
         }
-        
-        $html .="<tr>";
-        $html .="<td>". $this->make_input($args['label_for'],$nk,'domain',"") . "</td>";
-        $html .="<td>". $this->make_select($args['label_for'],$nk,'lang',"") . "</td>";        
-        $html .="</tr>";                                  
-        $html .= "</table>";
-        
-        echo $html;
+
+        $html .= '<tr>';
+        $html .= '<td>'.$this->make_input($args['label_for'], $nk, 'domain', '').'</td>';
+        $html .= '<td>'.$this->make_select($args['label_for'], $nk, 'lang', '').'</td>';
+        $html .= '</tr>';
+        $html .= '</table>';
+
+        $allowed_html = [
+            'table' => [
+                'class' => [],
+                'id' => [],
+            ],
+            'tr' => [],
+            'th' => [],
+            'td' => [],
+            'form' => [
+                'method' => [],
+                'action' => [],
+                'id' => [],
+                'class' => [],
+            ],
+            'input' => [
+                'type' => ['text', 'number', 'email', 'password', 'checkbox', 'radio'],
+                'name' => [],
+                'value' => [],
+                'id' => [],
+                'class' => [],
+                'placeholder' => [],
+                'required' => [],
+            ],
+            'select' => [
+                'name' => [],
+                'id' => [],
+                'class' => [],
+            ],
+            'option' => [
+                'value' => [],
+                'selected' => [],
+            ],
+            'label' => [
+                'for' => [],
+                'class' => [],
+            ],
+            'button' => [
+                'type' => ['button', 'submit', 'reset'],
+                'name' => [],
+                'id' => [],
+                'class' => [],
+                'value' => [],
+                'onclick' => [],
+            ],
+        ];
+        echo wp_kses($html, $allowed_html);
+        // echo $html;
     }
 
     /**
@@ -384,14 +423,13 @@ class MDT_Admin
      */
     public function echo_select($args)
     {
-        $html = "";
+        $html = '';
         $name = esc_attr($args['name']);
         $o = get_option($this->option_name);
         $key = '';
         if (isset($o[$name])) {
             $key = esc_attr($o[$name]);
         }
-
 
         $html = "<select name='{$args['label_for']}' />";
         foreach ($this->lang_codes as $i) {
@@ -417,7 +455,6 @@ class MDT_Admin
                 'selected' => true,
             ],
         ]);
-
     }
 
     /**
@@ -441,7 +478,7 @@ class MDT_Admin
         wp_nonce_field('wpds_save', 'wpds_nonce');
         settings_fields($this->option_name);
         do_settings_sections($this->option_name);
-        submit_button(__('Save Settings','domain-translate'));
+        submit_button(__('Save Settings', 'domain-translate'));
         ?>
 		</form>
 	</div>
@@ -483,11 +520,11 @@ class MDT_Admin
     public function validate($input)
     {
         $msg = __('Settings saved successfully', 'domain-translate');
-        foreach($input["domains"] as $k=>$v) {
-            if($this->is_valid_domain_name($v["domain"]) == false):
-              unset($input["domains"][$k]);
-             $msg .= " - " . __('One domain was invalid and was removed', 'domain-translate');
-            endif;
+        foreach ($input['domains'] as $k => $v) {
+            if (false == $this->is_valid_domain_name($v['domain'])) {
+                unset($input['domains'][$k]);
+                $msg .= ' - '.__('One domain was invalid and was removed', 'domain-translate');
+            }
         }
 
         add_settings_error('wporg_messages', 'wporg_message', $msg, 'updated');
