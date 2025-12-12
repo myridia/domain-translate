@@ -9,6 +9,7 @@ namespace MWPDT\Dt\Class;
  *
  * @since 1.0.0
  */
+
 class MDT_Admin
 {
     private $option_name = "myridiadt_settings";    
@@ -135,6 +136,7 @@ class MDT_Admin
 
     }
 
+    
     /**
      * Default Activate.
      *
