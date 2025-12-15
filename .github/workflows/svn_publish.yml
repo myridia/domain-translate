@@ -6,7 +6,7 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    if: github.repository_owner == 'myridiax'
+    if: github.repository_owner == 'myridia'
 
     steps:
       - name: Disable initramfs update
@@ -25,7 +25,7 @@ jobs:
         run: |
           # ls ./test/wordpress/wp-content/plugins/domain-translate/
           tag=$(grep "Stable Tag:" ./test/wordpress/wp-content/plugins/domain-translate/readme.txt | cut -d' ' -f3) 
-          otag=$(svn list https://plugins.svn.wordpress.org/domain-/tags | grep $tag | sed 's#/*$##' )
+          otag=$(svn list https://plugins.svn.wordpress.org/domain-translate/tags | grep $tag | sed 's#/*$##' )
           echo $otag
           echo $tag 
       
@@ -71,7 +71,7 @@ jobs:
     
       - name: Checkout
         run: |
-              svn --force checkout https://plugins.svn.wordpress.org/domain-swapper wp
+              svn --force checkout https://plugins.svn.wordpress.org/domain-translate wp
 
       - name: Copy to trunk
         run: |
