@@ -1,4 +1,4 @@
-## How to checkout 
+## How to checkout to wordpress svn  
 
 ```
 svn --force checkout https://plugins.svn.wordpress.org/domain-translate
