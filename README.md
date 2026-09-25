@@ -1,3 +1,5 @@
+<img src="domain-translate.svg" alt="domain-translate" width="120">
+
 # ![domain-translate](pages/public/assets/img/logo.png) Domain-Translate
 The automatic translation of a WordPress website based on its domain.
 
